@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "glad/glad.h"
+
 class Application {
 public:
     Application();
