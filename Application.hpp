@@ -1,10 +1,8 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-
-#include "glad/glad.h"
+#include "Context.hpp"
+#include "Tessellator.hpp"
 
 class Application {
 public:
@@ -14,9 +12,10 @@ public:
 private:
     void handleEvents();
     void render();
-    SDL_Window* window;
-    SDL_GLContext context;
-    SDL_Renderer* renderer;
+
+    Context m_context;
+    Tessellator m_tessellator;
+
     bool running;
 };
 

@@ -1,35 +1,26 @@
 #include "Application.hpp"
 
-Application::Application() {
-    SDL_Init(SDL_INIT_VIDEO);
-    IMG_Init(IMG_INIT_PNG);
+#include <iostream>
 
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+Application::Application() : m_context{}, m_tessellator{} {
 
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    window = SDL_CreateWindow("Sandbox",
-                              SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                              800, 800,
-                              SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
-    context = SDL_GL_CreateContext(window);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     running = false;
 
-    gladLoadGLLoader(SDL_GL_GetProcAddress);
+
 
     glEnable(GL_DEPTH_TEST);
+
+    m_tessellator.addVertex(0, 0, 0);
+    m_tessellator.addTextureCoordinate(0, 0);
+    m_tessellator.addVertex(0, 1, 0);
+    m_tessellator.addTextureCoordinate(0, 0);
+    m_tessellator.addVertex(1, 0, 0);
+    m_tessellator.addTextureCoordinate(0, 0);
+
 }
 
 Application::~Application() {
-    SDL_DestroyRenderer(renderer);
-    SDL_GL_DeleteContext(context);
-    SDL_DestroyWindow(window);
-    IMG_Quit();
-    SDL_Quit();
 }
 
 void Application::run() {
@@ -50,5 +41,11 @@ void Application::handleEvents() {
 }
 
 void Application::render() {
-    SDL_GL_SwapWindow(window);
+
+    glClearColor(1, 1, 0, 1);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    m_tessellator.flush();
+
+    SDL_GL_SwapWindow(m_context.getWindow());
 }
