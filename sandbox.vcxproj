@@ -172,6 +172,10 @@
     <None Include="resources\shaders\shader.frag" />
     <None Include="resources\shaders\shader.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\grass.png" />
+    <Image Include="resources\images\yashin.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

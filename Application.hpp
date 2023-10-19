@@ -7,7 +7,7 @@
 class Application {
 public:
     Application();
-    ~Application();
+    ~Application() = default;
     void run();
 private:
     void handleEvents();

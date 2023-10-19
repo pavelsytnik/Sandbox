@@ -86,4 +86,12 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\yashin.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

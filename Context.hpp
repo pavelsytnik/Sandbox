@@ -7,9 +7,7 @@ class Context {
 public:
     Context();
     ~Context();
-    SDL_Window* getWindow() {
-        return m_window;
-    }
+    SDL_Window* getWindow();
 private:
     SDL_Window* m_window;
     SDL_GLContext m_context;

@@ -2,14 +2,7 @@
 
 #include <iostream>
 
-Application::Application() : m_context{}, m_tessellator{} {
-
-
-    running = false;
-
-
-
-    glEnable(GL_DEPTH_TEST);
+Application::Application() : m_context{}, m_tessellator{}, running{ false } {
 
     m_tessellator.addVertex(0, 0, 0);
     m_tessellator.addTextureCoordinate(0, 0);
@@ -17,10 +10,6 @@ Application::Application() : m_context{}, m_tessellator{} {
     m_tessellator.addTextureCoordinate(0, 0);
     m_tessellator.addVertex(1, 0, 0);
     m_tessellator.addTextureCoordinate(0, 0);
-
-}
-
-Application::~Application() {
 }
 
 void Application::run() {
