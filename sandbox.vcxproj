@@ -146,19 +146,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Context.cpp" />
     <ClCompile Include="glad\glad.c" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Tessellator.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="VertexArray.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.hpp" />
+    <ClInclude Include="Context.hpp" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glad\khrplatform.h" />
     <ClInclude Include="ImageLoader.hpp" />
     <ClInclude Include="Shader.hpp" />
-    <ClInclude Include="Tile.hpp" />
+    <ClInclude Include="Tessellator.hpp" />
+    <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="VertexArray.hpp" />
+    <ClInclude Include="VertexBuffer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\shader.frag" />
+    <None Include="resources\shaders\shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
