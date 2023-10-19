@@ -2,7 +2,9 @@
 
 #include <iostream>
 
-Tessellator::Tessellator() {
+Tessellator::Tessellator() :
+    m_shader{ "resources/shaders/shader.vert", "resources/shaders/shader.frag" }
+{
     m_vao.bind();
     m_vbo.bind();
 

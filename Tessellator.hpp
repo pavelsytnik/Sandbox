@@ -23,7 +23,7 @@ public:
 private:
     VertexBuffer m_vbo;
     VertexArray m_vao;
-    Shader m_shader{ "resources/shaders/shader.vert", "resources/shaders/shader.frag" };
+    Shader m_shader;
 
     FloatBuffer m_vertices;
 };
