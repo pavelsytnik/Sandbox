@@ -19,6 +19,9 @@ private:
     std::uint8_t* blocks;
     std::uint32_t xSize, ySize, zSize;
     Camera m_camera;
+    glm::mat4 model;
+    glm::mat4 view;
+    glm::mat4 projection;
     Tessellator m_tessellator;
     bool m_changed;
 };

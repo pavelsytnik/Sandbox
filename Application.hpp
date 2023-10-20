@@ -3,6 +3,7 @@
 
 #include "Context.hpp"
 #include "Tessellator.hpp"
+#include "World.hpp"
 
 class Application {
 public:
@@ -15,6 +16,8 @@ private:
 
     Context m_context;
     Tessellator m_tessellator;
+
+    World m_world;
 
     bool running;
 };

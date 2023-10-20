@@ -18,6 +18,10 @@ public:
     void addVertex(GLfloat x, GLfloat y, GLfloat z);
     void addTextureCoordinate(GLfloat u, GLfloat v);
     std::size_t getBufferSize();
+    Shader& getShader();
+    GLint getModelMatrixLocation();
+    GLint getViewMatrixLocation();
+    GLint getProjectionMatrixLocation();
     GLuint vbo();
     GLuint vao();
 private:
@@ -26,6 +30,10 @@ private:
     Shader m_shader;
 
     FloatBuffer m_vertices;
+
+    GLint modelLoc;
+    GLint viewLoc;
+    GLint projLoc;
 };
 
 #endif

@@ -3,7 +3,10 @@
 #include <iostream>
 
 Tessellator::Tessellator() :
-    m_shader{ "resources/shaders/shader.vert", "resources/shaders/shader.frag" }
+    m_shader{ "resources/shaders/shader.vert", "resources/shaders/shader.frag" },
+    modelLoc(glGetUniformLocation(m_shader.id(), "model")),
+    viewLoc(glGetUniformLocation(m_shader.id(), "view")),
+    projLoc(glGetUniformLocation(m_shader.id(), "projection"))
 {
     m_vao.bind();
     m_vbo.bind();
@@ -34,10 +37,12 @@ void Tessellator::flush() {
     m_vbo.setData(m_vertices.size() * sizeof(GLfloat), m_vertices.data(), GL_DYNAMIC_DRAW);
     m_vbo.unbind();
 
-    m_shader.use();
+    //m_shader.use();
 
     m_vao.bind();
+    std::cout << m_vertices.size();
     glDrawArrays(GL_TRIANGLES, 0, m_vertices.size());
+    std::cout << glGetError();
     m_vao.unbind();
 
     clear();
@@ -61,4 +66,20 @@ GLuint Tessellator::vbo() {
 
 GLuint Tessellator::vao() {
     return m_vao.id();
+}
+
+Shader& Tessellator::getShader() {
+    return m_shader;
+}
+
+GLint Tessellator::getModelMatrixLocation() {
+    return modelLoc;
+}
+
+GLint Tessellator::getViewMatrixLocation() {
+    return viewLoc;
+}
+
+GLint Tessellator::getProjectionMatrixLocation() {
+    return projLoc;
 }

@@ -14,7 +14,7 @@ void Camera::setPosition(glm::vec3 position) {
 }
 
 void Camera::setDirection(glm::vec3 direction) {
-    m_direction = direction;
+    m_direction = glm::normalize(direction);
 }
 
 const glm::vec3& Camera::getPosition() const {
