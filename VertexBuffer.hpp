@@ -4,11 +4,14 @@
 #include "glad/glad.h"
 
 class VertexBuffer {
+
 public:
     VertexBuffer();
     ~VertexBuffer();
+
     void bind();
     void unbind();
+
     void setData(GLsizeiptr size, const void* data, GLenum usage);
     void attachAttributePointer(
         GLuint index,
@@ -18,9 +21,11 @@ public:
         GLsizei stride,
         const void* pointer
     );
-    GLuint id();
+
+    GLuint getID();
+
 private:
-    GLuint m_id{};
+    GLuint m_id;
 };
 
 #endif
