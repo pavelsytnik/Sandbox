@@ -9,9 +9,11 @@
 using image_t = std::unique_ptr<SDL_Surface, void (*)(SDL_Surface*)>;
 
 class ImageLoader {
+
 public:
     ImageLoader() = delete;
     static image_t loadPNG(std::string file);
+
 private:
     static void flipVertically(image_t& image);
 };

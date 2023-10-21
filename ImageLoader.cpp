@@ -5,9 +5,12 @@
 #include "SDL2/SDL_image.h"
 
 image_t ImageLoader::loadPNG(std::string file) {
+
     image_t image(nullptr, SDL_FreeSurface);
     image.reset(IMG_Load(file.c_str()));
+
     flipVertically(image);
+
     return image;
 }
 
