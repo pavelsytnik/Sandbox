@@ -4,11 +4,14 @@
 #include <SDL2/SDL.h>
 
 class Context {
+
 public:
     Context();
     ~Context();
     SDL_Window* getWindow();
+
 private:
+    void configureGLContext();
     SDL_Window* m_window;
     SDL_GLContext m_context;
 };
