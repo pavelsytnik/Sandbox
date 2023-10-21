@@ -1,14 +1,18 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
+#include <string>
+
 #include "glad/glad.h"
 
 class Shader {
+
 public:
-    Shader(const char* vertexShaderPath, const char* fragmentShaderPath);
+    Shader(const std::string& vertexFile, const std::string& fragmentFile);
     ~Shader();
     void use();
-    GLuint id();
+    GLuint getID();
+
 private:
     GLuint m_id;
 };
