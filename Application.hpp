@@ -2,24 +2,19 @@
 #define APPLICATION_HPP
 
 #include "Context.hpp"
-#include "Tessellator.hpp"
-#include "World.hpp"
 
 class Application {
 public:
     Application();
-    ~Application() = default;
     void run();
+    bool isRunning();
+    Context& getContext();
 private:
     void handleEvents();
     void render();
 
     Context m_context;
-    Tessellator m_tessellator;
-
-    World m_world;
-
-    bool running;
+    bool m_running;
 };
 
 #endif
