@@ -9,11 +9,12 @@ class Shader {
 
 public:
     Shader(const std::string& vertexFile, const std::string& fragmentFile);
-    ~Shader();
-    void use();
-    GLuint getID();
+    virtual ~Shader();
+    void use() const;
+    GLuint getID() const;
 
-private:
+protected:
+    virtual void getUniforms() const = 0;
     GLuint m_id;
 };
 

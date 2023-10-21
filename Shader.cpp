@@ -13,10 +13,10 @@ Shader::~Shader() {
     glDeleteProgram(m_id);
 }
 
-void Shader::use() {
+void Shader::use() const {
     glUseProgram(m_id);
 }
 
-GLuint Shader::getID() {
+GLuint Shader::getID() const {
     return m_id;
 }
