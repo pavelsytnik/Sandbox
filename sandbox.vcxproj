@@ -152,6 +152,7 @@
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderLoader.cpp" />
     <ClCompile Include="Tessellator.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="VertexArray.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="glad\khrplatform.h" />
     <ClInclude Include="ImageLoader.hpp" />
     <ClInclude Include="Shader.hpp" />
+    <ClInclude Include="ShaderLoader.hpp" />
     <ClInclude Include="Tessellator.hpp" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="VertexArray.hpp" />
