@@ -2,6 +2,8 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+#include "UniformLoader.hpp"
+
 BasicShader::BasicShader(const std::string& vertexFile,
                          const std::string& fragmentFile)
     : Shader(vertexFile, fragmentFile)
@@ -16,13 +18,13 @@ void BasicShader::getUniforms() {
 }
 
 void BasicShader::loadModelMatrix(const glm::mat4& model) {
-    glUniformMatrix4fv(m_modelMatrixLocation, 1, GL_FALSE, glm::value_ptr(model));
+    loadMatrix4(m_modelMatrixLocation, model);
 }
 
 void BasicShader::loadViewMatrix(const glm::mat4& view) {
-    glUniformMatrix4fv(m_viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(view));
+    loadMatrix4(m_viewMatrixLocation, view);
 }
 
 void BasicShader::loadProjectionMatrix(const glm::mat4& projection) {
-    glUniformMatrix4fv(m_projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projection));
+    loadMatrix4(m_projectionMatrixLocation, projection);
 }
