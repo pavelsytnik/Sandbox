@@ -3,20 +3,13 @@
 #include <fstream>
 #include <sstream>
 
+#include "FileReader.hpp"
+
 GLuint ShaderLoader::load(const std::string& vertexFile, const std::string& fragmentFile) {
 
-    std::ifstream vertFile("resources/shaders/" + vertexFile);
-    std::ifstream fragFile("resources/shaders/" + fragmentFile);
-
-    std::stringstream vertStream, fragStream;
-    vertStream << vertFile.rdbuf();
-    fragStream << fragFile.rdbuf();
-
-    vertFile.close();
-    fragFile.close();
-
-    std::string vertexShaderCode = vertStream.str();
-    std::string fragmentShaderCode = fragStream.str();
+    std::string folder("resources/shaders/");
+    std::string vertexShaderCode(readEntire(folder + vertexFile));
+    std::string fragmentShaderCode(readEntire(folder + fragmentFile));
 
 
     GLuint vertexShader = compile(vertexShaderCode.c_str(), GL_VERTEX_SHADER);
