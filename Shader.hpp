@@ -14,7 +14,7 @@ public:
     GLuint getID() const;
 
 protected:
-    virtual void getUniforms() const = 0;
+    virtual void getUniforms() = 0;
     GLuint m_id;
 };
 
