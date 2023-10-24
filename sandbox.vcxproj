@@ -146,8 +146,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="BasicShader.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Context.cpp" />
+    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="glad\glad.c" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -155,14 +157,18 @@
     <ClCompile Include="ShaderLoader.cpp" />
     <ClCompile Include="Tessellator.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UniformLoader.cpp" />
+    <ClCompile Include="UniformLoader.hpp" />
     <ClCompile Include="VertexArray.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.hpp" />
+    <ClInclude Include="BasicShader.hpp" />
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Context.hpp" />
+    <ClInclude Include="FileReader.hpp" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glad\khrplatform.h" />
     <ClInclude Include="ImageLoader.hpp" />

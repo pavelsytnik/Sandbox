@@ -8,7 +8,7 @@ VertexArray::~VertexArray() {
     glDeleteVertexArrays(1, &m_id);
 }
 
-GLuint VertexArray::id() {
+GLuint VertexArray::getID() {
     return m_id;
 }
 

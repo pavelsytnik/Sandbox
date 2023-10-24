@@ -9,7 +9,7 @@ public:
     ~VertexArray();
     void bind();
     void unbind();
-    GLuint id();
+    GLuint getID();
 private:
     GLuint m_id;
 };
