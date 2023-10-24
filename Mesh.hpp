@@ -1,39 +1,28 @@
-#ifndef TESSELLATOR_HPP
-#define TESSELLATOR_HPP
+#ifndef MESH_HPP
+#define MESH_HPP
 
 #include <vector>
 
 #include "VertexBuffer.hpp"
 #include "VertexArray.hpp"
-#include "Shader.hpp"
 
 using FloatBuffer = std::vector<GLfloat>;
 
-class Tessellator {
+class Mesh {
+
 public:
-    Tessellator();
-    ~Tessellator() = default;
-    void flush();
+    Mesh();
+    void addBufferData(const FloatBuffer& data);
     void clear();
-    void addVertex(GLfloat x, GLfloat y, GLfloat z);
-    void addTextureCoordinate(GLfloat u, GLfloat v);
-    std::size_t getBufferSize();
-    Shader& getShader();
-    GLint getModelMatrixLocation();
-    GLint getViewMatrixLocation();
-    GLint getProjectionMatrixLocation();
-    GLuint vbo();
-    GLuint vao();
+    std::size_t getBufferSize() const;
+
 private:
+    void setAttributePointers();
+
     VertexBuffer m_vbo;
     VertexArray m_vao;
-    Shader m_shader;
 
     FloatBuffer m_vertices;
-
-    GLint modelLoc;
-    GLint viewLoc;
-    GLint projLoc;
 };
 
 #endif
