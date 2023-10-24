@@ -7,10 +7,10 @@
 
 class Texture {
 public:
-    Texture(std::string path);
+    Texture(const std::string& path);
     Texture(const Texture&) = delete;
     ~Texture();
-    GLuint id();
+    GLuint getID() const;
 private:
     GLuint m_id;
 };

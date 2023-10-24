@@ -6,9 +6,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "ImageLoader.hpp"
+#include "../Util/ImageLoader.hpp"
 
-Texture::Texture(std::string path) {
+Texture::Texture(const std::string& path) {
 
     glGenTextures(1, &m_id);
     glBindTexture(GL_TEXTURE_2D, m_id);
@@ -29,6 +29,6 @@ Texture::~Texture() {
     glDeleteTextures(1, &m_id);
 }
 
-GLuint Texture::id() {
+GLuint Texture::getID() const {
     return m_id;
 }

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "FileReader.hpp"
+#include "../Util/FileReader.hpp"
 
 GLuint ShaderLoader::load(const std::string& vertexFile, const std::string& fragmentFile) {
 
