@@ -2,6 +2,10 @@
 #define APPLICATION_HPP
 
 #include "Context.hpp"
+#include "Scenes/Scene.hpp"
+#include "Scenes/PlayScene.hpp"
+
+//#include <memory>
 
 class Application {
 
@@ -17,6 +21,8 @@ private:
 
     Context m_context;
     bool m_running;
+
+    Scene* m_scene;
 };
 
 #endif

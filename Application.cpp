@@ -4,7 +4,8 @@
 
 Application::Application() :
     m_context{},
-    m_running{false}
+    m_running{false},
+    m_scene{new PlayScene}
 {}
 
 void Application::run() {
@@ -33,6 +34,8 @@ void Application::handleEvents() {
 }
 
 void Application::render() {
-
+    glClearColor(1.f, 0.0f, 0.f, 0.f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    m_scene->render();
     SDL_GL_SwapWindow(m_context.getWindow());
 }
