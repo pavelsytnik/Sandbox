@@ -8,8 +8,13 @@ std::size_t Mesh::getBufferSize() const {
     return m_vertices.size();
 }
 
-void Mesh::addBufferData(const FloatBuffer& data) {
-    m_vbo.setData(m_vertices.size() * sizeof(GLfloat), m_vertices.data(), GL_STATIC_DRAW);
+void Mesh::addFace(const glm::vec3& pos, const glm::vec2& textureCoord) {
+    m_vertices.push_back(pos.x);
+    m_vertices.push_back(pos.y);
+    m_vertices.push_back(pos.z);
+
+    m_vertices.push_back(textureCoord.x);
+    m_vertices.push_back(textureCoord.y);
 }
 
 void Mesh::clear() {

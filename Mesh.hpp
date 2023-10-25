@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include <glm/glm.hpp>
+
 #include "VertexBuffer.hpp"
 #include "VertexArray.hpp"
 
@@ -12,7 +14,7 @@ class Mesh {
 
 public:
     Mesh();
-    void addBufferData(const FloatBuffer& data);
+    void addFace(const glm::vec3& pos, const glm::vec2& textureCoord);
     void clear();
     std::size_t getBufferSize() const;
 
