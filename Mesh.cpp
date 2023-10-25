@@ -21,11 +21,21 @@ void Mesh::clear() {
     m_vertices.clear();
 
     m_vao.bind();
-    m_vbo.bind();
-
     m_vbo.setData(0, nullptr, GL_STATIC_DRAW);
+    m_vao.unbind();
+}
 
-    m_vbo.unbind();
+void Mesh::setVBO() {
+    m_vbo.setData(m_vertices.size() * sizeof(GLfloat), m_vertices.data(), GL_STATIC_DRAW);
+}
+
+void Mesh::draw() {
+
+    //m_vbo.setData(m_vertices.size() * sizeof(GLfloat), m_vertices.data(), GL_STATIC_DRAW);
+
+    //m_shader.use();
+    m_vao.bind();
+    glDrawArrays(GL_TRIANGLES, 0, m_vertices.size());
     m_vao.unbind();
 }
 

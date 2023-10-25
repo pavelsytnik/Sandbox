@@ -7,6 +7,7 @@
 
 #include "VertexBuffer.hpp"
 #include "VertexArray.hpp"
+//#include "Shaders/BasicShader.hpp"
 
 using FloatBuffer = std::vector<GLfloat>;
 
@@ -16,6 +17,8 @@ public:
     Mesh();
     void addFace(const glm::vec3& pos, const glm::vec2& textureCoord);
     void clear();
+    void draw();
+    void setVBO();
     std::size_t getBufferSize() const;
 
 private:
@@ -23,6 +26,7 @@ private:
 
     VertexBuffer m_vbo;
     VertexArray m_vao;
+    //BasicShader m_shader;
 
     FloatBuffer m_vertices;
 };
