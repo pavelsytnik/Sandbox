@@ -5,7 +5,9 @@
 Camera::Camera() :
     m_position{0.f, 0.f, 0.f},
     m_direction{0.f, 0.f, -1.f},
-    m_axis{0.f, 1.f, 0.f}
+    m_axis{0.f, 1.f, 0.f},
+    m_viewMatrix{glm::lookAt(m_position, m_position + m_direction, m_axis)},
+    m_projectionMatrix{glm::perspective(glm::radians(70.f), 1.f, 0.1f, 20.f)}
 {
 }
 
@@ -25,6 +27,10 @@ const glm::vec3& Camera::getDirection() const {
     return m_direction;
 }
 
-glm::mat4 Camera::getViewMatrix() const {
-    return glm::lookAt(m_position, m_position + m_direction, m_axis);
+const glm::mat4& Camera::getViewMatrix() const {
+    return m_viewMatrix;
+}
+
+const glm::mat4& Camera::getProjectionMatrix() const {
+    return m_projectionMatrix;
 }
