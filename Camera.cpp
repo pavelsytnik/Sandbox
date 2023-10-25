@@ -9,11 +9,11 @@ Camera::Camera() :
 {
 }
 
-void Camera::setPosition(glm::vec3 position) {
+void Camera::setPosition(const glm::vec3& position) {
     m_position = position;
 }
 
-void Camera::setDirection(glm::vec3 direction) {
+void Camera::setDirection(const glm::vec3& direction) {
     m_direction = glm::normalize(direction);
 }
 
