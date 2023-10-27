@@ -69,6 +69,9 @@
     <ClCompile Include="Scenes\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Input\Keyboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glad\glad.h">
@@ -125,6 +128,12 @@
     <ClInclude Include="World\World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Input\Keyboard.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Key.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\shader.frag">
@@ -139,6 +148,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="resources\images\yashin.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\blocks.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
