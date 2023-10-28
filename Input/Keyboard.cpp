@@ -1,11 +1,28 @@
 #include "Keyboard.hpp"
 
-Key Keyboard::forwardMove{SDL_SCANCODE_W};
-Key Keyboard::backwardMove{SDL_SCANCODE_S};
-Key Keyboard::leftMove{SDL_SCANCODE_A};
-Key Keyboard::rightMove{SDL_SCANCODE_D};
+#include <iostream>
 
-Key Keyboard::jump{SDL_SCANCODE_SPACE};
-Key Keyboard::sneak{SDL_SCANCODE_LSHIFT};
+Keyboard::Keyboard() {
+    m_keyMappings.push_back({SDL_SCANCODE_BACKSPACE});
+}
 
-Key Keyboard::escape{SDL_SCANCODE_ESCAPE};
+void Keyboard::handleInput(const SDL_KeyboardEvent& event) {
+    for (auto& key : m_keyMappings) {
+        if (event.keysym.scancode == key.getScancode()) {
+            update(key, event);
+            std::cout << event.keysym.sym << std::endl;
+            break;
+        }
+    }
+}
+
+void update(KeyMapping& key, const SDL_KeyboardEvent& event) {
+    switch (event.type) {
+        case SDL_KEYDOWN:
+            key.m_heldDown = true;
+            break;
+        case SDL_KEYUP:
+            key.m_heldDown = false;
+            break;
+    }
+}

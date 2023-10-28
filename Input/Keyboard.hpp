@@ -1,19 +1,20 @@
 #ifndef KEYBOARD_HPP
 #define KEYBOARD_HPP
 
-#include "Key.hpp"
+#include "KeyMapping.hpp"
+
+#include "SDL2/SDL.h"
+
+#include <vector>
 
 class Keyboard {
-public:
-    Keyboard() = delete;
-    static Key forwardMove;
-    static Key backwardMove;
-    static Key leftMove;
-    static Key rightMove;
-    static Key jump;
-    static Key sneak;
 
-    static Key escape;
+public:
+    Keyboard();
+    void handleInput(const SDL_KeyboardEvent& event);
+
+private:
+    std::vector<KeyMapping> m_keyMappings;
 };
 
 #endif

@@ -72,6 +72,9 @@
     <ClCompile Include="Input\Keyboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Input\KeyMapping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glad\glad.h">
@@ -131,7 +134,7 @@
     <ClInclude Include="Input\Keyboard.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\Key.hpp">
+    <ClInclude Include="Input\KeyMapping.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -144,12 +147,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\images\grass.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="resources\images\yashin.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="resources\images\blocks.png">
       <Filter>Resource Files</Filter>
     </Image>

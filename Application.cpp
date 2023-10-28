@@ -29,6 +29,8 @@ void Application::handleEvents() {
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
             m_running = false;
+        } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
+            m_keyboard.handleInput(event.key);
         }
     }
 }

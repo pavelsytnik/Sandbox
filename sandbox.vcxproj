@@ -150,6 +150,7 @@
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="glad\glad.c" />
     <ClCompile Include="Input\Keyboard.cpp" />
+    <ClCompile Include="Input\KeyMapping.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Scenes\PlayScene.cpp" />
@@ -171,7 +172,7 @@
     <ClInclude Include="Context.hpp" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glad\khrplatform.h" />
-    <ClInclude Include="Input\Key.hpp" />
+    <ClInclude Include="Input\KeyMapping.hpp" />
     <ClInclude Include="Input\Keyboard.hpp" />
     <ClInclude Include="Mesh.hpp" />
     <ClInclude Include="Scenes\PlayScene.hpp" />
@@ -193,8 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\blocks.png" />
-    <Image Include="resources\images\grass.png" />
-    <Image Include="resources\images\yashin.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

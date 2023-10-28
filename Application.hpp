@@ -4,6 +4,7 @@
 #include "Context.hpp"
 #include "Scenes/Scene.hpp"
 #include "Scenes/PlayScene.hpp"
+#include "Input/Keyboard.hpp"
 
 //#include <memory>
 
@@ -21,6 +22,8 @@ private:
 
     Context m_context;
     bool m_running;
+
+    Keyboard m_keyboard;
 
     Scene* m_scene;
 };
