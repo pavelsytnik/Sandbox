@@ -14,7 +14,7 @@ public:
     void handleInput(const SDL_KeyboardEvent& event);
 
 private:
-    std::vector<KeyMapping> m_keyMappings;
+    std::vector<KeyMapping*> m_keyMappings;
 };
 
 #endif

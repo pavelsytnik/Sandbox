@@ -10,6 +10,7 @@ class Registry {
 public:
     Registry() = delete;
     static KeyMapping* registerKey(const KeyMapping& key);
+    static std::vector<KeyMapping*> getKeys();
     static void clear();
 
 private:

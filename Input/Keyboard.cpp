@@ -1,16 +1,18 @@
 #include "Keyboard.hpp"
 
+#include "../Registries/Registry.hpp"
+
 #include <iostream>
 
 Keyboard::Keyboard() {
-    m_keyMappings.push_back({SDL_SCANCODE_BACKSPACE});
+    m_keyMappings = Registry::getKeys();
 }
 
 void Keyboard::handleInput(const SDL_KeyboardEvent& event) {
-    for (auto& key : m_keyMappings) {
-        if (event.keysym.scancode == key.getScancode()) {
-            update(key, event);
-            std::cout << event.keysym.sym << std::endl;
+    for (auto key : m_keyMappings) {
+        if (event.keysym.scancode == key->getScancode()) {
+            update(*key, event);
+            std::cout << key->getScancode() << std::endl;
             break;
         }
     }

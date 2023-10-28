@@ -14,3 +14,7 @@ KeyMapping* Registry::registerKey(const KeyMapping& key) {
     m_keyMappingsHolder.push_back(keyPtr);
     return keyPtr;
 }
+
+std::vector<KeyMapping*> Registry::getKeys() {
+    return m_keyMappingsHolder;
+}
