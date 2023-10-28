@@ -75,6 +75,12 @@
     <ClCompile Include="Input\KeyMapping.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Registries\Registry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Registries\Keys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glad\glad.h">
@@ -135,6 +141,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Input\KeyMapping.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Registries\Keys.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\KeyEventHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Registries\Registry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

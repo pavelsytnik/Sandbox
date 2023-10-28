@@ -8,11 +8,12 @@
 class Registry {
 
 public:
-    ~Registry();
-    KeyMapping* registerKey(const KeyMapping& key);
+    Registry() = delete;
+    static KeyMapping* registerKey(const KeyMapping& key);
+    static void clear();
 
 private:
-    std::vector<KeyMapping*> m_keyMappingsHolder;
+    static std::vector<KeyMapping*> m_keyMappingsHolder;
 };
 
 #endif

@@ -153,6 +153,8 @@
     <ClCompile Include="Input\KeyMapping.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Registries\Keys.cpp" />
+    <ClCompile Include="Registries\Registry.cpp" />
     <ClCompile Include="Scenes\PlayScene.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Shaders\BasicShader.cpp" />
@@ -172,9 +174,12 @@
     <ClInclude Include="Context.hpp" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glad\khrplatform.h" />
+    <ClInclude Include="Input\KeyEventHandler.hpp" />
     <ClInclude Include="Input\KeyMapping.hpp" />
     <ClInclude Include="Input\Keyboard.hpp" />
     <ClInclude Include="Mesh.hpp" />
+    <ClInclude Include="Registries\Keys.hpp" />
+    <ClInclude Include="Registries\Registry.hpp" />
     <ClInclude Include="Scenes\PlayScene.hpp" />
     <ClInclude Include="Scenes\Scene.hpp" />
     <ClInclude Include="Shaders\BasicShader.hpp" />

@@ -1,9 +1,12 @@
 #include "Registry.hpp"
 
-Registry::~Registry() {
+std::vector<KeyMapping*> Registry::m_keyMappingsHolder;
+
+void Registry::clear() {
     for (auto* key : m_keyMappingsHolder) {
         delete key;
     }
+    m_keyMappingsHolder.clear();
 }
 
 KeyMapping* Registry::registerKey(const KeyMapping& key) {
