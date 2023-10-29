@@ -1,19 +1,19 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <memory>
+
 #include "Context.hpp"
 #include "Scenes/Scene.hpp"
 #include "Scenes/PlayScene.hpp"
 #include "Input/Keyboard.hpp"
-
-//#include <memory>
 
 class Application {
 
 public:
     Application();
     void run();
-    bool isRunning();
+    bool isRunning() const;
     Context& getContext();
 
 private:
@@ -25,7 +25,7 @@ private:
 
     Keyboard m_keyboard;
 
-    Scene* m_scene;
+    std::unique_ptr<Scene> m_scene;
 };
 
 #endif

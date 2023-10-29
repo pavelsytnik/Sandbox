@@ -5,7 +5,7 @@
 Application::Application() :
     m_context{},
     m_running{false},
-    m_scene{new PlayScene}
+    m_scene{std::make_unique<PlayScene>()}
 {}
 
 void Application::run() {
@@ -16,7 +16,7 @@ void Application::run() {
     }
 }
 
-bool Application::isRunning() {
+bool Application::isRunning() const {
     return m_running;
 }
 
