@@ -1,12 +1,28 @@
 #include "Context.hpp"
 
+#include <cstdlib>
+#include <iostream>
+
 #include <SDL2/SDL_image.h>
 
 #include "glad/glad.h"
 
 Context::Context() {
-    SDL_Init(SDL_INIT_VIDEO);
-    IMG_Init(IMG_INIT_PNG);
+
+    //std::cout << "Initializing SDL";
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        std::cout << "ERROR: Failed to initialize SDL\n";
+        std::exit(EXIT_FAILURE);
+    }
+    //std::cout << std::endl;
+
+    //std::cout << "Initializing SDL_image";
+    int imgFlags = IMG_INIT_PNG;
+    if ((IMG_Init(imgFlags) & imgFlags) != imgFlags) {
+        std::cout << "ERROR: Failed to initialize SDL_image\n";
+        std::exit(EXIT_FAILURE);
+    }
+    //std::cout << std::endl;
 
     m_window = SDL_CreateWindow(
         "Sandbox",
@@ -14,11 +30,22 @@ Context::Context() {
         800, 800,
         SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN
     );
+    if (m_window == nullptr) {
+        std::cout << "ERROR: Failed to create window\n";
+        std::exit(EXIT_FAILURE);
+    }
 
     configureGLContext();
     m_context = SDL_GL_CreateContext(m_window);
+    if (m_context == nullptr) {
+        std::cout << "ERROR: Failed to create GL context\n";
+        std::exit(EXIT_FAILURE);
+    }
 
-    gladLoadGLLoader(SDL_GL_GetProcAddress);
+    if (gladLoadGLLoader(SDL_GL_GetProcAddress) == 0) {
+        std::cout << "ERROR: Failed to load GL loader\n";
+        std::exit(EXIT_FAILURE);
+    }
 
     glEnable(GL_DEPTH_TEST);
 }
