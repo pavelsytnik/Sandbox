@@ -8,7 +8,7 @@ set(SOURCE
     sources/Mesh/VertexArray.cpp
     sources/Mesh/VertexBuffer.cpp
     sources/Registry/Registry.cpp
-    sources/Registry/Keys.cpp
+    sources/Registry/KeyMappings.cpp
     sources/State/State.cpp
     sources/State/PlayingState.cpp
     sources/Shader/BasicShader.cpp
@@ -23,7 +23,7 @@ set(SOURCE
     sources/Application.cpp
     sources/Context.cpp
     sources/Camera.cpp
-)
+ )
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory

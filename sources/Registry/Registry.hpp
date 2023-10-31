@@ -4,17 +4,20 @@
 #include "../Input/KeyMapping.hpp"
 
 #include <vector>
+#include <memory>
+
+using KeyMappingPointers = std::vector<std::shared_ptr<KeyMapping>>;
 
 class Registry {
 
 public:
     Registry() = delete;
-    static KeyMapping* registerKey(const KeyMapping& key);
-    static std::vector<KeyMapping*> getKeys();
+    static std::shared_ptr<KeyMapping> registerKey(const KeyMapping& key);
+    static KeyMappingPointers getKeys();
     static void clear();
 
 private:
-    static std::vector<KeyMapping*> m_keyMappingsHolder;
+    static KeyMappingPointers m_keyMappingsHolder;
 };
 
 #endif
