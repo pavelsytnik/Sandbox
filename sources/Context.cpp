@@ -28,7 +28,7 @@ Context::Context() {
         "Sandbox",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
         800, 800,
-        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN
+        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE
     );
     if (m_window == nullptr) {
         std::cout << "ERROR: Failed to create window\n";

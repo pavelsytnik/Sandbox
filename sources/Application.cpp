@@ -5,7 +5,7 @@
 Application::Application() :
     m_context{},
     m_running{false},
-    m_scene{std::make_unique<PlayScene>()}
+    m_scene{std::make_unique<PlayScene>(m_context)}
 {}
 
 void Application::run() {
@@ -28,7 +28,14 @@ Context& Application::getContext() {
 void Application::handleEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
+        if (event.type == SDL_WINDOWEVENT) {
+            if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+                GLint w, h;
+                SDL_GetWindowSize(m_context.getWindow(), &w, &h);
+                glViewport(0, 0, w, h);
+                dynamic_cast<PlayScene*>(m_scene.get())->resize();
+            }
+        } else if (event.type == SDL_QUIT) {
             m_running = false;
         } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
             m_keyboard.handleInput(event.key);

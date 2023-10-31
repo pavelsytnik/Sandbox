@@ -8,6 +8,7 @@
 #include "../Mesh/Mesh.hpp"
 #include "../Shader/BasicShader.hpp"
 #include "../Texture/Texture.hpp"
+#include "../Context.hpp"
 
 class PlayScene : public Scene {
 
@@ -16,7 +17,9 @@ public:
     void update() override;
     void render() override;
 
-    PlayScene();
+    void resize();
+
+    PlayScene(Context& context);
     //~PlayScene();
 
 private:
@@ -26,6 +29,7 @@ private:
     
     Mesh m_mesh;
     BasicShader m_shader;
+    Context& m_context;
 };
 
 #endif

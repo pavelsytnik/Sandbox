@@ -16,6 +16,8 @@ public:
     const glm::mat4& getViewMatrix() const;
     const glm::mat4& getProjectionMatrix() const;
 
+    void setRatio(glm::float32 ratio);
+
 private:
     glm::vec3 m_position;
     glm::vec3 m_direction;

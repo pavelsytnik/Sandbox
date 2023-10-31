@@ -1,10 +1,15 @@
 #include "PlayScene.hpp"
 
+
+
 #include <glm/glm.hpp>
 
 #include <glad/glad.h>
 
-PlayScene::PlayScene() : m_world(10, 10, 10), m_texture("resources/images/blocks.png") {
+PlayScene::PlayScene(Context& context) :
+    m_context{context},
+    m_world(10, 10, 10),
+    m_texture("resources/images/blocks.png") {
 
     for (auto x = 0; x < m_world.getXSize(); ++x) {
         for (auto y = 0; y < m_world.getYSize(); ++y) {
@@ -65,4 +70,10 @@ void PlayScene::render() {
 
     m_mesh.draw();
 
+}
+
+void PlayScene::resize() {
+    GLint w, h;
+    SDL_GetWindowSize(m_context.getWindow(), &w, &h);
+    m_camera.setRatio((float)w / h);
 }
