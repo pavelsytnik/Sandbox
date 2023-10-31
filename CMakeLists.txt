@@ -25,13 +25,24 @@ set(SOURCE
     sources/Camera.cpp
 )
 
+add_custom_target(copy_resources ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${PROJECT_SOURCE_DIR}/resources
+    ${PROJECT_BINARY_DIR}/$<CONFIGURATION>/resources)
+
 include(cmake/path_to_sdl2.cmake)
 
 list(APPEND CMAKE_PREFIX_PATH ${SDL2_PATH})
 find_package(SDL2 REQUIRED)
+
 include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME} ${SOURCE})
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+     COMMAND ${CMAKE_COMMAND} -E copy_if_different
+         ${SDL2_DLLS}
+         $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 
 add_subdirectory(dependencies/glad)
 add_subdirectory(dependencies/glm)
