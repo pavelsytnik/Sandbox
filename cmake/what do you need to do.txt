@@ -1,0 +1,2 @@
+Locate sdl2-config.cmake in the root of your SDL2 directory.
+Change the path in path_to_sdl2.cmake to your SDL2 folder.
