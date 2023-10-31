@@ -1,7 +1,7 @@
-#ifndef PLAY_SCENE_HPP
-#define PLAY_SCENE_HPP
+#ifndef PLAYING_STATE_HPP
+#define PLAYING_STATE_HPP
 
-#include "Scene.hpp"
+#include "State.hpp"
 
 #include "../World/World.hpp"
 #include "../Camera.hpp"
@@ -10,7 +10,7 @@
 #include "../Texture/Texture.hpp"
 #include "../Context.hpp"
 
-class PlayScene : public Scene {
+class PlayingState : public State {
 
 public:
     void handleInput() override;
@@ -19,7 +19,7 @@ public:
 
     void resize();
 
-    PlayScene(Context& context);
+    PlayingState(Context& context);
     //~PlayScene();
 
 private:

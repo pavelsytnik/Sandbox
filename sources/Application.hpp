@@ -4,8 +4,8 @@
 #include <memory>
 
 #include "Context.hpp"
-#include "Scene/Scene.hpp"
-#include "Scene/PlayScene.hpp"
+#include "State/State.hpp"
+#include "State/PlayingState.hpp"
 #include "Input/Keyboard.hpp"
 
 class Application {
@@ -25,7 +25,7 @@ private:
 
     Keyboard m_keyboard;
 
-    std::unique_ptr<Scene> m_scene;
+    std::unique_ptr<State> m_state;
 };
 
 #endif

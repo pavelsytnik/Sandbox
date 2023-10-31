@@ -5,14 +5,14 @@
 Application::Application() :
     m_context{},
     m_running{false},
-    m_scene{std::make_unique<PlayScene>(m_context)}
+    m_state{std::make_unique<PlayingState>(m_context)}
 {}
 
 void Application::run() {
     m_running = true;
     while (m_running) {
         handleEvents();
-        m_scene->update();
+        m_state->update();
         render();
     }
 }
@@ -33,20 +33,20 @@ void Application::handleEvents() {
                 GLint w, h;
                 SDL_GetWindowSize(m_context.getWindow(), &w, &h);
                 glViewport(0, 0, w, h);
-                dynamic_cast<PlayScene*>(m_scene.get())->resize();
+                dynamic_cast<PlayingState*>(m_state.get())->resize();
             }
         } else if (event.type == SDL_QUIT) {
             m_running = false;
         } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
             m_keyboard.handleInput(event.key);
         }
-        m_scene->handleInput();
+        m_state->handleInput();
     }
 }
 
 void Application::render() {
     glClearColor(0.5f, 0.8f, 1.0f, 0.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    m_scene->render();
+    m_state->render();
     SDL_GL_SwapWindow(m_context.getWindow());
 }

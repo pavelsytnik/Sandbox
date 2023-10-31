@@ -1,4 +1,4 @@
-#include "PlayScene.hpp"
+#include "PlayingState.hpp"
 
 
 
@@ -6,7 +6,7 @@
 
 #include <glad/glad.h>
 
-PlayScene::PlayScene(Context& context) :
+PlayingState::PlayingState(Context& context) :
     m_context{context},
     m_world(10, 10, 10),
     m_texture("resources/images/blocks.png") {
@@ -31,11 +31,11 @@ PlayScene::PlayScene(Context& context) :
 
 //PlayScene::~PlayScene() {}
 
-void PlayScene::handleInput() {
+void PlayingState::handleInput() {
 
 }
 
-void PlayScene::update() {
+void PlayingState::update() {
 
     if (m_world.changed()) {
         m_world.update();
@@ -60,7 +60,7 @@ void PlayScene::update() {
     }
 }
 
-void PlayScene::render() {
+void PlayingState::render() {
     glBindTexture(GL_TEXTURE_2D, m_texture.getID());
     m_shader.use();
     m_shader.loadModelMatrix(glm::mat4(1.f));
@@ -72,7 +72,7 @@ void PlayScene::render() {
 
 }
 
-void PlayScene::resize() {
+void PlayingState::resize() {
     GLint w, h;
     SDL_GetWindowSize(m_context.getWindow(), &w, &h);
     m_camera.setRatio((float)w / h);

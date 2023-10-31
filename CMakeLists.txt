@@ -9,8 +9,8 @@ set(SOURCE
     sources/Mesh/VertexBuffer.cpp
     sources/Registry/Registry.cpp
     sources/Registry/Keys.cpp
-    sources/Scene/Scene.cpp
-    sources/Scene/PlayScene.cpp
+    sources/State/State.cpp
+    sources/State/PlayingState.cpp
     sources/Shader/BasicShader.cpp
     sources/Shader/Shader.cpp
     sources/Shader/ShaderLoader.cpp
