@@ -1,11 +1,13 @@
 #include "PlayingState.hpp"
 
+#include "../Application.hpp"
+
 #include <glm/glm.hpp>
 
 #include <glad/glad.h>
 
-PlayingState::PlayingState(Context& context) :
-    State(context),
+PlayingState::PlayingState(Application& app) :
+    State(app),
     m_world(10, 10, 10),
     m_texture("resources/images/blocks.png") {
 
@@ -80,7 +82,7 @@ void PlayingState::render() {
 
 void PlayingState::resize() {
     int w, h;
-    SDL_GetWindowSize(m_context.getWindow(), &w, &h);
+    SDL_GetWindowSize(m_app.getContext().getWindow(), &w, &h);
 
     glViewport(0, 0, w, h);
     m_camera.setRatio((float)w / h);

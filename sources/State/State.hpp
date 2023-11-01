@@ -5,10 +5,12 @@
 
 #include "../Context.hpp"
 
+class Application;
+
 class State {
 
 public:
-    State(Context& context);
+    State(Application& app);
 
     virtual void handleEvent(const SDL_Event& event);
 
@@ -20,7 +22,7 @@ public:
 
 protected:
     virtual void resize();
-    Context& m_context;
+    Application& m_app;
 };
 
 #endif

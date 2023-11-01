@@ -18,7 +18,7 @@ public:
     void update() override;
     void render() override;
 
-    PlayingState(Context& context);
+    PlayingState(Application& app);
     //~PlayScene();
 
 protected:
