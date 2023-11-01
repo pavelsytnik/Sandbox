@@ -2,11 +2,15 @@
 
 #include <iostream>
 
+#include "Registry/KeyMappings.hpp"
+
 Application::Application() :
     m_context{},
     m_running{false},
     m_state{std::make_unique<PlayingState>(m_context)}
-{}
+{
+    KeyMappings::getInstance();
+}
 
 void Application::run() {
     m_running = true;
@@ -28,14 +32,8 @@ Context& Application::getContext() {
 void Application::handleEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_WINDOWEVENT) {
-            if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-                GLint w, h;
-                SDL_GetWindowSize(m_context.getWindow(), &w, &h);
-                glViewport(0, 0, w, h);
-                dynamic_cast<PlayingState*>(m_state.get())->resize();
-            }
-        } else if (event.type == SDL_QUIT) {
+        m_state->handleEvent(event);
+        if (event.type == SDL_QUIT) {
             m_running = false;
         } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
             m_keyboard.handleInput(event.key);

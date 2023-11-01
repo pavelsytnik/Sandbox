@@ -1,13 +1,11 @@
 #include "PlayingState.hpp"
 
-
-
 #include <glm/glm.hpp>
 
 #include <glad/glad.h>
 
 PlayingState::PlayingState(Context& context) :
-    m_context{context},
+    State(context),
     m_world(10, 10, 10),
     m_texture("resources/images/blocks.png") {
 
@@ -27,12 +25,20 @@ PlayingState::PlayingState(Context& context) :
         }
     }
     m_mesh.setVBO();
+
+    m_camera.setPosition({15.f, 15.f, 25.f});
+    m_camera.setDirection({-1.f, -0.4f, -1.f});
 }
 
 //PlayScene::~PlayScene() {}
 
-void PlayingState::handleInput() {
+void PlayingState::handleEvent(const SDL_Event& event) {
+    State::handleEvent(event);
+}
 
+void PlayingState::handleInput() {
+    m_camera.setPosition(m_camera.getPosition() + glm::vec3(-0.001f, -0.001f, -0.001f));
+    //m_camera.setDirection(m_camera.getDirection() + glm::vec3(0001.f, 0.f, 0.f));
 }
 
 void PlayingState::update() {
@@ -73,7 +79,9 @@ void PlayingState::render() {
 }
 
 void PlayingState::resize() {
-    GLint w, h;
+    int w, h;
     SDL_GetWindowSize(m_context.getWindow(), &w, &h);
+
+    glViewport(0, 0, w, h);
     m_camera.setRatio((float)w / h);
 }

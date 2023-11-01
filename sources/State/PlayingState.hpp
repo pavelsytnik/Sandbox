@@ -13,14 +13,16 @@
 class PlayingState : public State {
 
 public:
+    void handleEvent(const SDL_Event& event) override;
     void handleInput() override;
     void update() override;
     void render() override;
 
-    void resize();
-
     PlayingState(Context& context);
     //~PlayScene();
+
+protected:
+    void resize() override;
 
 private:
     World m_world;
@@ -29,7 +31,6 @@ private:
     
     Mesh m_mesh;
     BasicShader m_shader;
-    Context& m_context;
 };
 
 #endif
