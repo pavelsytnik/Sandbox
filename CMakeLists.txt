@@ -23,7 +23,7 @@ set(SOURCE
     sources/Application.cpp
     sources/Context.cpp
     sources/Camera.cpp
- )
+  "sources/Registry/InputListeners.cpp")
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory

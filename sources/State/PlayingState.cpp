@@ -6,10 +6,14 @@
 
 #include <glad/glad.h>
 
+#include <iostream>
+
 PlayingState::PlayingState(Application& app) :
     State(app),
     m_world(10, 10, 10),
-    m_texture("resources/images/blocks.png") {
+    m_texture("resources/images/blocks.png"),
+    m_keys(Registry::getKeys()),
+    m_listeners(Registry::getListeners()) {
 
     for (auto x = 0; x < m_world.getXSize(); ++x) {
         for (auto y = 0; y < m_world.getYSize(); ++y) {
@@ -39,8 +43,13 @@ void PlayingState::handleEvent(const SDL_Event& event) {
 }
 
 void PlayingState::handleInput() {
-    m_camera.setPosition(m_camera.getPosition() + glm::vec3(-0.001f, -0.001f, -0.001f));
-    //m_camera.setDirection(m_camera.getDirection() + glm::vec3(0001.f, 0.f, 0.f));
+    //auto& keys = KeyMappings::getInstance();
+
+    for (auto listener : m_listeners) {
+        listener(m_world);
+    }
+
+
 }
 
 void PlayingState::update() {

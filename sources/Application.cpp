@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Registry/KeyMappings.hpp"
+#include "Registry/InputListeners.hpp"
 
 Application::Application() :
     m_context{}, // load Registry also
@@ -10,6 +11,7 @@ Application::Application() :
     m_state{}
 {
     KeyMappings::getInstance();
+    registerInputListeners();
     m_state = std::make_unique<PlayingState>(*this);
 }
 
@@ -17,6 +19,7 @@ void Application::run() {
     m_running = true;
     while (m_running) {
         handleEvents();
+        m_state->handleInput();
         m_state->update();
         render();
     }
@@ -39,7 +42,7 @@ void Application::handleEvents() {
         } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
             m_keyboard.handleInput(event.key);
         }
-        m_state->handleInput();
+        //m_state->handleInput();
     }
 }
 

@@ -1,6 +1,7 @@
 #include "Registry.hpp"
 
 KeyMappingPointers Registry::m_keyMappingsHolder;
+std::vector<InputListener> Registry::m_inputListenersHolder;
 
 void Registry::clear() {
     //for (auto* key : m_keyMappingsHolder) {
@@ -17,4 +18,12 @@ std::shared_ptr<KeyMapping> Registry::registerKey(const KeyMapping& key) {
 
 KeyMappingPointers Registry::getKeys() {
     return m_keyMappingsHolder;
+}
+
+void Registry::registerListener(InputListener listener) {
+    m_inputListenersHolder.push_back(listener);
+}
+
+std::vector<InputListener> Registry::getListeners() {
+    return m_inputListenersHolder;
 }

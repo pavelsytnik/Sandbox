@@ -9,6 +9,10 @@
 #include "../Shader/BasicShader.hpp"
 #include "../Texture/Texture.hpp"
 #include "../Context.hpp"
+#include "../Input/KeyMapping.hpp"
+#include "../Registry/KeyMappings.hpp"
+#include "../Registry/Registry.hpp"
+#include "../Registry/InputListeners.hpp"
 
 class PlayingState : public State {
 
@@ -31,6 +35,9 @@ private:
     
     Mesh m_mesh;
     BasicShader m_shader;
+
+    KeyMappingPointers m_keys;
+    std::vector<InputListener> m_listeners;
 };
 
 #endif
