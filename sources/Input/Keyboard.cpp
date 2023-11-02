@@ -1,19 +1,21 @@
 #include "Keyboard.hpp"
 
-#include "../Registry/Registry.hpp"
+//#include "../Registry/Registry.hpp"
+#include "../Registry/KeyMappings.hpp"
 
 #include <iostream>
 
-Keyboard::Keyboard() {
+Keyboard::Keyboard()
+{
+    KeyMappings::getInstance();
     m_keyMappings = Registry::getKeys();
 }
 
 void Keyboard::handleInput(const SDL_KeyboardEvent& event) {
-    for (auto key : m_keyMappings) {
+    for (auto& key : m_keyMappings) {
         if (event.keysym.scancode == key->getScancode()) {
             update(*key, event);
-            std::cout << key->getScancode() << std::endl;
-            break;
+            //break;
         }
     }
 }

@@ -9,6 +9,8 @@
 class KeyMappings {
 
 public:
+    KeyMappings(const KeyMappings&) = delete;
+
     static KeyMappings& getInstance();
     static void deleteInstance();
 

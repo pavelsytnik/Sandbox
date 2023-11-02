@@ -1,11 +1,11 @@
 #ifndef KEYBOARD_HPP
 #define KEYBOARD_HPP
 
-#include "KeyMapping.hpp"
-
-#include "SDL2/SDL.h"
-
 #include <vector>
+
+#include <SDL2/SDL.h>
+
+#include "../Registry/Registry.hpp"
 
 class Keyboard {
 
@@ -14,7 +14,7 @@ public:
     void handleInput(const SDL_KeyboardEvent& event);
 
 private:
-    std::vector<KeyMapping*> m_keyMappings;
+    KeyMappingPointers m_keyMappings;
 };
 
 #endif
