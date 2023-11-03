@@ -8,6 +8,10 @@ World::World(std::uint32_t x, std::uint32_t y, std::uint32_t z) :
     for (int i = 0; i < x * y * z; i++) {
         m_blocks[i] = 1;
     }
+
+    m_player.position = glm::vec3(5.f, 5.f, 25.f);
+    m_player.pitch = 0;
+    m_player.yaw = 270;
 }
 
 World::~World() {
@@ -29,6 +33,10 @@ void World::update() {
 
 bool World::changed() const {
     return m_changed;
+}
+
+Player& World::getPlayer() {
+    return m_player;
 }
 
 std::uint32_t World::getXSize() const {

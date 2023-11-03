@@ -13,6 +13,7 @@
 #include "../Registry/KeyMappings.hpp"
 #include "../Registry/Registry.hpp"
 #include "../Registry/InputListeners.hpp"
+#include "../Entity/Player.hpp"
 
 class PlayingState : public State {
 

@@ -3,6 +3,8 @@
 
 #include <cstdint>
 
+#include "../Entity/Player.hpp"
+
 class World {
 
 public:
@@ -12,6 +14,7 @@ public:
     void setBlock(std::uint8_t block, std::uint32_t x, std::uint32_t y, std::uint32_t z);
     void update();
     bool changed() const;
+    Player& getPlayer();
 
     std::uint32_t getXSize() const;
     std::uint32_t getYSize() const;
@@ -22,6 +25,8 @@ private:
     std::uint32_t m_xSize, m_ySize, m_zSize;
 
     bool m_changed;
+
+    Player m_player;
 };
 
 #endif
