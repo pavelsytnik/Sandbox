@@ -1,7 +1,10 @@
 #include "Registry.hpp"
 
+#include "../Input/MouseButtonMapping.hpp"
+
 KeyMappingPointers Registry::m_keyMappingsHolder;
 std::vector<InputListener> Registry::m_inputListenersHolder;
+ButtonPointers Registry::m_buttonHolder;
 
 void Registry::clear() {
     //for (auto* key : m_keyMappingsHolder) {
@@ -26,4 +29,14 @@ void Registry::registerListener(InputListener listener) {
 
 std::vector<InputListener> Registry::getListeners() {
     return m_inputListenersHolder;
+}
+
+std::shared_ptr<MouseButtonMapping> Registry::registerMouseButton(const MouseButtonMapping& button) {
+    auto btnPtr = std::make_shared<MouseButtonMapping>(button);
+    m_buttonHolder.push_back(btnPtr);
+    return btnPtr;
+}
+
+ButtonPointers Registry::getMouseButtons() {
+    return m_buttonHolder;
 }

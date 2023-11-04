@@ -7,6 +7,7 @@
 #include "State/State.hpp"
 #include "State/PlayingState.hpp"
 #include "Input/Keyboard.hpp"
+#include "Input/Mouse.hpp"
 
 class Application {
 
@@ -24,6 +25,7 @@ private:
     bool m_running;
 
     Keyboard m_keyboard;
+    Mouse m_mouse;
 
     std::unique_ptr<State> m_state;
 };

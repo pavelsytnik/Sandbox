@@ -41,6 +41,10 @@ void Application::handleEvents() {
             m_running = false;
         } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
             m_keyboard.handleInput(event.key);
+        } else if (event.type == SDL_MOUSEMOTION) {
+            m_mouse.handleEvent(event.motion);
+        } else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP) {
+            m_mouse.handleEvent(event.button);
         }
         //m_state->handleInput();
     }
