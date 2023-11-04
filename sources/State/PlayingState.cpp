@@ -6,14 +6,15 @@
 
 #include "PlayingState.hpp"
 #include "../Application.hpp"
-#include "../Registry/KeyMappings.hpp"
 
 PlayingState::PlayingState(Application& app) :
     State(app),
     m_world(50, 25, 50),
     m_player(m_world.getPlayer()),
     m_texture("resources/images/blocks.png"),
-    m_keys(KeyMappings::getInstance())
+    m_buttons(MouseButtonMappings::getInstance()),
+    m_keys(KeyMappings::getInstance()),
+    m_mouse(app.getMouse())
 {
     for (auto x = 0; x < m_world.getXSize(); ++x) {
         for (auto y = 0; y < m_world.getYSize(); ++y) {
@@ -43,14 +44,11 @@ PlayingState::PlayingState(Application& app) :
         )
     );
     SDL_SetRelativeMouseMode(SDL_TRUE);
+    //SDL_GL_SetSwapInterval(0);
 }
 
 void PlayingState::handleEvent(const SDL_Event& event) {
     State::handleEvent(event);
-    if (event.type == SDL_MOUSEMOTION) {
-        m_world.getPlayer().yaw += 0.2f * event.motion.xrel;
-        m_world.getPlayer().pitch -= 0.2f * event.motion.yrel;
-    }
 }
 
 void PlayingState::handleInput() {
@@ -59,7 +57,12 @@ void PlayingState::handleInput() {
 }
 
 void PlayingState::mouseInput() {
+    if (m_buttons.BREAK->heldDown()) {
+        std::cout << "BREAK\n";
+    }
 
+    m_player.yaw += 0.15 * m_mouse.getDX();
+    m_player.pitch -= 0.15 * m_mouse.getDY();
 }
 
 void PlayingState::keyboardInput() {

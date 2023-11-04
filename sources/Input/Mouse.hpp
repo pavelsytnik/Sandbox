@@ -21,7 +21,7 @@ private:
     void update(MouseButtonMapping& button, const SDL_MouseButtonEvent& event);
 
     ButtonPointers m_buttons;
-    Sint32 m_dx, m_dy;
+    mutable Sint32 m_dx, m_dy;
 };
 
 #endif

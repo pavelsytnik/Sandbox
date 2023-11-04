@@ -17,6 +17,9 @@ public:
     bool isRunning() const;
     Context& getContext();
 
+    const Mouse& getMouse() const;
+    const Keyboard& getKeyboard() const;
+
 private:
     void handleEvents();
     void render();

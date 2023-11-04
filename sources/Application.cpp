@@ -25,6 +25,14 @@ void Application::run() {
     }
 }
 
+const Keyboard& Application::getKeyboard() const {
+    return m_keyboard;
+}
+
+const Mouse& Application::getMouse() const {
+    return m_mouse;
+}
+
 bool Application::isRunning() const {
     return m_running;
 }

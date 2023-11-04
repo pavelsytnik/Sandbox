@@ -2,6 +2,7 @@
 #define MOUSE_BUTTON_MAPPINGS_HPP
 
 #include "Registry.hpp"
+#include "../Input/MouseButtonMapping.hpp"
 
 class MouseButtonMappings {
 public:

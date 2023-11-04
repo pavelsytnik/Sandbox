@@ -17,8 +17,8 @@ void Mouse::handleEvent(const SDL_MouseButtonEvent& event) {
 }
 
 void Mouse::handleEvent(const SDL_MouseMotionEvent& event) {
-    m_dx = event.xrel;
-    m_dy = event.yrel;
+    m_dx += event.xrel;
+    m_dy += event.yrel;
 }
 
 void Mouse::update(MouseButtonMapping& button, const SDL_MouseButtonEvent& event) {
@@ -30,9 +30,13 @@ void Mouse::update(MouseButtonMapping& button, const SDL_MouseButtonEvent& event
 }
 
 Sint32 Mouse::getDX() const {
-    return m_dx;
+    auto dx = m_dx;
+    m_dx = 0;
+    return dx;
 }
 
 Sint32 Mouse::getDY() const {
-    return m_dy;
+    auto dy = m_dy;
+    m_dy = 0;
+    return dy;
 }
