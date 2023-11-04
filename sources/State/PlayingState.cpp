@@ -1,21 +1,20 @@
-#include "PlayingState.hpp"
-
-#include "../Application.hpp"
-
-#include <glm/glm.hpp>
-
-#include <glad/glad.h>
-
 #include <iostream>
 #include <cmath>
 
+#include <glm/glm.hpp>
+#include <glad/glad.h>
+
+#include "PlayingState.hpp"
+#include "../Application.hpp"
+#include "../Registry/KeyMappings.hpp"
+
 PlayingState::PlayingState(Application& app) :
     State(app),
-    m_world(10, 10, 10),
+    m_world(50, 25, 50),
+    m_player(m_world.getPlayer()),
     m_texture("resources/images/blocks.png"),
-    m_keys(Registry::getKeys()),
-    m_listeners(Registry::getListeners()) {
-
+    m_keys(KeyMappings::getInstance())
+{
     for (auto x = 0; x < m_world.getXSize(); ++x) {
         for (auto y = 0; y < m_world.getYSize(); ++y) {
             for (auto z = 0; z < m_world.getZSize(); ++z) {
@@ -46,8 +45,6 @@ PlayingState::PlayingState(Application& app) :
     SDL_SetRelativeMouseMode(SDL_TRUE);
 }
 
-//PlayScene::~PlayScene() {}
-
 void PlayingState::handleEvent(const SDL_Event& event) {
     State::handleEvent(event);
     if (event.type == SDL_MOUSEMOTION) {
@@ -57,52 +54,42 @@ void PlayingState::handleEvent(const SDL_Event& event) {
 }
 
 void PlayingState::handleInput() {
-    static auto& keys = KeyMappings::getInstance();
-    auto& player = m_world.getPlayer();
+    keyboardInput();
+    mouseInput();
+}
 
-    //for (auto listener : m_listeners) {
-        //listener(m_world);
-    //}
+void PlayingState::mouseInput() {
 
-   
+}
 
-    if (keys.FORWARD->heldDown()) {
-        player.position += 0.06f * glm::vec3(
-            std::cos(glm::radians(player.yaw)),
-            0.f,
-            std::sin(glm::radians(player.yaw))
-        );
-    } else if (keys.BACKWARD->heldDown()) {
-        player.position -= 0.06f * glm::vec3(
-            std::cos(glm::radians(player.yaw)),
-            0.f,
-            std::sin(glm::radians(player.yaw))
-        );
-    } else if (keys.LEFT->heldDown()) {
-        player.position -= 0.06f * glm::normalize(glm::cross(
-            glm::vec3(
-                std::cos(glm::radians(player.yaw)),
-                0.f,
-                std::sin(glm::radians(player.yaw))), glm::vec3(0.f, 1.f, 0.f)));
-    } else if (keys.RIGHT->heldDown()) {
-    player.position += 0.06f * glm::normalize(glm::cross(
-        glm::vec3(
-            std::cos(glm::radians(player.yaw)),
-            0.f,
-            std::sin(glm::radians(player.yaw))), glm::vec3(0.f, 1.f, 0.f)));
-    } else if (keys.UP->heldDown()) {
-        player.position += 0.06f * glm::vec3(0.f, 1.f, 0.f);
-    } else if (keys.DOWN->heldDown()) {
-        player.position -= 0.06f * glm::vec3(0.f, 1.f, 0.f);
+void PlayingState::keyboardInput() {
+    if (m_keys.FORWARD->heldDown()) {
+        m_player.acceleration.x += std::cos(glm::radians(m_player.yaw));
+        m_player.acceleration.z += std::sin(glm::radians(m_player.yaw));
     }
-    m_camera.setPosition(player.position);
-    m_camera.setDirection(
-        glm::vec3(
-            std::cos(glm::radians(player.yaw)) * std::cos(glm::radians(player.pitch)),
-            std::sin(glm::radians(player.pitch)),
-            std::sin(glm::radians(player.yaw)) * std::cos(glm::radians(player.pitch))
-        )
-    );
+    if (m_keys.BACKWARD->heldDown()) {
+        m_player.acceleration.x -= std::cos(glm::radians(m_player.yaw));
+        m_player.acceleration.z -= std::sin(glm::radians(m_player.yaw));
+    }
+    if (m_keys.LEFT->heldDown()) {
+        m_player.acceleration.x -= std::cos(glm::radians(m_player.yaw + 90));
+        m_player.acceleration.z -= std::sin(glm::radians(m_player.yaw + 90));
+    }
+    if (m_keys.RIGHT->heldDown()) {
+        m_player.acceleration.x += std::cos(glm::radians(m_player.yaw + 90));
+        m_player.acceleration.z += std::sin(glm::radians(m_player.yaw + 90));
+    }
+    if (m_keys.UP->heldDown()) {
+        m_player.acceleration.y += 1;
+    }
+    if (m_keys.DOWN->heldDown()) {
+        m_player.acceleration.y -= 1;
+    }
+
+    if (glm::length(m_player.acceleration) != 0.f) {
+        m_player.position += 0.06f * glm::normalize(m_player.acceleration);
+        m_player.acceleration = glm::vec3(0.f, 0.f, 0.f);
+    }
 }
 
 void PlayingState::update() {
@@ -128,6 +115,14 @@ void PlayingState::update() {
         }
         m_mesh.setVBO();
     }
+    m_camera.setPosition(m_player.position);
+    m_camera.setDirection(
+        glm::vec3(
+            std::cos(glm::radians(m_player.yaw)) * std::cos(glm::radians(m_player.pitch)),
+            std::sin(glm::radians(m_player.pitch)),
+            std::sin(glm::radians(m_player.yaw)) * std::cos(glm::radians(m_player.pitch))
+        )
+    );
 }
 
 void PlayingState::render() {

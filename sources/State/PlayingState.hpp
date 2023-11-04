@@ -3,17 +3,13 @@
 
 #include "State.hpp"
 
-#include "../World/World.hpp"
 #include "../Camera.hpp"
+#include "../Entity/Player.hpp"
 #include "../Mesh/Mesh.hpp"
+#include "../Registry/KeyMappings.hpp"
 #include "../Shader/BasicShader.hpp"
 #include "../Texture/Texture.hpp"
-#include "../Context.hpp"
-#include "../Input/KeyMapping.hpp"
-#include "../Registry/KeyMappings.hpp"
-#include "../Registry/Registry.hpp"
-#include "../Registry/InputListeners.hpp"
-#include "../Entity/Player.hpp"
+#include "../World/World.hpp"
 
 class PlayingState : public State {
 
@@ -24,21 +20,23 @@ public:
     void render() override;
 
     PlayingState(Application& app);
-    //~PlayScene();
 
 protected:
     void resize() override;
 
 private:
+    void mouseInput();
+    void keyboardInput();
+
     World m_world;
+    Player& m_player;
+
     Camera m_camera;
     Texture m_texture;
-    
     Mesh m_mesh;
     BasicShader m_shader;
 
-    KeyMappingPointers m_keys;
-    std::vector<InputListener> m_listeners;
+    KeyMappings& m_keys;
 };
 
 #endif

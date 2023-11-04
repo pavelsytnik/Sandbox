@@ -8,6 +8,7 @@ struct Player {
     glm::vec3 position;
     float yaw;
     float pitch;
+    glm::vec3 acceleration;
 };
 
 #endif
