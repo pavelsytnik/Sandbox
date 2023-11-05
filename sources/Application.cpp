@@ -8,6 +8,7 @@
 Application::Application() :
     m_context{}, // load Registry also
     m_running{false},
+    m_visible{true},
     m_state{}
 {
     KeyMappings::getInstance();
@@ -19,9 +20,13 @@ void Application::run() {
     m_running = true;
     while (m_running) {
         handleEvents();
-        m_state->handleInput();
+        if (m_visible) {
+            m_state->handleInput();
+        }
         m_state->update();
-        render();
+        if (m_visible) {
+            render();
+        }
     }
 }
 
@@ -54,7 +59,13 @@ void Application::handleEvents() {
         } else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP) {
             m_mouse.handleEvent(event.button);
         }
-        //m_state->handleInput();
+    }
+    if (SDL_GetWindowFlags(m_context.getWindow()) & SDL_WINDOW_MINIMIZED && m_visible) {
+        m_visible = false;
+        std::cout << "hidden\n";
+    } else if (!(SDL_GetWindowFlags(m_context.getWindow()) & SDL_WINDOW_MINIMIZED) && !m_visible) {
+        m_visible = true;
+        std::cout << "shown\n";
     }
 }
 

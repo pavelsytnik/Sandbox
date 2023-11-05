@@ -26,6 +26,7 @@ private:
 
     Context m_context;
     bool m_running;
+    bool m_visible;
 
     Keyboard m_keyboard;
     Mouse m_mouse;
