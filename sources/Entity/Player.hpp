@@ -1,14 +1,12 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include <glm/glm.hpp>
+#include "Entity.hpp"
 
-struct Player {
-
-    glm::vec3 position;
-    float yaw;
-    float pitch;
-    glm::vec3 acceleration;
+class Player : public Entity {
+    
+public:
+    Player(World& world);
 };
 
 #endif
