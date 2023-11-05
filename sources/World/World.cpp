@@ -27,8 +27,9 @@ void World::setBlock(std::uint8_t block, std::uint32_t x, std::uint32_t y, std::
     m_changed = true;
 }
 
-void World::update() {
+void World::update(std::uint64_t dt) {
     m_changed = false;
+    m_player.move(dt);
 }
 
 bool World::changed() const {
