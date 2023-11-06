@@ -3,7 +3,6 @@
 #include <iostream>
 
 #include "Registry/KeyMappings.hpp"
-#include "Registry/InputListeners.hpp"
 
 Application::Application() :
     m_context{}, // load Registry also
@@ -12,7 +11,6 @@ Application::Application() :
     m_state{}
 {
     KeyMappings::getInstance();
-    registerInputListeners();
     m_state = std::make_unique<PlayingState>(*this);
 }
 
