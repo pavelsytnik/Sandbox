@@ -1,6 +1,8 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
+#include <cstdint>
+
 #include <SDL2/SDL.h>
 
 #include "../Context.hpp"
@@ -15,7 +17,7 @@ public:
     virtual void handleEvent(const SDL_Event& event);
 
     virtual void handleInput() = 0;
-    virtual void update() = 0;
+    virtual void update(std::uint64_t dt) = 0;
     virtual void render() = 0;
 
     virtual ~State() = 0;

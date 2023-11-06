@@ -8,6 +8,7 @@
 #include "State/PlayingState.hpp"
 #include "Input/Keyboard.hpp"
 #include "Input/Mouse.hpp"
+#include "Util/Clock.hpp"
 
 class Application {
 

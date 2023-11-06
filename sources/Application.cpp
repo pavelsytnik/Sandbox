@@ -17,16 +17,22 @@ Application::Application() :
 }
 
 void Application::run() {
+
+    auto deltaTime = 0ULL;
+    Clock frameStart;
     m_running = true;
+
     while (m_running) {
         handleEvents();
         if (m_visible) {
             m_state->handleInput();
         }
-        m_state->update();
+        m_state->update(deltaTime);
         if (m_visible) {
             render();
         }
+
+        deltaTime = frameStart.restart();
     }
 }
 
@@ -47,6 +53,7 @@ Context& Application::getContext() {
 }
 
 void Application::handleEvents() {
+
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         m_state->handleEvent(event);
@@ -60,12 +67,11 @@ void Application::handleEvents() {
             m_mouse.handleEvent(event.button);
         }
     }
+
     if (SDL_GetWindowFlags(m_context.getWindow()) & SDL_WINDOW_MINIMIZED && m_visible) {
         m_visible = false;
-        std::cout << "hidden\n";
     } else if (!(SDL_GetWindowFlags(m_context.getWindow()) & SDL_WINDOW_MINIMIZED) && !m_visible) {
         m_visible = true;
-        std::cout << "shown\n";
     }
 }
 
