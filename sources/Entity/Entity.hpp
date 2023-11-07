@@ -8,7 +8,7 @@ class World;
 
 class Entity {
 
-    friend class World;
+    //friend class World;
     
 public:
     Entity(World& world);
@@ -19,6 +19,17 @@ public:
 
     const glm::vec3& getPosition() const;
     const glm::vec3& getAcceleration() const;
+
+    void setMotion(const glm::vec3& direction);
+
+    // the following code will be rewritten because of excess access
+
+    void setYaw(float angle);
+    void setPitch(float angle);
+
+    void setPosition(const glm::vec3& position);
+
+    //
 
 protected:
     glm::vec3 m_position;
