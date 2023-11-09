@@ -54,13 +54,14 @@ void Entity::setPosition(const glm::vec3& position) {
 
 void Entity::setMotion(const glm::vec3& direction) {
     if (glm::length(direction) != 0) {
+        m_impulse = glm::length(m_force) == 0;
         m_force = glm::normalize(direction);
         //m_inertia = glm::length(m_velocity) != 0 ? glm::normalize(m_velocity) : glm::vec3(0.f);
-        m_impulse = true;
+        //m_impulse = true;
     }
     else {
         m_force = glm::vec3(0.f);
-        m_impulse = false;
+        //m_impulse = false;
     }
 }
 
@@ -71,15 +72,27 @@ void Entity::move(std::uint64_t dt) {
 
     static float n = 0.f;
 
+    //std::cout << glm::length(m_force) << std::endl;
+    //std::cout << glm::length(m_velocity) << std::endl << std::endl;
+
 
     m_position += delta * 15 * m_velocity;
 
     glm::vec3 dif = m_velocity - m_force;
-    if (glm::length(dif) != 0.f && glm::length(dif) - delta * k >= 0.f) {
-        dif = (glm::length(dif) - delta * k) * glm::normalize(dif);
+    std::cout << dif.x << ", " << dif.y << ", " << dif.z << std::endl;
+
+    if (m_impulse && glm::length(m_velocity) == 0) {
+        m_velocity = m_force;
+    } else if (m_impulse) {
+        m_velocity = glm::mix(m_velocity, m_force, 0.2f);
     } else {
-        dif = glm::vec3(0.f);
+
+        if (glm::length(dif) != 0.f && glm::length(dif) - delta * k >= 0.f) {
+            dif = (glm::length(dif) - delta * k) * glm::normalize(dif);
+        } else {
+            dif = glm::vec3(0.f);
+        }
+        m_velocity = m_force + dif;
     }
-    m_velocity = m_force + dif;
     //m_impulse = false;
 }
