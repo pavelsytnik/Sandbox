@@ -18,7 +18,9 @@ public:
     float getPitch() const;
 
     const glm::vec3& getPosition() const;
-    const glm::vec3& getAcceleration() const;
+    //const glm::vec3& getAcceleration() const;
+    const glm::vec3& getForce() const;
+    const glm::vec3& getVelocity() const;
 
     void setMotion(const glm::vec3& direction);
 
@@ -33,7 +35,14 @@ public:
 
 protected:
     glm::vec3 m_position;
-    glm::vec3 m_acceleration;
+    //glm::vec3 m_acceleration;
+    glm::vec3 m_velocity;
+    glm::vec3 m_force;
+
+    glm::vec3 m_inertia;
+    
+    //float m_speed;
+    bool m_impulse;
 
     float m_yaw;
     float m_pitch;
