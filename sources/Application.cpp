@@ -27,7 +27,7 @@ void Application::run() {
         }
         m_state->update(deltaTime);
         if (m_visible) {
-            render();
+            m_renderer.swap(m_context.getWindow());
         }
 
         deltaTime = frameStart.restart();
@@ -71,11 +71,4 @@ void Application::handleEvents() {
     } else if (!(SDL_GetWindowFlags(m_context.getWindow()) & SDL_WINDOW_MINIMIZED) && !m_visible) {
         m_visible = true;
     }
-}
-
-void Application::render() {
-    glClearColor(0.5f, 0.8f, 1.0f, 0.f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    m_state->render();
-    SDL_GL_SwapWindow(m_context.getWindow());
 }

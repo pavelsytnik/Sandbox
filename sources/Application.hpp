@@ -9,6 +9,7 @@
 #include "Input/Keyboard.hpp"
 #include "Input/Mouse.hpp"
 #include "Util/Clock.hpp"
+#include "Renderer/RenderMaster.hpp"
 
 class Application {
 
@@ -23,7 +24,6 @@ public:
 
 private:
     void handleEvents();
-    void render();
 
     Context m_context;
     bool m_running;
@@ -31,6 +31,8 @@ private:
 
     Keyboard m_keyboard;
     Mouse m_mouse;
+
+    RenderMaster m_renderer;
 
     std::unique_ptr<State> m_state;
 };
