@@ -6,11 +6,8 @@
 #include "../Camera.hpp"
 #include "../Entity/Player.hpp"
 #include "../Input/Mouse.hpp"
-#include "../Mesh/Mesh.hpp"
 #include "../Registry/MouseButtonMappings.hpp"
 #include "../Registry/KeyMappings.hpp"
-#include "../Shader/BasicShader.hpp"
-#include "../Texture/Texture.hpp"
 #include "../World/World.hpp"
 
 class PlayingState : public State {
@@ -34,9 +31,6 @@ private:
     Player& m_player;
 
     Camera m_camera;
-    Texture m_texture;
-    Mesh m_mesh;
-    BasicShader m_shader;
 
     MouseButtonMappings& m_buttons;
     KeyMappings& m_keys;
