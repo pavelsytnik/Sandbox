@@ -8,14 +8,14 @@ std::size_t Mesh::getBufferSize() const {
     return m_vertices.size();
 }
 
-void Mesh::addFace(const glm::vec3& pos, const glm::vec2& textureCoord) {
-    m_vertices.push_back(pos.x);
-    m_vertices.push_back(pos.y);
-    m_vertices.push_back(pos.z);
-
-    m_vertices.push_back(textureCoord.x);
-    m_vertices.push_back(textureCoord.y);
-}
+//void Mesh::addFace(const glm::vec3& pos, const glm::vec2& textureCoord) {
+//    m_vertices.push_back(pos.x);
+//    m_vertices.push_back(pos.y);
+//    m_vertices.push_back(pos.z);
+//
+//    m_vertices.push_back(textureCoord.x);
+//    m_vertices.push_back(textureCoord.y);
+//}
 
 void Mesh::clear() {
     m_vertices.clear();
@@ -51,4 +51,13 @@ inline void Mesh::setAttributePointers() {
 
     m_vbo.unbind();
     m_vao.unbind();
+}
+
+void Mesh::addVertex(const glm::vec3& pos, const glm::vec2& textureCoord) {
+    m_vertices.push_back(pos.x);
+    m_vertices.push_back(pos.y);
+    m_vertices.push_back(pos.z);
+
+    m_vertices.push_back(textureCoord.x);
+    m_vertices.push_back(textureCoord.y);
 }
