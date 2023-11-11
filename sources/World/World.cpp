@@ -3,15 +3,13 @@
 World::World(std::uint32_t x, std::uint32_t y, std::uint32_t z) :
     m_blocks(new std::uint8_t[x * y * z]),
     m_xSize(x), m_ySize(y), m_zSize(z),
-    m_changed(true)
+    m_player(*this)
 {
     for (int i = 0; i < x * y * z; i++) {
         m_blocks[i] = 1;
     }
 
-    m_player.position = glm::vec3(5.f, 5.f, 25.f);
-    m_player.pitch = 0;
-    m_player.yaw = 270;
+    m_player.m_position = glm::vec3(getXSize() / 2, getYSize() + 2, getZSize() / 2);
 }
 
 World::~World() {
@@ -24,16 +22,10 @@ std::uint8_t World::getBlock(std::uint32_t x, std::uint32_t y, std::uint32_t z) 
 
 void World::setBlock(std::uint8_t block, std::uint32_t x, std::uint32_t y, std::uint32_t z) {
     m_blocks[m_zSize * (y * m_xSize + x) + z] = block;
-    m_changed = true;
 }
 
 void World::update(std::uint64_t dt) {
-    m_changed = false;
     m_player.move(dt);
-}
-
-bool World::changed() const {
-    return m_changed;
 }
 
 Player& World::getPlayer() {
