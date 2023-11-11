@@ -23,7 +23,14 @@ set(SOURCE
     sources/Application.cpp
     sources/Context.cpp
     sources/Camera.cpp
-   "sources/Input/Mouse.cpp" "sources/Input/MouseButtonMapping.cpp" "sources/Registry/MouseButtonMappings.cpp" "sources/Util/Time.cpp" "sources/Util/Clock.cpp" "sources/Entity/Entity.cpp" "sources/Entity/Player.cpp")
+    sources/Input/Mouse.cpp
+    sources/Input/MouseButtonMapping.cpp
+    sources/Registry/MouseButtonMappings.cpp
+    sources/Util/Clock.cpp
+    sources/Entity/Entity.cpp
+    sources/Entity/Player.cpp
+    sources/Mesh/ChunkMesh.cpp
+    sources/Renderer/RenderMaster.cpp)
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
