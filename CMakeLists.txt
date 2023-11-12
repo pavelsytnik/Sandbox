@@ -30,7 +30,7 @@ set(SOURCE
     sources/Entity/Entity.cpp
     sources/Entity/Player.cpp
     sources/Mesh/ChunkMesh.cpp
-    sources/Renderer/RenderMaster.cpp "sources/Renderer/ChunkRenderer.cpp")
+    sources/Renderer/RenderMaster.cpp "sources/Renderer/ChunkRenderer.cpp"  "sources/Mesh/ChunkMeshBuilder.cpp")
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
