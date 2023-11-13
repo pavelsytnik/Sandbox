@@ -63,7 +63,7 @@ void Entity::setMotion(const glm::vec3& direction) {
 
 void Entity::move(std::uint64_t dt) {
 
-    auto k = 0.5f;
+    auto k = 5.f;
     float delta = dt / 1000000.f / 1000.f;
 
     glm::vec3 dif = m_velocity - m_force;
