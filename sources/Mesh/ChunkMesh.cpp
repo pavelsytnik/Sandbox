@@ -2,7 +2,7 @@
 
 void ChunkMesh::addFace(const Face& face,
                         const TextureAtlasCoord& texture,
-                        std::uint32_t x, std::uint32_t y, std::uint32_t z)
+                        std::int32_t x, std::int32_t y, std::int32_t z)
 {
     for (int i = 0; i < 6; ++i) {
         int faceShift = i * 3;

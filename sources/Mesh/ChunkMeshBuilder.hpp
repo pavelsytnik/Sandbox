@@ -21,12 +21,12 @@ public:
     std::shared_ptr<ChunkMesh> getResult() const;
 
 private:
-    bool shouldMakeFace(std::uint32_t x, std::uint32_t y, std::uint32_t z) const;
+    bool shouldMakeFace(std::int32_t x, std::int32_t y, std::int32_t z) const;
     void tryAddFace(const Face& face,
                     const TextureAtlasCoord& texture,
-                    std::uint32_t x,
-                    std::uint32_t y,
-                    std::uint32_t z);
+                    std::int32_t x,
+                    std::int32_t y,
+                    std::int32_t z);
 
     std::shared_ptr<ChunkMesh> m_chunkMesh;
     const World& world;
