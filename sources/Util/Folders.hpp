@@ -1,13 +1,13 @@
 #ifndef FOLDERS_HPP
 #define FOLDERS_HPP
 
-#include <string>
+// TODO: implement constexpr string literal concatenation
 
 namespace folders {
 
-    constexpr std::string resources("resources/");
-    constexpr std::string shaders(resources + "shaders/");
-    constexpr std::string textures(resources + "images/");
+    constexpr auto resources = "resources/";
+    constexpr auto shaders   = "resources/shaders/";
+    constexpr auto textures  = "resources/images";
 }
 
 #endif
