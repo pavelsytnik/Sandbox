@@ -6,11 +6,16 @@
 #include <glad/glad.h>
 
 class Texture {
+
 public:
     Texture(const std::string& path);
     Texture(const Texture&) = delete;
+    Texture(Texture&&) = delete;
     ~Texture();
+
     GLuint getID() const;
+    void bind();
+
 private:
     GLuint m_id;
 };

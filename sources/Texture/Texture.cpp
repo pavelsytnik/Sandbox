@@ -32,3 +32,7 @@ Texture::~Texture() {
 GLuint Texture::getID() const {
     return m_id;
 }
+
+void Texture::bind() {
+    glBindTexture(GL_TEXTURE_2D, m_id);
+}
