@@ -9,6 +9,10 @@
 #include "../Registry/MouseButtonMappings.hpp"
 #include "../Registry/KeyMappings.hpp"
 #include "../World/World.hpp"
+#include "../Mesh/ChunkMesh.hpp"
+#include "../Renderer/ChunkRenderer.hpp"
+
+#include <memory>
 
 class PlayingState : public State {
 
@@ -30,7 +34,10 @@ private:
     World m_world;
     Player& m_player;
 
+    std::shared_ptr<ChunkMesh> m_chunkMesh;
+
     Camera m_camera;
+    ChunkRenderer m_chunkRenderer;
 
     MouseButtonMappings& m_buttons;
     KeyMappings& m_keys;

@@ -6,6 +6,7 @@
 
 #include "PlayingState.hpp"
 #include "../Application.hpp"
+#include "../Mesh/ChunkMeshBuilder.hpp"
 
 PlayingState::PlayingState(Application& app) :
     State(app),
@@ -16,7 +17,15 @@ PlayingState::PlayingState(Application& app) :
     m_mouse(app.getMouse())
 {
     SDL_SetRelativeMouseMode(SDL_TRUE);
-    SDL_GL_SetSwapInterval(0);
+    SDL_GL_SetSwapInterval(1);
+
+    ChunkMeshBuilder builder(m_world);
+    builder.create();
+    builder.build();
+    m_chunkMesh = builder.getResult();
+    m_chunkMesh->setVBO();
+
+    m_chunkRenderer.add(m_chunkMesh);
 }
 
 void PlayingState::handleEvent(const SDL_Event& event) {
@@ -80,7 +89,7 @@ void PlayingState::update(std::uint64_t dt) {
 }
 
 void PlayingState::render() {
-
+    m_chunkRenderer.render(m_camera);
 }
 
 void PlayingState::resize() {
