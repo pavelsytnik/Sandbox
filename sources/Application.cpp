@@ -27,8 +27,7 @@ void Application::run() {
         }
         m_state->update(deltaTime);
         if (m_visible) {
-            //m_state->render();
-            m_renderer.swap(m_context.getWindow());
+            m_renderer.swap(m_context.getWindow(), *m_state);
         }
 
         deltaTime = frameStart.restart();
