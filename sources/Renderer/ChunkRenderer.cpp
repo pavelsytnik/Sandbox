@@ -1,6 +1,10 @@
 #include "ChunkRenderer.hpp"
 #include "../Camera.hpp"
 
+ChunkRenderer::ChunkRenderer() :
+    m_atlas("resources/images/blocks.png")
+{}
+
 void ChunkRenderer::add(const std::shared_ptr<ChunkMesh>& mesh)
 {
     m_meshes.push_back(mesh);

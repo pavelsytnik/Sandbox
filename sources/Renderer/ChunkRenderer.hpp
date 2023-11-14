@@ -13,6 +13,8 @@ class Camera;
 class ChunkRenderer {
 
 public:
+    ChunkRenderer();
+
     void add(const std::shared_ptr<ChunkMesh>& mesh);
     void clear();
     void render(const Camera& camera);
