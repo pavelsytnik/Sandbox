@@ -1,8 +1,9 @@
 #include "ChunkRenderer.hpp"
 #include "../Camera.hpp"
+#include "../Util/Paths.hpp"
 
 ChunkRenderer::ChunkRenderer() :
-    m_atlas("resources/images/blocks.png")
+    m_atlas(files::blockAtlas)
 {}
 
 void ChunkRenderer::add(const std::shared_ptr<ChunkMesh>& mesh)

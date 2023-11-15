@@ -4,7 +4,7 @@
 #include <sstream>
 
 #include "../Util/FileReader.hpp"
-#include "../Util/Folders.hpp"
+#include "../Util/Paths.hpp"
 
 GLuint ShaderLoader::load(const std::string& vertexFile, const std::string& fragmentFile) {
 
