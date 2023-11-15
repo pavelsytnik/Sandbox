@@ -7,6 +7,9 @@
 
 #include <glad/glad.h>
 
+#include "Registry/KeyMappings.hpp"
+#include "Registry/MouseButtonMappings.hpp"
+
 Context::Context() {
 
     //std::cout << "Initializing SDL";
@@ -48,9 +51,15 @@ Context::Context() {
     }
 
     glEnable(GL_DEPTH_TEST);
+
+    KeyMappings::getInstance();
+    MouseButtonMappings::getInstance();
 }
 
 Context::~Context() {
+    MouseButtonMappings::deleteInstance();
+    KeyMappings::deleteInstance();
+
     SDL_GL_DeleteContext(m_context);
     SDL_DestroyWindow(m_window);
 

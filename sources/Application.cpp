@@ -2,15 +2,12 @@
 
 #include <iostream>
 
-#include "Registry/KeyMappings.hpp"
-
 Application::Application() :
     m_context{}, // load Registry also
     m_running{false},
     m_visible{true},
     m_state{}
 {
-    KeyMappings::getInstance();
     m_state = std::make_unique<PlayingState>(*this);
 }
 

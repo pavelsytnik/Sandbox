@@ -4,7 +4,6 @@
 #include "MouseButtonMapping.hpp"
 
 Mouse::Mouse() {
-    MouseButtonMappings::getInstance();
     m_buttons = Registry::getMouseButtons();
 }
 

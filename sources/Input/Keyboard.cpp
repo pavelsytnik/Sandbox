@@ -7,7 +7,6 @@
 
 Keyboard::Keyboard()
 {
-    KeyMappings::getInstance();
     m_keyMappings = Registry::getKeys();
 }
 
