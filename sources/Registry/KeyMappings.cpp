@@ -26,4 +26,5 @@ KeyMappings& KeyMappings::getInstance() {
 
 void KeyMappings::deleteInstance() {
     delete m_instance;
+    m_instance = nullptr;
 }
