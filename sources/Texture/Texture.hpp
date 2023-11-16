@@ -11,7 +11,7 @@ public:
     Texture(const std::string& path);
     Texture(const Texture&) = delete;
     Texture(Texture&&) = delete;
-    ~Texture();
+    virtual ~Texture();
 
     GLuint getID() const;
     void bind();
