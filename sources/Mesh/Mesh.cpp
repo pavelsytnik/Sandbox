@@ -60,7 +60,7 @@ void Mesh::addVertex(const glm::vec3& pos, const glm::vec2& textureCoord) {
 }
 
 void Mesh::addIndices(Front front) {
-    GLuint i = m_indices.size();
+    GLuint i = m_vertices.size() / 5 - 4;
 
     switch (front) {
         case Front::FACING_AXIS:
