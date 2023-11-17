@@ -23,6 +23,7 @@ public:
 private:
     bool shouldMakeFace(std::int32_t x, std::int32_t y, std::int32_t z) const;
     void tryAddFace(const Face& face,
+                    Front front,
                     const TextureAtlasCoord& texture,
                     std::int32_t x,
                     std::int32_t y,
