@@ -20,5 +20,5 @@ std::array<GLfloat, 12> BlocksAtlas::getTexture(int x, int y) const {
     GLfloat xMax = xMin + 1 / 16.f;
     GLfloat yMax = yMin + 1 / 16.f;
 
-    return {xMin, yMin, xMax, yMin, xMin, yMax, xMin, yMax, xMax, yMax, xMax, yMin};
+    return {xMin, yMin, xMax, yMin, xMin, yMax, xMax, yMax, xMin, yMax, xMax, yMin};
 }
