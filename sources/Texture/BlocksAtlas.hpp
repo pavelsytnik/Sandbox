@@ -13,7 +13,7 @@ class BlocksAtlas : public Texture {
 public:
     BlocksAtlas(const std::string& path);
 
-    std::array<GLfloat, 12> getTexture(int x, int y) const;
+    std::array<GLfloat, 8> getTexture(int x, int y) const;
 };
 
 #endif

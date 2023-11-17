@@ -12,7 +12,7 @@ BlocksAtlas::BlocksAtlas(const std::string& path) :
     Texture(path)
 {}
 
-std::array<GLfloat, 12> BlocksAtlas::getTexture(int x, int y) const {
+std::array<GLfloat, 8> BlocksAtlas::getTexture(int x, int y) const {
 
     GLfloat xMin = x / 16.f;
     GLfloat yMin = 1 - y / 16.f - 1 / 16.f;
@@ -20,5 +20,5 @@ std::array<GLfloat, 12> BlocksAtlas::getTexture(int x, int y) const {
     GLfloat xMax = xMin + 1 / 16.f;
     GLfloat yMax = yMin + 1 / 16.f;
 
-    return {xMin, yMin, xMax, yMin, xMin, yMax, xMax, yMax, xMin, yMax, xMax, yMin};
+    return {xMin, yMin, xMax, yMin, xMax, yMax, xMin, yMax};
 }

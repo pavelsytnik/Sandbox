@@ -10,7 +10,7 @@
 
 PlayingState::PlayingState(Application& app) :
     State(app),
-    m_world(10, 10, 10),
+    m_world(5, 5, 5),
     m_player(m_world.getPlayer()),
     m_buttons(MouseButtonMappings::getInstance()),
     m_keys(KeyMappings::getInstance()),
@@ -23,7 +23,7 @@ PlayingState::PlayingState(Application& app) :
     builder.create();
     builder.build();
     m_chunkMesh = builder.getResult();
-    m_chunkMesh->setVBO();
+    m_chunkMesh->setData();
 
     m_chunkRenderer.add(m_chunkMesh);
 }
