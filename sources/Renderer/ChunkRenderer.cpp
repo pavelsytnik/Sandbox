@@ -18,6 +18,10 @@ void ChunkRenderer::clear()
 
 void ChunkRenderer::render(const Camera& camera)
 {
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
+    glFrontFace(GL_CCW);
+
     m_shader.use();
     m_atlas.bind();
 
