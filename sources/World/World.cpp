@@ -6,7 +6,14 @@ World::World(std::uint32_t x, std::uint32_t y, std::uint32_t z) :
     m_player(*this)
 {
     for (int i = 0; i < x * y * z; i++) {
-        m_blocks[i] = 1;
+        m_blocks[i] = 0;
+    }
+    for (int _y = 0; _y < y; _y++) {
+        for (int _x = _y; _x < x; _x++) {
+            for (int _z = _y; _z < z; _z++) {
+                setBlock(1, _x, _y, _z);
+            }
+        }
     }
 
     m_player.m_position = glm::vec3(getXSize() / 2, getYSize() + 2, getZSize() / 2);
