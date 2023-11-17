@@ -89,6 +89,11 @@ void PlayingState::update(std::uint64_t dt) {
 }
 
 void PlayingState::render() {
+
+
+ // glClearColor(0.5f, 0.8f, 1.0f, 1.0f);
+    glClearColor(139 / 255.f, 170 / 255.f, 252 / 255.f, 1.f);
+
     m_chunkRenderer.render(m_camera);
 }
 
