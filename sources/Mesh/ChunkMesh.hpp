@@ -16,7 +16,8 @@ public:
 
     void addFace(const Face& face,
                  const TextureAtlasCoord& texture,
-                 std::int32_t x,std::int32_t y, std::int32_t z);
+                 std::int32_t x,std::int32_t y, std::int32_t z,
+                 GLfloat light);
 };
 
 #endif

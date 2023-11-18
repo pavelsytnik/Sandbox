@@ -24,7 +24,7 @@ public:
     std::size_t getBufferSize() const;
 
 protected:
-    void addVertex(const glm::vec3& pos, const glm::vec2& textureCoord);
+    void addVertex(const glm::vec3& pos, const glm::vec2& textureCoord, GLfloat light);
     void addIndices();
 
 private:

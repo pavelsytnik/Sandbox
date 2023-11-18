@@ -6,10 +6,13 @@ Mesh::Mesh() {
     m_ebo.bind();
 
     glEnableVertexAttribArray(0);
-    m_vbo.attachAttributePointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
+    m_vbo.attachAttributePointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
 
     glEnableVertexAttribArray(1);
-    m_vbo.attachAttributePointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    m_vbo.attachAttributePointer(1, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+
+    glEnableVertexAttribArray(2);
+    m_vbo.attachAttributePointer(2, 1, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(5 * sizeof(GLfloat)));
 }
 
 std::size_t Mesh::getBufferSize() const {
@@ -50,17 +53,19 @@ void Mesh::draw() {
 //    //m_vao.unbind();
 //}
 
-void Mesh::addVertex(const glm::vec3& pos, const glm::vec2& textureCoord) {
+void Mesh::addVertex(const glm::vec3& pos, const glm::vec2& textureCoord, GLfloat light) {
     m_vertices.push_back(pos.x);
     m_vertices.push_back(pos.y);
     m_vertices.push_back(pos.z);
 
     m_vertices.push_back(textureCoord.x);
     m_vertices.push_back(textureCoord.y);
+
+    m_vertices.push_back(light);
 }
 
 void Mesh::addIndices() {
-    GLuint i = m_vertices.size() / 5 - 4;
+    GLuint i = m_vertices.size() / 6 - 4;
 
     m_indices.insert(m_indices.end(), {i, i + 2, i + 1, i, i + 3, i + 2});
 }

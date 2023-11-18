@@ -20,7 +20,7 @@ public:
     void render(const Camera& camera);
 
 private:
-    BasicShader m_shader;
+    BasicShader m_shader = {"chunk.vert", "chunk.frag"};
     std::vector<std::weak_ptr<ChunkMesh>> m_meshes; // Possibly bad idea
     Texture m_atlas;
 };

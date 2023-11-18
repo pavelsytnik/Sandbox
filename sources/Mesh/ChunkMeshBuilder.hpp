@@ -26,7 +26,8 @@ private:
                     const TextureAtlasCoord& texture,
                     std::int32_t x,
                     std::int32_t y,
-                    std::int32_t z);
+                    std::int32_t z,
+                    GLfloat light);
 
     std::shared_ptr<ChunkMesh> m_chunkMesh;
     const World& world;
