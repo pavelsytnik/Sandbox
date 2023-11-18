@@ -59,15 +59,8 @@ void Mesh::addVertex(const glm::vec3& pos, const glm::vec2& textureCoord) {
     m_vertices.push_back(textureCoord.y);
 }
 
-void Mesh::addIndices(Front front) {
+void Mesh::addIndices() {
     GLuint i = m_vertices.size() / 5 - 4;
 
-    switch (front) {
-        case Front::FACING_AXIS:
-            m_indices.insert(m_indices.end(), {i, i + 1, i + 2, i + 2, i + 3, i});
-            break;
-        case Front::AGAINST_AXIS:
-            m_indices.insert(m_indices.end(), {i, i + 3, i + 2, i + 2, i + 1, i});
-            break;
-    }
+    m_indices.insert(m_indices.end(), {i, i + 2, i + 1, i, i + 3, i + 2});
 }

@@ -36,17 +36,17 @@ void ChunkMeshBuilder::build() {
             for (int z = 0; z < world.getZSize(); ++z) {
                 if (world.getBlock(x, y, z) == 0) continue;
                 if (shouldMakeFace(x, y - 1, z))
-                    tryAddFace(faces::bottom, Front::AGAINST_AXIS, texture, x, y, z);
+                    tryAddFace(faces::bottom, texture, x, y, z);
                 if (shouldMakeFace(x, y + 1, z))
-                    tryAddFace(faces::top, Front::FACING_AXIS, texture, x, y, z);
+                    tryAddFace(faces::top, texture, x, y, z);
                 if (shouldMakeFace(x - 1, y, z))
-                    tryAddFace(faces::left, Front::AGAINST_AXIS, texture, x, y, z);
+                    tryAddFace(faces::left, texture, x, y, z);
                 if (shouldMakeFace(x + 1, y, z))
-                    tryAddFace(faces::right, Front::FACING_AXIS, texture, x, y, z);
+                    tryAddFace(faces::right, texture, x, y, z);
                 if (shouldMakeFace(x, y, z - 1))
-                    tryAddFace(faces::back, Front::FACING_AXIS, texture, x, y, z);
+                    tryAddFace(faces::back, texture, x, y, z);
                 if (shouldMakeFace(x, y, z + 1))
-                    tryAddFace(faces::front, Front::AGAINST_AXIS, texture, x, y, z);
+                    tryAddFace(faces::front, texture, x, y, z);
             }
         }
     }
@@ -64,13 +64,12 @@ bool ChunkMeshBuilder::shouldMakeFace(std::int32_t x, std::int32_t y, std::int32
 }
 
 void ChunkMeshBuilder::tryAddFace(const Face& face,
-                                  Front front,
                                   const TextureAtlasCoord& texture,
                                   std::int32_t x,
                                   std::int32_t y,
                                   std::int32_t z)
 {
     //if (shouldMakeFace(x, y, z)) {
-    m_chunkMesh->addFace(face, front, texture, x, y, z);
+    m_chunkMesh->addFace(face, texture, x, y, z);
     //}
 }

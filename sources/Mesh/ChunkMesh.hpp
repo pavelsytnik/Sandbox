@@ -15,7 +15,6 @@ public:
     ChunkMesh() = default;
 
     void addFace(const Face& face,
-                 Front facing,
                  const TextureAtlasCoord& texture,
                  std::int32_t x,std::int32_t y, std::int32_t z);
 };

@@ -1,7 +1,6 @@
 #include "ChunkMesh.hpp"
 
 void ChunkMesh::addFace(const Face& face,
-                        Front facing,
                         const TextureAtlasCoord& texture,
                         std::int32_t x, std::int32_t y, std::int32_t z)
 {
@@ -12,5 +11,5 @@ void ChunkMesh::addFace(const Face& face,
                   {texture[texShift], texture[texShift + 1]});
     }
 
-    addIndices(facing);
+    addIndices();
 }

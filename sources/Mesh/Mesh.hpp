@@ -12,11 +12,6 @@
 
 using FloatBuffer = std::vector<GLfloat>;
 
-enum class Front {
-    AGAINST_AXIS = 0,
-    FACING_AXIS
-};
-
 class Mesh {
 
 public:
@@ -30,7 +25,7 @@ public:
 
 protected:
     void addVertex(const glm::vec3& pos, const glm::vec2& textureCoord);
-    void addIndices(Front front);
+    void addIndices();
 
 private:
     //void setAttributePointers();
