@@ -9,8 +9,8 @@ World::World(std::uint32_t x, std::uint32_t y, std::uint32_t z) :
         m_blocks[i] = 0;
     }
     for (int _y = 0; _y < y; _y++) {
-        for (int _x = _y; _x < x; _x++) {
-            for (int _z = _y; _z < z; _z++) {
+        for (int _x = _y; _x < x - _y; _x++) {
+            for (int _z = _y; _z < z - _y; _z++) {
                 setBlock(1, _x, _y, _z);
             }
         }
