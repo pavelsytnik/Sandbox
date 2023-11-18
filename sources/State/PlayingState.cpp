@@ -10,7 +10,7 @@
 
 PlayingState::PlayingState(Application& app) :
     State(app),
-    m_world(5, 5, 5),
+    m_world(101, 51, 101),
     m_player(m_world.getPlayer()),
     m_buttons(MouseButtonMappings::getInstance()),
     m_keys(KeyMappings::getInstance()),
@@ -39,11 +39,18 @@ void PlayingState::handleInput() {
 
 void PlayingState::mouseInput() {
     if (m_buttons.BREAK->heldDown()) {
-        std::cout << "BREAK\n";
+        //std::cout << "BREAK\n";
     }
 
     m_player.setYaw(m_player.getYaw() + 0.15f * m_mouse.getDX());
-    m_player.setPitch(m_player.getPitch() - 0.15f * m_mouse.getDY());
+    float a = m_player.getPitch() - 0.15f * m_mouse.getDY();
+    if (a >= -89.f && a <= 89.f) {
+        m_player.setPitch(a);
+    } else if (a > 89.f) {
+        m_player.setPitch(89.f);
+    } else if (a < -89.f) {
+        m_player.setPitch(-89.f);
+    }
 }
 
 void PlayingState::keyboardInput() {
