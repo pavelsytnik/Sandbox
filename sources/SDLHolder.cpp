@@ -1,4 +1,4 @@
-#include "Context.hpp"
+#include "SDLHolder.hpp"
 
 #include <cstdlib>
 #include <iostream>
@@ -10,7 +10,7 @@
 #include "Registry/KeyMappings.hpp"
 #include "Registry/MouseButtonMappings.hpp"
 
-Context::Context() {
+SDLHolder::SDLHolder() {
 
     //std::cout << "Initializing SDL";
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -56,7 +56,7 @@ Context::Context() {
     MouseButtonMappings::getInstance();
 }
 
-Context::~Context() {
+SDLHolder::~SDLHolder() {
     MouseButtonMappings::deleteInstance();
     KeyMappings::deleteInstance();
 
@@ -67,11 +67,11 @@ Context::~Context() {
     SDL_Quit();
 }
 
-SDL_Window* Context::getWindow() {
+SDL_Window* SDLHolder::getWindow() {
     return m_window;
 }
 
-void Context::configureGLContext() {
+void SDLHolder::configureGLContext() {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);

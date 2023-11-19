@@ -1,13 +1,13 @@
-#ifndef CONTEXT_HPP
-#define CONTEXT_HPP
+#ifndef SDL_HOLDER_HPP
+#define SDL_HOLDER_HPP
 
 #include <SDL2/SDL.h>
 
-class Context {
+class SDLHolder {
 
 public:
-    Context();
-    ~Context();
+    SDLHolder();
+    ~SDLHolder();
     SDL_Window* getWindow();
 
 private:
