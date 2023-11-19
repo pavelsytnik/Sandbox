@@ -29,7 +29,11 @@ PlayingState::PlayingState(Application& app) :
 }
 
 void PlayingState::handleEvent(const SDL_Event& event) {
-    State::handleEvent(event);
+    if (event.type == SDL_WINDOWEVENT) {
+        if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+            m_camera.setRatio((float)m_app.getWindow().getWidth() / m_app.getWindow().getHeight());
+        }
+    }
 }
 
 void PlayingState::handleInput() {
@@ -102,12 +106,4 @@ void PlayingState::render() {
     glClearColor(139 / 255.f, 170 / 255.f, 252 / 255.f, 1.f);
 
     m_chunkRenderer.render(m_camera);
-}
-
-void PlayingState::resize() {
-    int w, h;
-    SDL_GetWindowSize(m_app.getContext().getWindow(), &w, &h);
-
-    glViewport(0, 0, w, h);
-    m_camera.setRatio((float)w / h);
 }

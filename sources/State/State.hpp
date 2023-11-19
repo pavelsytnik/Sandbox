@@ -5,8 +5,6 @@
 
 #include <SDL2/SDL.h>
 
-#include "../Context.hpp"
-
 class Application;
 
 class State {
@@ -14,7 +12,7 @@ class State {
 public:
     State(Application& app);
 
-    virtual void handleEvent(const SDL_Event& event);
+    virtual void handleEvent(const SDL_Event& event) = 0;
 
     virtual void handleInput() = 0;
     virtual void update(std::uint64_t dt) = 0;
@@ -23,7 +21,6 @@ public:
     virtual ~State() = 0;
 
 protected:
-    virtual void resize();
     Application& m_app;
 };
 

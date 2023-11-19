@@ -24,9 +24,6 @@ public:
 
     PlayingState(Application& app);
 
-protected:
-    void resize() override;
-
 private:
     void mouseInput();
     void keyboardInput();
