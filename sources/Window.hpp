@@ -10,20 +10,21 @@
 class Window {
     
 public:
-    Window(const std::string& title, int widht, int height);
+    Window(SDL_Window& window);
 
     const std::string& getTitle() const;
     int getWidth() const;
     int getHeight() const;
 
-    void handleInput(const SDL_WindowEvent& event);
+    void handleEvent(const SDL_WindowEvent& event);
+    void swap();
 
 private:
     std::string m_title;
     int m_width;
     int m_height;
 
-    std::unique_ptr<SDL_Window, SDLWindowDestroyer> m_window;
+    SDL_Window& m_window;
 };
 
 #endif
