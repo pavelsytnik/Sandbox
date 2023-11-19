@@ -34,7 +34,7 @@ set(SOURCE
     sources/Renderer/ChunkRenderer.cpp
     sources/Mesh/ChunkMeshBuilder.cpp
     sources/Texture/BlocksAtlas.cpp
-    sources/Mesh/ElementBuffer.cpp)
+    sources/Mesh/ElementBuffer.cpp "sources/Window.cpp")
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
