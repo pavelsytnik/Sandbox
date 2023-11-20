@@ -3,7 +3,7 @@
 #include "../Registry/MouseButtonMappings.hpp"
 #include "MouseButtonMapping.hpp"
 
-Mouse::Mouse() {
+Mouse::Mouse() : m_dx(0), m_dy(0) {
     m_buttons = Registry::getMouseButtons();
 }
 
