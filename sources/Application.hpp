@@ -27,15 +27,16 @@ public:
 private:
     void handleEvents();
 
-    SDLHolder* m_sdlHolder;
+    SDLHolder m_sdlHolder;
+
     bool m_running;
     bool m_visible;
 
-    Window* m_window;
-    Keyboard* m_keyboard;
-    Mouse* m_mouse;
+    Window m_window;
+    Keyboard m_keyboard;
+    Mouse m_mouse;
 
-    RenderMaster* m_renderer;
+    RenderMaster m_renderer;
 
     std::unique_ptr<State> m_state;
 };

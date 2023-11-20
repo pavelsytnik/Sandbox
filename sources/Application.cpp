@@ -3,12 +3,12 @@
 #include <iostream>
 
 Application::Application() :
-    m_sdlHolder{new SDLHolder()},
+    m_sdlHolder{},
     m_running{false},
     m_visible{true},
-    m_window{new Window(*m_sdlHolder->getWindow())},
-    m_keyboard{new Keyboard()},
-    m_mouse{new Mouse()},
+    m_window{*m_sdlHolder.getWindow()},
+    m_keyboard{},
+    m_mouse{},
     m_state{}
 {
     m_state = std::make_unique<PlayingState>(*this);
@@ -27,7 +27,7 @@ void Application::run() {
         }
         m_state->update(deltaTime);
         if (m_visible) {
-            m_renderer->swap(*m_window, *m_state);
+            m_renderer.swap(m_window, *m_state);
         }
 
         deltaTime = frameStart.restart();
@@ -35,15 +35,15 @@ void Application::run() {
 }
 
 const Keyboard& Application::getKeyboard() const {
-    return *m_keyboard;
+    return m_keyboard;
 }
 
 const Window& Application::getWindow() const {
-    return *m_window;
+    return m_window;
 }
 
 const Mouse& Application::getMouse() const {
-    return *m_mouse;
+    return m_mouse;
 }
 
 bool Application::isRunning() const {
@@ -62,21 +62,21 @@ void Application::handleEvents() {
         if (event.type == SDL_QUIT) {
             m_running = false;
         } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
-            m_keyboard->handleInput(event.key);
+            m_keyboard.handleInput(event.key);
         } else if (event.type == SDL_MOUSEMOTION) {
-            m_mouse->handleEvent(event.motion);
+            m_mouse.handleEvent(event.motion);
         } else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP) {
-            m_mouse->handleEvent(event.button);
+            m_mouse.handleEvent(event.button);
         } else if (event.type == SDL_WINDOWEVENT) {
-            m_window->handleEvent(event.window);
+            m_window.handleEvent(event.window);
         }
         m_state->handleEvent(event);
     }
 
 
-    if (SDL_GetWindowFlags(m_sdlHolder->getWindow()) & SDL_WINDOW_MINIMIZED && m_visible) {
+    if (SDL_GetWindowFlags(m_sdlHolder.getWindow()) & SDL_WINDOW_MINIMIZED && m_visible) {
         m_visible = false;
-    } else if (!(SDL_GetWindowFlags(m_sdlHolder->getWindow()) & SDL_WINDOW_MINIMIZED) && !m_visible) {
+    } else if (!(SDL_GetWindowFlags(m_sdlHolder.getWindow()) & SDL_WINDOW_MINIMIZED) && !m_visible) {
         m_visible = true;
     }
 }
