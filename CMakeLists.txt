@@ -21,7 +21,7 @@ set(SOURCE
     sources/World/World.cpp
     sources/Main.cpp
     sources/Application.cpp
-    sources/Context.cpp
+    sources/SDLHolder.cpp
     sources/Camera.cpp
     sources/Input/Mouse.cpp
     sources/Input/MouseButtonMapping.cpp
@@ -34,7 +34,8 @@ set(SOURCE
     sources/Renderer/ChunkRenderer.cpp
     sources/Mesh/ChunkMeshBuilder.cpp
     sources/Texture/BlocksAtlas.cpp
-    sources/Mesh/ElementBuffer.cpp "sources/Window.cpp")
+    sources/Mesh/ElementBuffer.cpp
+    sources/Window.cpp)
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -60,6 +61,8 @@ add_subdirectory(dependencies/glm)
 
 if(MSVC)
     set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DPI_AWARE "PerMonitor")
+    #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /STACK:1000000")
+    #set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS /STACK:160000000)
 endif(MSVC)
 
 target_include_directories(${PROJECT_NAME} PRIVATE dependencies)

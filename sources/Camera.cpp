@@ -9,7 +9,7 @@ Camera::Camera(glm::float32 ratio) :
     m_ratio{ratio},
     m_fov{glm::radians(70.f)},
     m_viewMatrix{glm::lookAt(m_position, m_position + m_direction, m_axis)},
-    m_projectionMatrix{glm::perspective(m_fov, m_ratio, 0.1f, 100.f)}
+    m_projectionMatrix{glm::perspective(m_fov, m_ratio, 0.1f, 200.f)}
 {
     //m_viewMatrix = glm::rotate(m_viewMatrix, glm::radians(60.f), glm::vec3(0, 1, 0));
 }
@@ -26,12 +26,12 @@ void Camera::setDirection(const glm::vec3& direction) {
 
 void Camera::setRatio(glm::float32 ratio) {
     m_ratio = ratio;
-    m_projectionMatrix = glm::perspective(m_fov, m_ratio, 0.1f, 100.f);
+    m_projectionMatrix = glm::perspective(m_fov, m_ratio, 0.1f, 200.f);
 }
 
 void Camera::setFOV(glm::float32 fov) {
     m_fov = fov;
-    m_projectionMatrix = glm::perspective(m_fov, m_ratio, 0.1f, 100.f);
+    m_projectionMatrix = glm::perspective(m_fov, m_ratio, 0.1f, 200.f);
 }
 
 const glm::vec3& Camera::getPosition() const {
