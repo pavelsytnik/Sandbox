@@ -5,7 +5,6 @@
 Application::Application() :
     m_sdlHolder{},
     m_running{false},
-    m_visible{true},
     m_window{*m_sdlHolder.getWindow()},
     m_keyboard{},
     m_mouse{},
@@ -22,11 +21,11 @@ void Application::run() {
 
     while (m_running) {
         handleEvents();
-        if (m_visible) {
+        if (!m_window.isMinimized()) {
             m_state->handleInput();
         }
         m_state->update(deltaTime);
-        if (m_visible) {
+        if (!m_window.isMinimized()) {
             m_renderer.swap(m_window, *m_state);
         }
 
@@ -71,12 +70,5 @@ void Application::handleEvents() {
             m_window.handleEvent(event.window);
         }
         m_state->handleEvent(event);
-    }
-
-
-    if (SDL_GetWindowFlags(m_sdlHolder.getWindow()) & SDL_WINDOW_MINIMIZED && m_visible) {
-        m_visible = false;
-    } else if (!(SDL_GetWindowFlags(m_sdlHolder.getWindow()) & SDL_WINDOW_MINIMIZED) && !m_visible) {
-        m_visible = true;
     }
 }

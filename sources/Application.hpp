@@ -30,7 +30,6 @@ private:
     SDLHolder m_sdlHolder;
 
     bool m_running;
-    bool m_visible;
 
     Window m_window;
     Keyboard m_keyboard;

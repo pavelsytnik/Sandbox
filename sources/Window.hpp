@@ -15,6 +15,7 @@ public:
     const std::string& getTitle() const;
     int getWidth() const;
     int getHeight() const;
+    bool isMinimized() const;
 
     void handleEvent(const SDL_WindowEvent& event);
     void swap();
@@ -23,6 +24,8 @@ private:
     std::string m_title;
     int m_width;
     int m_height;
+
+    bool m_minimized;
 
     SDL_Window& m_window;
 };
