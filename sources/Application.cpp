@@ -5,7 +5,7 @@
 Application::Application() :
     m_sdlHolder{},
     m_running{false},
-    m_window{*m_sdlHolder.getWindow()},
+    m_window{"Sandbox", 800, 800},
     m_keyboard{},
     m_mouse{},
     m_state{}
@@ -48,10 +48,6 @@ const Mouse& Application::getMouse() const {
 bool Application::isRunning() const {
     return m_running;
 }
-
-//Context& Application::getContext() {
-//    return m_context;
-//}
 
 void Application::handleEvents() {
 

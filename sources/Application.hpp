@@ -18,7 +18,6 @@ public:
     Application();
     void run();
     bool isRunning() const;
-    //Context& getContext();
 
     const Mouse& getMouse() const;
     const Keyboard& getKeyboard() const;
