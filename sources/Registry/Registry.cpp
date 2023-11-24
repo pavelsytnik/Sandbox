@@ -1,15 +1,16 @@
 #include "Registry.hpp"
 
 #include "../Input/MouseButtonMapping.hpp"
+#include "../Block/Block.hpp"
 
 KeyMappingPointers Registry::m_keyMappingsHolder;
 ButtonPointers Registry::m_buttonHolder;
+BlockPointers Registry::m_blockHolder;
 
 void Registry::clear() {
-    //for (auto* key : m_keyMappingsHolder) {
-        //delete key;
-    //}
     m_keyMappingsHolder.clear();
+    m_buttonHolder.clear();
+    m_blockHolder.clear();
 }
 
 std::shared_ptr<KeyMapping> Registry::registerKey(const KeyMapping& key) {
@@ -30,4 +31,14 @@ std::shared_ptr<MouseButtonMapping> Registry::registerMouseButton(const MouseBut
 
 ButtonPointers Registry::getMouseButtons() {
     return m_buttonHolder;
+}
+
+std::shared_ptr<Block> Registry::registerBlock(const Block& block) {
+    auto blockPtr = std::make_shared<Block>(block);
+    m_blockHolder.push_back(blockPtr);
+    return blockPtr;
+}
+
+BlockPointers Registry::getBlocks() {
+    return m_blockHolder;
 }
