@@ -5,15 +5,13 @@
 
 #include "../Input/KeyMapping.hpp"
 #include "Registry.hpp"
+#include "../Util/Singleton.hpp"
 
-class KeyMappings {
+class KeyMappings : public Singleton<KeyMappings> {
+
+    friend class Singleton<KeyMappings>;
 
 public:
-    KeyMappings(const KeyMappings&) = delete;
-
-    static KeyMappings& getInstance();
-    static void deleteInstance();
-
     const std::shared_ptr<KeyMapping> FORWARD;
     const std::shared_ptr<KeyMapping> BACKWARD;
     const std::shared_ptr<KeyMapping> LEFT;
@@ -23,8 +21,6 @@ public:
 
 private:
     KeyMappings();
-
-    static KeyMappings* m_instance;
 };
 
 #endif
