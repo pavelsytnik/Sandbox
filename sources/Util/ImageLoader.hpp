@@ -12,7 +12,7 @@ class ImageLoader {
 
 public:
     ImageLoader() = delete;
-    static image_t loadPNG(std::string file);
+    static image_t loadPNG(const std::string& name);
 
 private:
     static void flipVertically(image_t& image);

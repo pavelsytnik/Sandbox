@@ -3,11 +3,12 @@
 #include <cstring>
 
 #include "SDL2/SDL_image.h"
+#include "Paths.hpp"
 
-image_t ImageLoader::loadPNG(std::string file) {
+image_t ImageLoader::loadPNG(const std::string& name) {
 
     image_t image(nullptr, SDL_FreeSurface);
-    image.reset(IMG_Load(file.c_str()));
+    image.reset(IMG_Load((folders::textures + name + ".png").c_str()));
 
     flipVertically(image);
 

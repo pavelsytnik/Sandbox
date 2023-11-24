@@ -3,6 +3,7 @@
 #include "../Util/Paths.hpp"
 
 ChunkRenderer::ChunkRenderer() :
+    m_shader(files::chunkVertexShader, files::chunkFragmentShader),
     m_atlas(files::blockAtlas)
 {}
 

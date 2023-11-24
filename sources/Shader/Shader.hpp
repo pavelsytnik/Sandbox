@@ -8,7 +8,7 @@
 class Shader {
 
 public:
-    Shader(const std::string& vertexFile, const std::string& fragmentFile);
+    Shader(const std::string& vertexName, const std::string& fragmentName);
     virtual ~Shader();
     void use() const;
     //GLuint getID() const;

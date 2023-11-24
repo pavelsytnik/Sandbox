@@ -8,7 +8,7 @@
 
 #include "../Util/ImageLoader.hpp"
 
-Texture::Texture(const std::string& path) {
+Texture::Texture(const std::string& name) {
 
     glGenTextures(1, &m_id);
     glBindTexture(GL_TEXTURE_2D, m_id);
@@ -18,7 +18,7 @@ Texture::Texture(const std::string& path) {
 
     glGenerateMipmap(GL_TEXTURE_2D);
 
-    image_t image = ImageLoader::loadPNG(path);
+    image_t image = ImageLoader::loadPNG(name);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->w, image->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
 

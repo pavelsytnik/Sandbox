@@ -9,7 +9,7 @@ class ShaderLoader {
 
 public:
     ShaderLoader() = delete;
-    static GLuint load(const std::string& vertexFile, const std::string& fragmentFile);
+    static GLuint load(const std::string& vertexName, const std::string& fragmentName);
 
 private:
     static GLuint compile(const GLchar* code, GLenum shaderType);

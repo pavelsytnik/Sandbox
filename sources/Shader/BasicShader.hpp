@@ -1,16 +1,16 @@
 #ifndef BASIC_SHADER_HPP
 #define BASIC_SHADER_HPP
 
-#include "Shader.hpp"
-
 #include <glm/glm.hpp>
-//#include <glm/gtc/type_ptr.hpp>
+
+#include "Shader.hpp"
+#include "../Util/Paths.hpp"
 
 class BasicShader : public Shader {
 
 public:
-    BasicShader(const std::string& vertexFile = "basic.vert",
-                const std::string& fragmentFile = "basic.frag");
+    BasicShader(const std::string& vertexName = files::basicVertexShader,
+                const std::string& fragmentName = files::basicFragmentShader);
 
     void loadModelMatrix(const glm::mat4& model);
     void loadViewMatrix(const glm::mat4& view);

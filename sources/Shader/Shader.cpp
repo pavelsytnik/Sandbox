@@ -5,8 +5,8 @@
 
 #include "ShaderLoader.hpp"
 
-Shader::Shader(const std::string& vertexFile, const std::string& fragmentFile) :
-    m_id(ShaderLoader::load(vertexFile, fragmentFile))
+Shader::Shader(const std::string& vertexName, const std::string& fragmentName) :
+    m_id(ShaderLoader::load(vertexName, fragmentName))
 {}
 
 Shader::~Shader() {

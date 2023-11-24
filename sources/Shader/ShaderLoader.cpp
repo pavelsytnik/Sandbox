@@ -6,11 +6,10 @@
 #include "../Util/FileReader.hpp"
 #include "../Util/Paths.hpp"
 
-GLuint ShaderLoader::load(const std::string& vertexFile, const std::string& fragmentFile) {
+GLuint ShaderLoader::load(const std::string& vertexName, const std::string& fragmentName) {
 
-    //std::string folder("resources/shaders/");
-    std::string vertexShaderCode(readEntire(folders::shaders + vertexFile));
-    std::string fragmentShaderCode(readEntire(folders::shaders + fragmentFile));
+    std::string vertexShaderCode(readEntire(folders::shaders + vertexName + ".vert"));
+    std::string fragmentShaderCode(readEntire(folders::shaders + fragmentName + ".frag"));
 
 
     GLuint vertexShader = compile(vertexShaderCode.c_str(), GL_VERTEX_SHADER);

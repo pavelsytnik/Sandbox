@@ -8,7 +8,7 @@
 class Texture {
 
 public:
-    Texture(const std::string& path);
+    Texture(const std::string& name);
     Texture(const Texture&) = delete;
     Texture(Texture&&) = delete;
     virtual ~Texture();

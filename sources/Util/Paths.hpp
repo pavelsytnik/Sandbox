@@ -7,18 +7,18 @@ namespace folders {
 
     constexpr auto resources = "resources/";
     constexpr auto shaders   = "resources/shaders/";
-    constexpr auto textures  = "resources/images";
+    constexpr auto textures  = "resources/textures/";
 }
 
 namespace files {
     
-    constexpr auto blockAtlas          = "resources/images/blocks.png";
+    constexpr auto blockAtlas          = "blocks";
 
-    constexpr auto basicVertexShader   = "resources/shaders/basic.vert";
-    constexpr auto basicFragmentShader = "resources/shaders/basic.frag";
+    constexpr auto basicVertexShader   = "basic";
+    constexpr auto basicFragmentShader = "basic";
 
-    constexpr auto chunkVertexShader   = "resources/shaders/chunk.vert";
-    constexpr auto chunkFragmentShader = "resources/shaders/chunk.frag";
+    constexpr auto chunkVertexShader   = "chunk";
+    constexpr auto chunkFragmentShader = "chunk";
 }
 
 #endif

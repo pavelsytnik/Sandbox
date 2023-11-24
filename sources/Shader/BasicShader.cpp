@@ -4,9 +4,9 @@
 
 #include "UniformLoader.hpp"
 
-BasicShader::BasicShader(const std::string& vertexFile,
-                         const std::string& fragmentFile)
-    : Shader(vertexFile, fragmentFile)
+BasicShader::BasicShader(const std::string& vertexName,
+                         const std::string& fragmentName)
+    : Shader(vertexName, fragmentName)
 {
     getUniforms();
 }
