@@ -12,14 +12,14 @@ void VertexBuffer::bind() {
     glBindBuffer(GL_ARRAY_BUFFER, m_id);
 }
 
-void VertexBuffer::unbind() {
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
+//void VertexBuffer::unbind() {
+//    glBindBuffer(GL_ARRAY_BUFFER, 0);
+//}
 
 void VertexBuffer::setData(GLsizeiptr size, const void* data, GLenum usage) {
     bind();
     glBufferData(GL_ARRAY_BUFFER, size, data, usage);
-    unbind();
+    //unbind();
 }
 
 void VertexBuffer::attachAttributePointer(
@@ -33,6 +33,6 @@ void VertexBuffer::attachAttributePointer(
     glVertexAttribPointer(index, size, type, normalized, stride, pointer);
 }
 
-GLuint VertexBuffer::getID() {
-    return m_id;
-}
+//GLuint VertexBuffer::getID() {
+//    return m_id;
+//}

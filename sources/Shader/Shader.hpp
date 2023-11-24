@@ -11,7 +11,7 @@ public:
     Shader(const std::string& vertexFile, const std::string& fragmentFile);
     virtual ~Shader();
     void use() const;
-    GLuint getID() const;
+    //GLuint getID() const;
 
 protected:
     virtual void getUniforms() = 0;

@@ -1,11 +1,10 @@
 #include "BlocksAtlas.hpp"
 
 namespace {
-    constexpr int PIXELS_PER_BLOCK = 16;
-    constexpr int ATLAS_WIDTH = 16;
-    constexpr int ATLAS_HEIGHT = 16;
+    constexpr int ATLAS_SIDE_LENGTH = 256;
+    constexpr int TEXTURE_SIDE_LENGTH = 16;
 
-    constexpr GLfloat PIXEL_SIZE = 1.f / (ATLAS_WIDTH * PIXELS_PER_BLOCK);
+    constexpr GLfloat TEXTURE_PORTION = (GLfloat)TEXTURE_SIDE_LENGTH / ATLAS_SIDE_LENGTH;
 }
 
 BlocksAtlas::BlocksAtlas(const std::string& path) :
@@ -14,11 +13,11 @@ BlocksAtlas::BlocksAtlas(const std::string& path) :
 
 std::array<GLfloat, 8> BlocksAtlas::getTexture(int x, int y) const {
 
-    GLfloat xMin = x / 16.f;
-    GLfloat yMin = 1 - y / 16.f - 1 / 16.f;
+    GLfloat xMin = x * TEXTURE_PORTION;
+    GLfloat yMin = 1 - y * TEXTURE_PORTION - TEXTURE_PORTION;
 
-    GLfloat xMax = xMin + 1 / 16.f;
-    GLfloat yMax = yMin + 1 / 16.f;
+    GLfloat xMax = xMin + TEXTURE_PORTION;
+    GLfloat yMax = yMin + TEXTURE_PORTION;
 
     return {xMax, yMin, xMax, yMax, xMin, yMax, xMin, yMin};
 }

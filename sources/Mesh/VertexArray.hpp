@@ -4,12 +4,13 @@
 #include <glad/glad.h>
 
 class VertexArray {
+
 public:
     VertexArray();
     ~VertexArray();
     void bind();
-    void unbind();
-    GLuint getID();
+    //void unbind();
+    //GLuint getID();
 private:
     GLuint m_id;
 };

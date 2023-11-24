@@ -10,7 +10,7 @@ public:
     ~VertexBuffer();
 
     void bind();
-    void unbind();
+    //void unbind();
 
     void setData(GLsizeiptr size, const void* data, GLenum usage);
     void attachAttributePointer(
@@ -22,7 +22,7 @@ public:
         const void* pointer
     );
 
-    GLuint getID();
+    //GLuint getID();
 
 private:
     GLuint m_id;
