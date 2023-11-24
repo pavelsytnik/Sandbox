@@ -4,6 +4,7 @@
 
 Application::Application() :
     m_sdlHolder{},
+    m_registry{},
     m_running{false},
     m_window{"Sandbox", 800, 800},
     m_keyboard{},

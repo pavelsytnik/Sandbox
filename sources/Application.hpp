@@ -11,6 +11,7 @@
 #include "Util/Clock.hpp"
 #include "Renderer/RenderMaster.hpp"
 #include "Window.hpp"
+#include "RegistryHolder.hpp"
 
 class Application {
 
@@ -27,6 +28,7 @@ private:
     void handleEvents();
 
     SDLHolder m_sdlHolder;
+    RegistryHolder m_registry;
 
     bool m_running;
 

@@ -27,14 +27,9 @@ SDLHolder::SDLHolder() {
         std::exit(EXIT_FAILURE);
     }
     //std::cout << std::endl;
-
-    KeyMappings::getInstance();
-    MouseButtonMappings::getInstance();
 }
 
 SDLHolder::~SDLHolder() {
-    MouseButtonMappings::deleteInstance();
-    KeyMappings::deleteInstance();
 
     IMG_Quit();
     SDL_Quit();
