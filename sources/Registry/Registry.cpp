@@ -1,44 +1,47 @@
 #include "Registry.hpp"
 
+#include "../Input/KeyMapping.hpp"
 #include "../Input/MouseButtonMapping.hpp"
 #include "../Block/Block.hpp"
 
-KeyMappingPointers Registry::m_keyMappingsHolder;
-ButtonPointers Registry::m_buttonHolder;
-BlockPointers Registry::m_blockHolder;
+namespace registry {
 
-void Registry::clear() {
-    m_keyMappingsHolder.clear();
-    m_buttonHolder.clear();
-    m_blockHolder.clear();
-}
+    namespace {
+        KeyRegistry _keyRegistry;
+        ButtonRegistry _buttonRegistry;
+        BlockRegistry _blockRegistry;
+    }
 
-std::shared_ptr<KeyMapping> Registry::registerKey(const KeyMapping& key) {
-    auto keyPtr = std::make_shared<KeyMapping>(key);
-    m_keyMappingsHolder.push_back(keyPtr);
-    return keyPtr;
-}
+    KeyMapping& registerKey(const KeyMapping& key) {
+        _keyRegistry.push_back(std::make_unique<KeyMapping>(key));
+        return *_keyRegistry.back();
+    }
 
-KeyMappingPointers Registry::getKeys() {
-    return m_keyMappingsHolder;
-}
+    KeyRegistry& getKeys() {
+        return _keyRegistry;
+    }
 
-std::shared_ptr<MouseButtonMapping> Registry::registerMouseButton(const MouseButtonMapping& button) {
-    auto btnPtr = std::make_shared<MouseButtonMapping>(button);
-    m_buttonHolder.push_back(btnPtr);
-    return btnPtr;
-}
+    MouseButtonMapping& registerButton(const MouseButtonMapping& button) {
+        _buttonRegistry.push_back(std::make_unique<MouseButtonMapping>(button));
+        return *_buttonRegistry.back();
+    }
 
-ButtonPointers Registry::getMouseButtons() {
-    return m_buttonHolder;
-}
+    ButtonRegistry& getButtons() {
+        return _buttonRegistry;
+    }
 
-std::shared_ptr<Block> Registry::registerBlock(const Block& block) {
-    auto blockPtr = std::make_shared<Block>(block);
-    m_blockHolder.push_back(blockPtr);
-    return blockPtr;
-}
+    Block& registerBlock(const Block& block) {
+        _blockRegistry.push_back(std::make_unique<Block>(block));
+        return *_blockRegistry.back();
+    }
 
-BlockPointers Registry::getBlocks() {
-    return m_blockHolder;
+    BlockRegistry& getBlocks() {
+        return _blockRegistry;
+    }
+
+    void clear() {
+        _keyRegistry.clear();
+        _buttonRegistry.clear();
+        _blockRegistry.clear();
+    }
 }

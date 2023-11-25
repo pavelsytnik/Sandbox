@@ -1,8 +1,6 @@
 #ifndef KEYBOARD_HPP
 #define KEYBOARD_HPP
 
-#include <vector>
-
 #include <SDL2/SDL.h>
 
 #include "../Registry/Registry.hpp"
@@ -14,7 +12,7 @@ public:
     void handleInput(const SDL_KeyboardEvent& event);
 
 private:
-    KeyMappingPointers m_keyMappings;
+    KeyRegistry& m_keys;
 };
 
 #endif

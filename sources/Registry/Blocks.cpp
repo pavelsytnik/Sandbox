@@ -1,8 +1,10 @@
 #include "Blocks.hpp"
 #include "Registry.hpp"
 
+using namespace registry;
+
 Blocks::Blocks() :
-    AIR(Registry::registerBlock(Block(0))),
-    STONE(Registry::registerBlock(Block(1))),
-    GRASS(Registry::registerBlock(Block(2)))
+    AIR(registerBlock(Block(0))),
+    STONE(registerBlock(Block(1))),
+    GRASS(registerBlock(Block(2)))
 {}

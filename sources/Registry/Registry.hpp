@@ -1,40 +1,29 @@
 #ifndef REGISTRY_HPP
 #define REGISTRY_HPP
 
-#include "../Input/KeyMapping.hpp"
+#include <memory>
+#include <vector>
 
+class KeyMapping;
 class MouseButtonMapping;
 class Block;
 
-#include <vector>
-#include <memory>
+using KeyRegistry = std::vector<std::unique_ptr<KeyMapping>>;
+using ButtonRegistry = std::vector<std::unique_ptr<MouseButtonMapping>>;
+using BlockRegistry = std::vector<std::unique_ptr<Block>>;
 
-class World;
+namespace registry {
 
-using KeyMappingPointers = std::vector<std::shared_ptr<KeyMapping>>;
-using ButtonPointers = std::vector<std::shared_ptr<MouseButtonMapping>>;
-using BlockPointers = std::vector<std::shared_ptr<Block>>;
+    KeyMapping& registerKey(const KeyMapping& key);
+    KeyRegistry& getKeys();
 
-class Registry {
+    MouseButtonMapping& registerButton(const MouseButtonMapping& button);
+    ButtonRegistry& getButtons();
 
-public:
-    Registry() = delete;
+    Block& registerBlock(const Block& block);
+    BlockRegistry& getBlocks();
 
-    static std::shared_ptr<KeyMapping> registerKey(const KeyMapping& key);
-    static KeyMappingPointers getKeys();
-
-    static std::shared_ptr<MouseButtonMapping> registerMouseButton(const MouseButtonMapping& button);
-    static ButtonPointers getMouseButtons();
-
-    static std::shared_ptr<Block> registerBlock(const Block& block);
-    static BlockPointers getBlocks();
-
-    static void clear();
-
-private:
-    static KeyMappingPointers m_keyMappingsHolder;
-    static ButtonPointers m_buttonHolder;
-    static BlockPointers m_blockHolder;
-};
+    void clear();
+}
 
 #endif

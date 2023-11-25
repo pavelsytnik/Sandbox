@@ -1,11 +1,11 @@
 #include "Mouse.hpp"
-
-#include "../Registry/MouseButtonMappings.hpp"
 #include "MouseButtonMapping.hpp"
 
-Mouse::Mouse() : m_dx(0), m_dy(0) {
-    m_buttons = Registry::getMouseButtons();
-}
+Mouse::Mouse() :
+    m_buttons(registry::getButtons()),
+    m_dx(0),
+    m_dy(0)
+{}
 
 void Mouse::handleEvent(const SDL_MouseButtonEvent& event) {
     for (auto& btn : m_buttons) {

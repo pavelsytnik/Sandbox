@@ -42,7 +42,7 @@ void PlayingState::handleInput() {
 }
 
 void PlayingState::mouseInput() {
-    if (m_buttons.BREAK->heldDown()) {
+    if (m_buttons.BREAK.heldDown()) {
         //std::cout << "BREAK\n";
     }
 
@@ -60,26 +60,26 @@ void PlayingState::mouseInput() {
 void PlayingState::keyboardInput() {
 
     glm::vec3 motion(0.f);
-    if (m_keys.FORWARD->heldDown()) {
+    if (m_keys.FORWARD.heldDown()) {
         motion.x += std::cos(glm::radians(m_player.getYaw()));
         motion.z += std::sin(glm::radians(m_player.getYaw()));
     }
-    if (m_keys.BACKWARD->heldDown()) {
+    if (m_keys.BACKWARD.heldDown()) {
         motion.x -= std::cos(glm::radians(m_player.getYaw()));
         motion.z -= std::sin(glm::radians(m_player.getYaw()));
     }
-    if (m_keys.LEFT->heldDown()) {
+    if (m_keys.LEFT.heldDown()) {
         motion.x -= std::cos(glm::radians(m_player.getYaw() + 90));
         motion.z -= std::sin(glm::radians(m_player.getYaw() + 90));
     }
-    if (m_keys.RIGHT->heldDown()) {
+    if (m_keys.RIGHT.heldDown()) {
         motion.x += std::cos(glm::radians(m_player.getYaw() + 90));
         motion.z += std::sin(glm::radians(m_player.getYaw() + 90));
     }
-    if (m_keys.UP->heldDown()) {
+    if (m_keys.UP.heldDown()) {
         motion.y += 1;
     }
-    if (m_keys.DOWN->heldDown()) {
+    if (m_keys.DOWN.heldDown()) {
         motion.y -= 1;
     }
     m_player.setMotion(motion);

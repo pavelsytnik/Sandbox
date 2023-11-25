@@ -5,8 +5,6 @@
 
 #include "../Registry/Registry.hpp"
 
-class MouseButtonMapping;
-
 class Mouse {
 
 public:
@@ -20,7 +18,7 @@ public:
 private:
     void update(MouseButtonMapping& button, const SDL_MouseButtonEvent& event);
 
-    ButtonPointers m_buttons;
+    ButtonRegistry& m_buttons;
     mutable Sint32 m_dx, m_dy;
 };
 
