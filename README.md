@@ -7,7 +7,16 @@ Sandbox is a temporary title (maybe).
 
 Now there is nothing to place or break blocks in the game. Although you already can move with keyboard and mouse.
 
-![Pyramid render](https://github.com/pavelsytnik/Sandbox/tree/master/assets/pyramid.png?raw=true)
+![Pyramid render](assets/pyramid.png)
+
+### What will be added into the game?
+
+Someday you'll see here possibilities to:
+* create and save worlds
+* edit worlds
+* customize the game with mods and other tools
+* play online with friends
+* install amazing shaders
 
 ## Installation
 
