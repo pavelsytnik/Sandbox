@@ -4,7 +4,7 @@
 
 Application::Application() :
     m_sdlHolder{},
-    m_registry{},
+    m_registry{}, // redo in future
     m_running{false},
     m_window{"Sandbox", 800, 800},
     m_keyboard{},
@@ -16,7 +16,7 @@ Application::Application() :
 
 void Application::run() {
 
-    auto deltaTime = 0ULL;
+    float deltaTime = 0.f;
     Clock frameStart;
     m_running = true;
 
@@ -30,7 +30,7 @@ void Application::run() {
             m_renderer.swap(m_window, *m_state);
         }
 
-        deltaTime = frameStart.restart();
+        deltaTime = frameStart.restart().asSeconds();
     }
 }
 

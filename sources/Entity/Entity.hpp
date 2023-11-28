@@ -1,7 +1,6 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-#include <cstdint>
 #include <glm/glm.hpp>
 
 class World;
@@ -10,7 +9,7 @@ class Entity {
     
 public:
     Entity(World& world);
-    void move(std::uint64_t dt);
+    void move(float dt);
 
     float getYaw() const;
     float getPitch() const;

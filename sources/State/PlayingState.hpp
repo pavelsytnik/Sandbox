@@ -19,7 +19,7 @@ class PlayingState : public State {
 public:
     void handleEvent(const SDL_Event& event) override;
     void handleInput() override;
-    void update(std::uint64_t dt) override;
+    void update(float dt) override;
     void render() override;
 
     PlayingState(Application& app);

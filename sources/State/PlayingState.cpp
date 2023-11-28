@@ -85,7 +85,7 @@ void PlayingState::keyboardInput() {
     m_player.setMotion(motion);
 }
 
-void PlayingState::update(std::uint64_t dt) {
+void PlayingState::update(float dt) {
 
     m_world.update(dt);
 

@@ -61,10 +61,9 @@ void Entity::setMotion(const glm::vec3& direction) {
     }
 }
 
-void Entity::move(std::uint64_t dt) {
+void Entity::move(float dt) {
 
     auto k = 5.f;
-    float delta = dt / 1000000.f / 1000.f;
 
     glm::vec3 dif = m_velocity - m_force;
 
@@ -78,8 +77,8 @@ void Entity::move(std::uint64_t dt) {
 
     } else {
 
-        if (glm::length(dif) != 0.f && glm::length(dif) - delta * k >= 0.f) {
-            dif = (glm::length(dif) - delta * k) * glm::normalize(dif);
+        if (glm::length(dif) != 0.f && glm::length(dif) - dt * k >= 0.f) {
+            dif = (glm::length(dif) - dt * k) * glm::normalize(dif);
         } else {
             dif = glm::vec3(0.f);
         }
@@ -87,6 +86,6 @@ void Entity::move(std::uint64_t dt) {
         m_velocity = m_force + dif;
     }
 
-    m_position += delta * 10 * m_velocity;
+    m_position += dt * 10 * m_velocity;
     m_impulse = false;
 }

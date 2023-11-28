@@ -31,7 +31,7 @@ void World::setBlock(std::uint8_t block, std::uint32_t x, std::uint32_t y, std::
     m_blocks[m_zSize * (y * m_xSize + x) + z] = block;
 }
 
-void World::update(std::uint64_t dt) {
+void World::update(float dt) {
     m_player.move(dt);
 }
 
