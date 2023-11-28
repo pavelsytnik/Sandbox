@@ -1,5 +1,3 @@
-#include "Time.hpp"
-
 constexpr Time Time::nanoseconds(std::int64_t ns) {
     return std::chrono::nanoseconds(ns);
 }

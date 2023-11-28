@@ -7,6 +7,9 @@
 class Time {
     
 public:
+    Time(Time&&) = default;
+    Time(const Time&) = default;
+
     static constexpr Time nanoseconds(std::int64_t ns);
     static constexpr Time milliseconds(std::int32_t ms);
     static constexpr Time seconds(float s);
@@ -20,5 +23,7 @@ private:
 
     std::chrono::nanoseconds m_nanoseconds;
 };
+
+#include "Time.inl"
 
 #endif

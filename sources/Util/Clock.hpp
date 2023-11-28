@@ -3,15 +3,17 @@
 
 #include <cstdint>
 
+#include "Time.hpp"
+
 class Clock {
 
 public:
     Clock();
-    std::uint64_t restart();
-    std::uint64_t getElapsedTime() const;
+    Time restart();
+    Time getElapsedTime() const;
 
 private:
-    std::uint64_t m_startTime;
+    std::int64_t m_startTime;
 };
 
 #endif

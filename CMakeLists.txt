@@ -40,7 +40,7 @@ set(SOURCE
     sources/Util/Singleton.inl
     sources/Registry/Blocks.cpp
     sources/Block/Block.cpp
-    sources/Util/Time.cpp)
+    sources/Util/Time.inl)
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
