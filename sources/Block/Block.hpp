@@ -7,8 +7,11 @@ class Block {
 
 public:
     Block(std::uint8_t id);
-    //virtual bool isOpaque() = 0;
-    //virtual bool isFullCube() = 0;
+
+    //virtual bool isOpaque();
+    //virtual bool isFullCube();
+    virtual bool isAir() const;
+
     std::uint8_t getID() const;
 
 private:
