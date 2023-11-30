@@ -3,19 +3,21 @@
 
 #include <cstdint>
 
+using BlockID = std::uint8_t;
+
 class Block {
 
 public:
-    Block(std::uint8_t id);
+    Block(BlockID id);
 
     //virtual bool isOpaque();
     //virtual bool isFullCube();
     virtual bool isAir() const;
 
-    std::uint8_t getID() const;
+    BlockID getID() const;
 
 private:
-    std::uint8_t m_id;
+    BlockID m_id;
 };
 
 #endif

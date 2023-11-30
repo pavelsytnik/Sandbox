@@ -6,7 +6,7 @@
 class AirBlock : public Block {
 
 public:
-    AirBlock(std::uint8_t id);
+    AirBlock(BlockID id);
 
     bool isAir() const override;
 };

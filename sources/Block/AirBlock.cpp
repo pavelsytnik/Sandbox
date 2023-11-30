@@ -1,6 +1,6 @@
 #include "AirBlock.hpp"
 
-AirBlock::AirBlock(std::uint8_t id) :
+AirBlock::AirBlock(BlockID id) :
     Block(id)
 {}
 
