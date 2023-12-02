@@ -5,6 +5,7 @@
 #include <cstdint>
 
 #include "Mesh.hpp"
+#include "../Util/BlockPos.hpp"
 
 using Face = std::array<GLfloat, 12>;
 using TextureAtlasCoord = std::array<GLfloat, 8>;
@@ -16,7 +17,7 @@ public:
 
     void addFace(const Face& face,
                  const TextureAtlasCoord& texture,
-                 std::int32_t x,std::int32_t y, std::int32_t z,
+                 const BlockPos& pos,
                  GLfloat light);
 };
 
