@@ -4,44 +4,34 @@
 #include "../Input/MouseButtonMapping.hpp"
 #include "../Block/Block.hpp"
 
-namespace registry {
+KeyRegistry Registry::_keyRegistry;
+ButtonRegistry Registry::_buttonRegistry;
+BlockRegistry Registry::_blockRegistry;
 
-    namespace {
-        KeyRegistry _keyRegistry;
-        ButtonRegistry _buttonRegistry;
-        BlockRegistry _blockRegistry;
-    }
+KeyMapping& Registry::registerKey(const KeyMapping& key) {
+    _keyRegistry.push_back(std::make_unique<KeyMapping>(key));
+    return *_keyRegistry.back();
+}
 
-    KeyMapping& registerKey(const KeyMapping& key) {
-        _keyRegistry.push_back(std::make_unique<KeyMapping>(key));
-        return *_keyRegistry.back();
-    }
+KeyRegistry& Registry::getKeys() {
+    return _keyRegistry;
+}
 
-    KeyRegistry& getKeys() {
-        return _keyRegistry;
-    }
+MouseButtonMapping& Registry::registerButton(const MouseButtonMapping& button) {
+    _buttonRegistry.push_back(std::make_unique<MouseButtonMapping>(button));
+    return *_buttonRegistry.back();
+}
 
-    MouseButtonMapping& registerButton(const MouseButtonMapping& button) {
-        _buttonRegistry.push_back(std::make_unique<MouseButtonMapping>(button));
-        return *_buttonRegistry.back();
-    }
+ButtonRegistry& Registry::getButtons() {
+    return _buttonRegistry;
+}
 
-    ButtonRegistry& getButtons() {
-        return _buttonRegistry;
-    }
+BlockRegistry& Registry::getBlocks() {
+    return _blockRegistry;
+}
 
-    Block& registerBlock(const Block& block) {
-        _blockRegistry.push_back(std::make_unique<Block>(block));
-        return *_blockRegistry.back();
-    }
-
-    BlockRegistry& getBlocks() {
-        return _blockRegistry;
-    }
-
-    void clear() {
-        _keyRegistry.clear();
-        _buttonRegistry.clear();
-        _blockRegistry.clear();
-    }
+void Registry::clear() {
+    _keyRegistry.clear();
+    _buttonRegistry.clear();
+    _blockRegistry.clear();
 }

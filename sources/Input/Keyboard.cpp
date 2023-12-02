@@ -2,7 +2,7 @@
 #include "KeyMapping.hpp"
 
 Keyboard::Keyboard() :
-    m_keys(registry::getKeys())
+    m_keys(Registry::getKeys())
 {}
 
 void Keyboard::handleInput(const SDL_KeyboardEvent& event) {

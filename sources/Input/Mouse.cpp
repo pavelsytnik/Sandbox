@@ -2,7 +2,7 @@
 #include "MouseButtonMapping.hpp"
 
 Mouse::Mouse() :
-    m_buttons(registry::getButtons()),
+    m_buttons(Registry::getButtons()),
     m_dx(0),
     m_dy(0)
 {}
@@ -23,6 +23,7 @@ void Mouse::handleEvent(const SDL_MouseMotionEvent& event) {
 void Mouse::update(MouseButtonMapping& button, const SDL_MouseButtonEvent& event) {
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         button.m_heldDown = true;
+
     } else if (event.type == SDL_MOUSEBUTTONUP) {
         button.m_heldDown = false;
     }

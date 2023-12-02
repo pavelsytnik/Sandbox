@@ -12,18 +12,28 @@ using KeyRegistry = std::vector<std::unique_ptr<KeyMapping>>;
 using ButtonRegistry = std::vector<std::unique_ptr<MouseButtonMapping>>;
 using BlockRegistry = std::vector<std::unique_ptr<Block>>;
 
-namespace registry {
+class Registry {
 
-    KeyMapping& registerKey(const KeyMapping& key);
-    KeyRegistry& getKeys();
+public:
+    static KeyMapping& registerKey(const KeyMapping& key);
+    static KeyRegistry& getKeys();
 
-    MouseButtonMapping& registerButton(const MouseButtonMapping& button);
-    ButtonRegistry& getButtons();
+    static MouseButtonMapping& registerButton(const MouseButtonMapping& button);
+    static ButtonRegistry& getButtons();
 
-    Block& registerBlock(const Block& block);
-    BlockRegistry& getBlocks();
+    template<typename TBlock>
+    static TBlock& registerBlock(const TBlock& block);
+    static BlockRegistry& getBlocks();
 
-    void clear();
-}
+    static void sortBlockRegistry(); // temp
+    static void clear();
+
+private:
+    static KeyRegistry _keyRegistry;
+    static ButtonRegistry _buttonRegistry;
+    static BlockRegistry _blockRegistry;
+};
+
+#include "Registry.inl"
 
 #endif
