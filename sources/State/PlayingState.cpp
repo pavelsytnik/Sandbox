@@ -10,7 +10,7 @@
 
 PlayingState::PlayingState(Application& app) :
     State(app),
-    m_world(101, 51, 101),
+    m_world(2, 2),
     m_player(m_world.getPlayer()),
     m_buttons(MouseButtonMappings::getInstance()),
     m_keys(KeyMappings::getInstance()),
@@ -19,13 +19,9 @@ PlayingState::PlayingState(Application& app) :
     SDL_SetRelativeMouseMode(SDL_TRUE);
     SDL_GL_SetSwapInterval(1);
 
-    ChunkMeshBuilder builder(m_world);
-    builder.create();
-    builder.build();
-    m_chunkMesh = builder.getResult();
-    m_chunkMesh->setData();
-
-    m_chunkRenderer.add(m_chunkMesh);
+    for (const auto& chunk : m_world.getChunks()) {
+        m_chunkRenderer.add(chunk.second);
+    }
 }
 
 void PlayingState::handleEvent(const SDL_Event& event) {
