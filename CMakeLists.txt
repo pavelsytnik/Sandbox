@@ -36,6 +36,7 @@ set(SOURCE
     sources/State/State.cpp
     sources/Texture/BlocksAtlas.cpp
     sources/Texture/Texture.cpp
+    sources/Util/ChunkPos.cpp
     sources/Util/Clock.cpp
     sources/Util/FileReader.cpp
     sources/Util/ImageLoader.cpp
