@@ -1,15 +1,22 @@
 #include "ChunkRenderer.hpp"
 #include "../Camera.hpp"
 #include "../Util/Paths.hpp"
+#include "../Mesh/ChunkMeshBuilder.hpp"
 
 ChunkRenderer::ChunkRenderer() :
     m_shader(files::chunkVertexShader, files::chunkFragmentShader),
     m_atlas(files::blockAtlas)
 {}
 
-void ChunkRenderer::add(const std::shared_ptr<ChunkMesh>& mesh)
+void ChunkRenderer::add(const Chunk& chunk)
 {
-    m_meshes.push_back(mesh);
+    ChunkMeshBuilder builder(chunk);
+    builder.create();
+    builder.build();
+    auto mesh = builder.getResult();
+    mesh->setData();
+
+    m_meshes.push_back(std::move(mesh));
 }
 
 void ChunkRenderer::clear()
@@ -31,5 +38,5 @@ void ChunkRenderer::render(const Camera& camera)
     m_shader.loadProjectionMatrix(camera.getProjectionMatrix());
 
     for (auto& mesh : m_meshes)
-        mesh.lock()->draw();
+        mesh->draw();
 }
