@@ -3,76 +3,65 @@
 
 #include "../Texture/BlocksAtlas.hpp"
 #include "../Util/Paths.hpp"
-
 #include "../Block/Block.hpp"
 
-ChunkMeshBuilder::ChunkMeshBuilder(const World& world) :
-    world(world)
+ChunkMeshBuilder::ChunkMeshBuilder(const Chunk& chunk) :
+    m_chunk(chunk)
 {
 }
 
 void ChunkMeshBuilder::create() {
-    m_chunkMesh.reset(new ChunkMesh());
+    m_chunkMesh.reset(new ChunkMesh);
 }
 
 void ChunkMeshBuilder::build() {
-    //std::array<GLfloat, 12> texture{
-    //    0, 15 / 16.f,
-    //    1 / 16.f, 15 / 16.f,
-    //    0, 1,
-    //    1 / 16.f, 15 / 16.f,
-    //    1 / 16.f, 1,
-    //    0, 1};
-    //std::array<GLfloat, 12> texture{
-    //    0, 15/16.f,
-    //    1/16.f, 15/16.f,
-    //    0, 1,
-    //    0, 1,
-    //    1/16.f, 1,
-    //    1/16.f, 15/16.f
-    //};
+
     BlocksAtlas atlas(files::blockAtlas);
     auto texture = atlas.getTexture(0, 0);
-    for (int x = 0; x < world.getXSize(); ++x) {
-        for (int y = 0; y < world.getYSize(); ++y) {
-            for (int z = 0; z < world.getZSize(); ++z) {
-                if (world.getBlock(x, y, z).isAir()) continue;
-                if (shouldMakeFace(x, y - 1, z))
-                    tryAddFace(faces::bottom, texture, x, y, z, .7f);
-                if (shouldMakeFace(x, y + 1, z))
-                    tryAddFace(faces::top, texture, x, y, z, 1.f);
-                if (shouldMakeFace(x - 1, y, z))
-                    tryAddFace(faces::left, texture, x, y, z, .8f);
-                if (shouldMakeFace(x + 1, y, z))
-                    tryAddFace(faces::right, texture, x, y, z, .8f);
-                if (shouldMakeFace(x, y, z - 1))
-                    tryAddFace(faces::back, texture, x, y, z, .9f);
-                if (shouldMakeFace(x, y, z + 1))
-                    tryAddFace(faces::front, texture, x, y, z, .9f);
-            }
-        }
+
+    for (auto i = 0; i < CHUNK_VOLUME; ++i) {
+        int x = i % CHUNK_SIZE;
+        int y = i / CHUNK_AREA;
+        int z = (i / CHUNK_SIZE) % CHUNK_SIZE;
+
+        if (m_chunk.getBlock({x, y, z}).isAir()) continue;
+        if (shouldMakeFace({x, y - 1, z}))
+            tryAddFace(faces::bottom, texture, {x, y, z}, .7f);
+        if (shouldMakeFace({x, y + 1, z}))
+            tryAddFace(faces::top, texture, {x, y, z}, 1.f);
+        if (shouldMakeFace({x - 1, y, z}))
+            tryAddFace(faces::left, texture, {x, y, z}, .8f);
+        if (shouldMakeFace({x + 1, y, z}))
+            tryAddFace(faces::right, texture, {x, y, z}, .8f);
+        if (shouldMakeFace({x, y, z - 1}))
+            tryAddFace(faces::back, texture, {x, y, z}, .9f);
+        if (shouldMakeFace({x, y, z + 1}))
+            tryAddFace(faces::front, texture, {x, y, z}, .9f);
     }
 }
 
-std::shared_ptr<ChunkMesh> ChunkMeshBuilder::getResult() const {
-    return m_chunkMesh;
+std::unique_ptr<ChunkMesh> ChunkMeshBuilder::getResult() {
+    return std::move(m_chunkMesh);
 }
 
-bool ChunkMeshBuilder::shouldMakeFace(std::int32_t x, std::int32_t y, std::int32_t z) const {
-    return x < 0 || x >= world.getXSize()
-        || y < 0 || y >= world.getYSize()
-        || z < 0 || z >= world.getZSize()
-        || world.getBlock(x, y, z).isAir();
+bool ChunkMeshBuilder::shouldMakeFace(const BlockPos& pos) const {
+    return pos.x < 0 || pos.x >= CHUNK_SIZE
+        || pos.y < 0 || pos.y > MAX_CHUNK_HEIGHT
+        || pos.z < 0 || pos.z >= CHUNK_SIZE
+        || m_chunk.getBlock(pos).isAir();
 }
 
 void ChunkMeshBuilder::tryAddFace(const Face& face,
                                   const TextureAtlasCoord& texture,
-                                  std::int32_t x,
-                                  std::int32_t y,
-                                  std::int32_t z,
+                                  const BlockPos& pos,
                                   GLfloat light)
 {
     //if (shouldMakeFace(x, y, z)) {
-    m_chunkMesh->addFace(face, texture, x, y, z, light);
+    BlockPos globalPos{
+        int(m_chunk.getPosition().x * CHUNK_SIZE + pos.x),
+        pos.y,
+        int(m_chunk.getPosition().z * CHUNK_SIZE + pos.z)
+    };
+    m_chunkMesh->addFace(face, texture, globalPos, light);
     //}
 }

@@ -8,29 +8,28 @@
 #include <glad/glad.h>
 
 #include "ChunkMesh.hpp"
-#include "../World/World.hpp" // temporary. Be replaced by Chunk
+#include "../World/Chunk/Chunk.hpp" // temporary. Be replaced by ChunkSection
+#include "../Util/BlockPos.hpp"
 
 class ChunkMeshBuilder {
 
 public:
-    ChunkMeshBuilder(const World& world);
+    ChunkMeshBuilder(const Chunk& chunk);
 
     void create();
     void build();
 
-    std::shared_ptr<ChunkMesh> getResult() const;
+    std::unique_ptr<ChunkMesh> getResult();
 
 private:
-    bool shouldMakeFace(std::int32_t x, std::int32_t y, std::int32_t z) const;
+    bool shouldMakeFace(const BlockPos& pos) const;
     void tryAddFace(const Face& face,
                     const TextureAtlasCoord& texture,
-                    std::int32_t x,
-                    std::int32_t y,
-                    std::int32_t z,
+                    const BlockPos& pos,
                     GLfloat light);
 
-    std::shared_ptr<ChunkMesh> m_chunkMesh;
-    const World& world;
+    std::unique_ptr<ChunkMesh> m_chunkMesh;
+    const Chunk& m_chunk;
 };
 
 #endif
