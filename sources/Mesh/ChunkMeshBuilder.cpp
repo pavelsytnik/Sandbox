@@ -4,6 +4,8 @@
 #include "../Texture/BlocksAtlas.hpp"
 #include "../Util/Paths.hpp"
 
+#include "../Block/Block.hpp"
+
 ChunkMeshBuilder::ChunkMeshBuilder(const World& world) :
     world(world)
 {
@@ -34,7 +36,7 @@ void ChunkMeshBuilder::build() {
     for (int x = 0; x < world.getXSize(); ++x) {
         for (int y = 0; y < world.getYSize(); ++y) {
             for (int z = 0; z < world.getZSize(); ++z) {
-                if (world.getBlock(x, y, z) == 0) continue;
+                if (world.getBlock(x, y, z).isAir()) continue;
                 if (shouldMakeFace(x, y - 1, z))
                     tryAddFace(faces::bottom, texture, x, y, z, .7f);
                 if (shouldMakeFace(x, y + 1, z))
@@ -60,7 +62,7 @@ bool ChunkMeshBuilder::shouldMakeFace(std::int32_t x, std::int32_t y, std::int32
     return x < 0 || x >= world.getXSize()
         || y < 0 || y >= world.getYSize()
         || z < 0 || z >= world.getZSize()
-        || world.getBlock(x, y, z) == 0;
+        || world.getBlock(x, y, z).isAir();
 }
 
 void ChunkMeshBuilder::tryAddFace(const Face& face,
