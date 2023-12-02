@@ -2,46 +2,45 @@ cmake_minimum_required(VERSION 3.16)
 project(sandbox)
 
 set(SOURCE
-    sources/Input/KeyMapping.cpp
+    sources/Application.cpp
+    sources/Camera.cpp
+    sources/Main.cpp
+    sources/RegistryHolder.cpp
+    sources/SDLHolder.cpp
+    sources/Window.cpp
+    sources/Block/Block.cpp
+    sources/Block/AirBlock.cpp
+    sources/Entity/Entity.cpp
+    sources/Entity/Player.cpp
     sources/Input/Keyboard.cpp
+    sources/Input/KeyMapping.cpp
+    sources/Input/Mouse.cpp
+    sources/Input/MouseButtonMapping.cpp
+    sources/Mesh/ChunkMesh.cpp
+    sources/Mesh/ChunkMeshBuilder.cpp
+    sources/Mesh/ElementBuffer.cpp
     sources/Mesh/Mesh.cpp
     sources/Mesh/VertexArray.cpp
     sources/Mesh/VertexBuffer.cpp
-    sources/Registry/Registry.cpp
+    sources/Registry/Blocks.cpp
     sources/Registry/KeyMappings.cpp
-    sources/State/State.cpp
-    sources/State/PlayingState.cpp
+    sources/Registry/MouseButtonMappings.cpp
+    sources/Registry/Registry.cpp
+    sources/Renderer/ChunkRenderer.cpp
+    sources/Renderer/RenderMaster.cpp
     sources/Shader/BasicShader.cpp
     sources/Shader/Shader.cpp
     sources/Shader/ShaderLoader.cpp
     sources/Shader/UniformLoader.cpp
+    sources/State/PlayingState.cpp
+    sources/State/State.cpp
+    sources/Texture/BlocksAtlas.cpp
     sources/Texture/Texture.cpp
+    sources/Util/Clock.cpp
     sources/Util/FileReader.cpp
     sources/Util/ImageLoader.cpp
     sources/World/World.cpp
-    sources/Main.cpp
-    sources/Application.cpp
-    sources/SDLHolder.cpp
-    sources/Camera.cpp
-    sources/Input/Mouse.cpp
-    sources/Input/MouseButtonMapping.cpp
-    sources/Registry/MouseButtonMappings.cpp
-    sources/Util/Clock.cpp
-    sources/Entity/Entity.cpp
-    sources/Entity/Player.cpp
-    sources/Mesh/ChunkMesh.cpp
-    sources/Renderer/RenderMaster.cpp
-    sources/Renderer/ChunkRenderer.cpp
-    sources/Mesh/ChunkMeshBuilder.cpp
-    sources/Texture/BlocksAtlas.cpp
-    sources/Mesh/ElementBuffer.cpp
-    sources/Window.cpp
-    sources/RegistryHolder.cpp
-    sources/Util/Singleton.inl
-    sources/Registry/Blocks.cpp
-    sources/Block/Block.cpp
-    sources/Util/Time.inl
-    sources/Block/AirBlock.cpp)
+    sources/World/Chunk/Chunk.cpp)
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -67,8 +66,6 @@ add_subdirectory(dependencies/glm)
 
 if(MSVC)
     set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DPI_AWARE "PerMonitor")
-    #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /STACK:1000000")
-    #set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS /STACK:160000000)
 endif(MSVC)
 
 target_include_directories(${PROJECT_NAME} PRIVATE dependencies)
