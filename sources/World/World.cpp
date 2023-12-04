@@ -13,7 +13,15 @@ World::World(std::int32_t xChunks, std::int32_t zChunks) :
         for (auto z = -zChunks; z < zChunks; ++z) {
             ChunkPos chunkPos{x, z};
             m_chunks.emplace(std::make_pair(std::move(chunkPos), Chunk{this, chunkPos}));
-            setBlock(Registry::getBlocks()[2]->getID(), {x * int(CHUNK_SIZE), 0, z * int(CHUNK_SIZE)});
+            //setBlock(Registry::getBlocks()[2]->getID(), {x * int(CHUNK_SIZE), 0, z * int(CHUNK_SIZE)});
+        }
+    }
+
+    for (int y = 0; y < CHUNK_HEIGHT; y++) {
+        for (int x = -xChunks * CHUNK_SIZE; x < xChunks * CHUNK_SIZE; x++) {
+            for (int z = -zChunks * CHUNK_SIZE; z < zChunks * CHUNK_SIZE; z++) {
+                setBlock(Registry::getBlocks()[2]->getID(), {x, y, z});
+            }
         }
     }
     //m_player.m_position = glm::vec3(getXSize() / 2, getYSize() + 2, getZSize() / 2);
@@ -37,7 +45,20 @@ const Block& World::getBlock(const BlockPos& pos) const {
 void World::setBlock(const Block& block, const BlockPos& pos) {
 
     ChunkPos chunkPos{int(std::floor(float(pos.x) / CHUNK_SIZE)), int(std::floor(float(pos.z) / CHUNK_SIZE))};
-    BlockPos blockPos{pos.x % CHUNK_SIZE, pos.y, pos.z % CHUNK_SIZE};
+
+    int x;
+    if (pos.x < 0 && pos.x % CHUNK_SIZE != 0) {
+        x = CHUNK_SIZE + (pos.x % CHUNK_SIZE);
+    } else {
+        x = pos.x % CHUNK_SIZE;
+    }
+    int z;
+    if (pos.z < 0 && pos.z % CHUNK_SIZE != 0) {
+        z = CHUNK_SIZE + (pos.z % CHUNK_SIZE);
+    } else {
+        z = pos.z % CHUNK_SIZE;
+    }
+    BlockPos blockPos{x, pos.y, z};
 
     m_chunks.at(chunkPos).setBlock(block, blockPos);
 }
