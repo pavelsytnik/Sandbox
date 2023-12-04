@@ -16,8 +16,8 @@ class ChunkMeshBuilder {
 public:
     ChunkMeshBuilder(const Chunk& chunk);
 
-    void create();
-    void build();
+    ChunkMeshBuilder& create();
+    ChunkMeshBuilder& build();
 
     std::unique_ptr<ChunkMesh> getResult();
 

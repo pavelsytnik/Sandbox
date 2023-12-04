@@ -10,11 +10,12 @@ ChunkMeshBuilder::ChunkMeshBuilder(const Chunk& chunk) :
 {
 }
 
-void ChunkMeshBuilder::create() {
+ChunkMeshBuilder& ChunkMeshBuilder::create() {
     m_chunkMesh.reset(new ChunkMesh);
+    return *this;
 }
 
-void ChunkMeshBuilder::build() {
+ChunkMeshBuilder& ChunkMeshBuilder::build() {
 
     BlocksAtlas atlas(files::blockAtlas);
     auto texture = atlas.getTexture(0, 0);
@@ -38,6 +39,8 @@ void ChunkMeshBuilder::build() {
         if (shouldMakeFace({x, y, z + 1}))
             tryAddFace(faces::front, texture, {x, y, z}, .9f);
     }
+
+    return *this;
 }
 
 std::unique_ptr<ChunkMesh> ChunkMeshBuilder::getResult() {
@@ -46,7 +49,7 @@ std::unique_ptr<ChunkMesh> ChunkMeshBuilder::getResult() {
 
 bool ChunkMeshBuilder::shouldMakeFace(const BlockPos& pos) const {
     return pos.x < 0 || pos.x >= CHUNK_SIZE
-        || pos.y < 0 || pos.y > MAX_CHUNK_HEIGHT
+        || pos.y < 0 || pos.y >= CHUNK_HEIGHT
         || pos.z < 0 || pos.z >= CHUNK_SIZE
         || m_chunk.getBlock(pos).isAir();
 }

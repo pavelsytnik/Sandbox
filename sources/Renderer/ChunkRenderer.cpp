@@ -10,10 +10,7 @@ ChunkRenderer::ChunkRenderer() :
 
 void ChunkRenderer::add(const Chunk& chunk)
 {
-    ChunkMeshBuilder builder(chunk);
-    builder.create();
-    builder.build();
-    auto mesh = builder.getResult();
+    auto mesh = ChunkMeshBuilder(chunk).create().build().getResult();
     mesh->setData();
 
     m_meshes.push_back(std::move(mesh));
