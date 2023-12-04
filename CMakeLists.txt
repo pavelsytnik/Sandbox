@@ -28,6 +28,7 @@ set(SOURCE
     sources/Registry/Registry.cpp
     sources/Renderer/ChunkRenderer.cpp
     sources/Renderer/RenderMaster.cpp
+    sources/Renderer/Model/BlockModel.cpp
     sources/Shader/BasicShader.cpp
     sources/Shader/Shader.cpp
     sources/Shader/ShaderLoader.cpp
