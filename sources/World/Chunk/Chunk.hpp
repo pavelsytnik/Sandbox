@@ -11,11 +11,11 @@
 
 class World;
 
-constexpr std::size_t CHUNK_SIZE = 16;
-constexpr std::size_t CHUNK_AREA = CHUNK_SIZE * CHUNK_SIZE;
-constexpr std::size_t CHUNK_VOLUME = CHUNK_AREA * CHUNK_SIZE;
+constexpr std::int32_t CHUNK_SIZE = 16;
+constexpr std::int32_t CHUNK_AREA = CHUNK_SIZE * CHUNK_SIZE;
+constexpr std::int32_t CHUNK_HEIGHT = 256;
+constexpr std::int32_t CHUNK_VOLUME = CHUNK_AREA * CHUNK_HEIGHT;
 
-constexpr std::uint8_t MAX_CHUNK_HEIGHT = 255;
 
 class Chunk {
 

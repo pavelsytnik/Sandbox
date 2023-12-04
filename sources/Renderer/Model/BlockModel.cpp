@@ -9,7 +9,7 @@ BlockModel::BlockModel(TextureShift texture) :
 BlockModel::BlockModel(TextureShift top, TextureShift bottom, TextureShift side) :
     m_top(top),
     m_bottom(bottom),
-    m_seide(side)
+    m_side(side)
 {}
 
 TextureShift BlockModel::getTopTexture() const {
