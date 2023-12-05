@@ -23,17 +23,10 @@ public:
     void update(float dt);
 
     Player& getPlayer();
-
     const std::unordered_map<ChunkPos, Chunk>& getChunks() const;
 
-    //std::uint32_t getXSize() const;
-    //std::uint32_t getYSize() const;
-    //std::uint32_t getZSize() const;
-
 private:
-    //std::uint8_t* m_blocks;
     std::unordered_map<ChunkPos, Chunk> m_chunks;
-    //std::uint32_t m_xSize, m_ySize, m_zSize;
 
     Player m_player;
 };

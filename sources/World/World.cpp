@@ -5,6 +5,20 @@
 #include "../Registry/Registry.hpp"
 #include "../Block/Block.hpp"
 
+namespace {
+    std::int32_t localAxisPosFrom(std::int32_t n) {
+        n %= CHUNK_SIZE;
+        return n >= 0 ? n : n + CHUNK_SIZE;
+    }
+
+    BlockPos chunkLocalPosFrom(BlockPos globalPos) {
+        std::int32_t x = localAxisPosFrom(globalPos.x);
+        std::int32_t z = localAxisPosFrom(globalPos.z);
+
+        return {x, globalPos.y, z};
+    }
+}
+
 World::World(std::int32_t xChunks, std::int32_t zChunks) :
     m_chunks(),
     m_player(*this)
@@ -37,7 +51,7 @@ const std::unordered_map<ChunkPos, Chunk>& World::getChunks() const {
 const Block& World::getBlock(const BlockPos& pos) const {
     
     ChunkPos chunkPos{int(std::floor(float(pos.x) / CHUNK_SIZE)), int(std::floor(float(pos.z) / CHUNK_SIZE))};
-    BlockPos blockPos{pos.x % CHUNK_SIZE, pos.y, pos.z % CHUNK_SIZE};
+    BlockPos blockPos{chunkLocalPosFrom(pos)};
 
     return m_chunks.at(chunkPos).getBlock(blockPos);
 }
@@ -45,20 +59,7 @@ const Block& World::getBlock(const BlockPos& pos) const {
 void World::setBlock(const Block& block, const BlockPos& pos) {
 
     ChunkPos chunkPos{int(std::floor(float(pos.x) / CHUNK_SIZE)), int(std::floor(float(pos.z) / CHUNK_SIZE))};
-
-    int x;
-    if (pos.x < 0 && pos.x % CHUNK_SIZE != 0) {
-        x = CHUNK_SIZE + (pos.x % CHUNK_SIZE);
-    } else {
-        x = pos.x % CHUNK_SIZE;
-    }
-    int z;
-    if (pos.z < 0 && pos.z % CHUNK_SIZE != 0) {
-        z = CHUNK_SIZE + (pos.z % CHUNK_SIZE);
-    } else {
-        z = pos.z % CHUNK_SIZE;
-    }
-    BlockPos blockPos{x, pos.y, z};
+    BlockPos blockPos{chunkLocalPosFrom(pos)};
 
     m_chunks.at(chunkPos).setBlock(block, blockPos);
 }
@@ -70,15 +71,3 @@ void World::update(float dt) {
 Player& World::getPlayer() {
     return m_player;
 }
-
-//std::uint32_t World::getXSize() const {
-//    return m_xSize;
-//}
-//
-//std::uint32_t World::getYSize() const {
-//    return m_ySize;
-//}
-//
-//std::uint32_t World::getZSize() const {
-//    return m_zSize;
-//}
