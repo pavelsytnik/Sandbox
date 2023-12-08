@@ -42,7 +42,8 @@ set(SOURCE
     sources/Util/FileReader.cpp
     sources/Util/ImageLoader.cpp
     sources/World/World.cpp
-    sources/World/Chunk/Chunk.cpp)
+    sources/World/Chunk/Chunk.cpp
+    sources/World/Chunk/ChunkSection.cpp)
 
 add_custom_target(copy_resources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory

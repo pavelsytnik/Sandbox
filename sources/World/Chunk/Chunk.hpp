@@ -8,14 +8,10 @@
 #include "../../Block/Block.hpp"
 #include "../../Util/ChunkPos.hpp"
 #include "../../Util/BlockPos.hpp"
+#include "ChunkConstants.hpp"
+#include "ChunkSection.hpp"
 
 class World;
-
-constexpr std::int32_t CHUNK_SIZE = 16;
-constexpr std::int32_t CHUNK_AREA = CHUNK_SIZE * CHUNK_SIZE;
-constexpr std::int32_t CHUNK_HEIGHT = 256;
-constexpr std::int32_t CHUNK_VOLUME = CHUNK_AREA * CHUNK_HEIGHT;
-
 
 class Chunk {
 
@@ -30,7 +26,8 @@ public:
 private:
     World* m_world;
     ChunkPos m_pos;
-    std::array<BlockID, CHUNK_VOLUME> m_blocks;
+
+    std::vector<ChunkSection> m_sections; // rewrite to array in future
 };
 
 #endif
