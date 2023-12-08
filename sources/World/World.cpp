@@ -21,7 +21,9 @@ namespace {
 
 World::World(std::int32_t xChunks, std::int32_t zChunks) :
     m_chunks(),
-    m_player(*this)
+    m_player(*this),
+    m_xBorder(xChunks * CHUNK_SIZE),
+    m_zBorder(zChunks * CHUNK_SIZE)
 {
     for (auto x = -xChunks; x < xChunks; ++x) {
         for (auto z = -zChunks; z < zChunks; ++z) {
@@ -49,6 +51,15 @@ const std::unordered_map<ChunkPos, Chunk>& World::getChunks() const {
 }
 
 const Block& World::getBlock(const BlockPos& pos) const {
+
+    // redo
+    if (pos.x < -m_xBorder || pos.x >= m_xBorder ||
+        pos.y < 0 || pos.y >= CHUNK_HEIGHT ||
+        pos.z < -m_zBorder || pos.z >= m_zBorder)
+    {
+        return *Registry::getBlocks()[0];
+    }
+    // redo
     
     ChunkPos chunkPos{int(std::floor(float(pos.x) / CHUNK_SIZE)), int(std::floor(float(pos.z) / CHUNK_SIZE))};
     BlockPos blockPos{chunkLocalPosFrom(pos)};

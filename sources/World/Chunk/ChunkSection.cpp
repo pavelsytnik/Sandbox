@@ -48,6 +48,10 @@ bool ChunkSection::isOutOfBounds(const BlockPos& pos) {
            pos.z < 0 || pos.z >= CHUNK_SIZE;
 }
 
+ChunkPos ChunkSection::getChunkPos() const {
+    return m_chunkPos;
+}
+
 int ChunkSection::getLevel() const {
     return m_level;
 }

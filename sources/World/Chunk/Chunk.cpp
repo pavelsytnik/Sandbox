@@ -29,3 +29,8 @@ void Chunk::setBlock(const Block& block, const BlockPos& pos) {
 const ChunkPos& Chunk::getPosition() const {
     return m_pos;
 }
+
+const std::vector<ChunkSection>& Chunk::getSections() const
+{
+    return m_sections;
+}

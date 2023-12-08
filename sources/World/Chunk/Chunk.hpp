@@ -4,6 +4,7 @@
 #include <array>
 #include <cstddef>
 #include <cstdint>
+#include <vector>
 
 #include "../../Block/Block.hpp"
 #include "../../Util/ChunkPos.hpp"
@@ -22,6 +23,7 @@ public:
     const Block& getBlock(const BlockPos& pos) const;
     void setBlock(const Block& block, const BlockPos& pos);
     const ChunkPos& getPosition() const;
+    const std::vector<ChunkSection>& getSections() const;
 
 private:
     World* m_world;

@@ -29,6 +29,8 @@ private:
     std::unordered_map<ChunkPos, Chunk> m_chunks;
 
     Player m_player;
+
+    int m_xBorder, m_zBorder;
 };
 
 #endif

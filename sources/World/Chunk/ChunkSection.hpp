@@ -4,7 +4,7 @@
 #include <array>
 
 #include "../../Block/Block.hpp"
-#include "Chunk.hpp"
+#include "../../Util/ChunkPos.hpp"
 #include "ChunkConstants.hpp"
 
 class World;
@@ -19,6 +19,7 @@ public:
 
     const Block& getBlock(const BlockPos& pos) const;
     void setBlock(const Block& block, const BlockPos& pos);
+    ChunkPos getChunkPos() const;
     int getLevel() const;
 
 private:
