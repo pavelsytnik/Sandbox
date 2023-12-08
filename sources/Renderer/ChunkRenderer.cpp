@@ -8,7 +8,7 @@ ChunkRenderer::ChunkRenderer() :
     m_atlas(files::blockAtlas)
 {}
 
-void ChunkRenderer::add(const Chunk& chunk)
+void ChunkRenderer::add(const ChunkSection& chunk)
 {
     auto mesh = ChunkMeshBuilder(chunk).create().build().getResult();
     mesh->setData();

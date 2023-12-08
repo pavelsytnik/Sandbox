@@ -17,7 +17,7 @@ public:
     ChunkRenderer();
 
     //void add(const std::shared_ptr<ChunkMesh>& mesh);
-    void add(const Chunk& chunk);
+    void add(const ChunkSection& chunk);
     void clear();
     void render(const Camera& camera);
 

@@ -8,13 +8,13 @@
 #include <glad/glad.h>
 
 #include "ChunkMesh.hpp"
-#include "../World/Chunk/Chunk.hpp" // temporary. Be replaced by ChunkSection
+#include "../World/Chunk/ChunkSection.hpp"
 #include "../Util/BlockPos.hpp"
 
 class ChunkMeshBuilder {
 
 public:
-    ChunkMeshBuilder(const Chunk& chunk);
+    ChunkMeshBuilder(const ChunkSection& section);
 
     ChunkMeshBuilder& create();
     ChunkMeshBuilder& build();
@@ -29,7 +29,7 @@ private:
                     GLfloat light);
 
     std::unique_ptr<ChunkMesh> m_chunkMesh;
-    const Chunk& m_chunk;
+    const ChunkSection& m_section;
 };
 
 #endif

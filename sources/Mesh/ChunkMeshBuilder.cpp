@@ -5,8 +5,8 @@
 #include "../Util/Paths.hpp"
 #include "../Block/Block.hpp"
 
-ChunkMeshBuilder::ChunkMeshBuilder(const Chunk& chunk) :
-    m_chunk(chunk)
+ChunkMeshBuilder::ChunkMeshBuilder(const ChunkSection& section) :
+    m_section(section)
 {
 }
 
@@ -25,7 +25,9 @@ ChunkMeshBuilder& ChunkMeshBuilder::build() {
         int y = i / CHUNK_AREA;
         int z = (i / CHUNK_SIZE) % CHUNK_SIZE;
 
-        if (m_chunk.getBlock({x, y, z}).isAir()) continue;
+        if (m_section.getBlock({x, y, z}).isAir())
+            continue;
+
         if (shouldMakeFace({x, y - 1, z}))
             tryAddFace(faces::bottom, texture, {x, y, z}, .7f);
         if (shouldMakeFace({x, y + 1, z}))
@@ -48,10 +50,8 @@ std::unique_ptr<ChunkMesh> ChunkMeshBuilder::getResult() {
 }
 
 bool ChunkMeshBuilder::shouldMakeFace(const BlockPos& pos) const {
-    return pos.x < 0 || pos.x >= CHUNK_SIZE
-        || pos.y < 0 || pos.y >= CHUNK_HEIGHT
-        || pos.z < 0 || pos.z >= CHUNK_SIZE
-        || m_chunk.getBlock(pos).isAir();
+
+    return m_section.getBlock(pos).isAir();
 }
 
 void ChunkMeshBuilder::tryAddFace(const Face& face,
@@ -59,12 +59,11 @@ void ChunkMeshBuilder::tryAddFace(const Face& face,
                                   const BlockPos& pos,
                                   GLfloat light)
 {
-    //if (shouldMakeFace(x, y, z)) {
     BlockPos globalPos{
-        int(m_chunk.getPosition().x * CHUNK_SIZE + pos.x),
-        pos.y,
-        int(m_chunk.getPosition().z * CHUNK_SIZE + pos.z)
+        m_section.getChunkPos().x * CHUNK_SIZE + pos.x,
+        m_section.getLevel() * CHUNK_SIZE + pos.y,
+        m_section.getChunkPos().z * CHUNK_SIZE + pos.z
     };
+
     m_chunkMesh->addFace(face, texture, globalPos, light);
-    //}
 }

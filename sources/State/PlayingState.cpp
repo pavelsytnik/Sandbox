@@ -20,7 +20,9 @@ PlayingState::PlayingState(Application& app) :
     SDL_GL_SetSwapInterval(1);
 
     for (const auto& chunk : m_world.getChunks()) {
-        m_chunkRenderer.add(chunk.second);
+        for (const auto& section : chunk.second.getSections()) {
+            m_chunkRenderer.add(section);
+        }
     }
 }
 
