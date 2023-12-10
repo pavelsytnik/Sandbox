@@ -8,8 +8,8 @@
 
 #include <glad/glad.h>
 
-#include "Registry/KeyMappings.hpp"
-#include "Registry/MouseButtonMappings.hpp"
+#include "../Registry/KeyMappings.hpp"
+#include "../Registry/MouseButtonMappings.hpp"
 
 SDLHolder::SDLHolder() {
 

@@ -1,2 +1,0 @@
-* Compilation isn't cross-platform yet
-* I don't know CMake quite well so I'm not sure whether my actions are right or good

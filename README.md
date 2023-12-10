@@ -20,7 +20,7 @@ Someday you'll see here possibilities to:
 
 ## Installation
 
-The program is built via CMake. Now only MSVC support has been implemented. In future, I am planning add GCC support and other Windows&Linux compilers.
+The program is built via CMake. Now only MSVC support has been implemented. In future, I am going to add GCC support and other Windows&Linux compilers.
 
 You should download SDL2 by yourself and set the path to it in `cmake/path_to_sdl2.cmake`.
 

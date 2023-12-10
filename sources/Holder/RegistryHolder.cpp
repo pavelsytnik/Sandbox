@@ -1,7 +1,7 @@
 #include "RegistryHolder.hpp"
-#include "Registry/KeyMappings.hpp"
-#include "Registry/MouseButtonMappings.hpp"
-#include "Registry/Blocks.hpp"
+#include "../Registry/KeyMappings.hpp"
+#include "../Registry/MouseButtonMappings.hpp"
+#include "../Registry/Blocks.hpp"
 
 RegistryHolder::RegistryHolder() {
     KeyMappings::getInstance();
