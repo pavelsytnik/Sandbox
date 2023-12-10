@@ -2,6 +2,7 @@
 #include "Faces.hpp"
 
 #include "../Texture/BlocksAtlas.hpp"
+#include "../Holder/BlockModelHolder.hpp"
 #include "../Util/Paths.hpp"
 #include "../Block/Block.hpp"
 
@@ -17,29 +18,45 @@ ChunkMeshBuilder& ChunkMeshBuilder::create() {
 
 ChunkMeshBuilder& ChunkMeshBuilder::build() {
 
-    BlocksAtlas atlas(files::blockAtlas);
-    auto texture = atlas.getTexture(0, 0);
+    auto& models = BlockModelHolder::getInstance();
+    //auto texture = atlas.getTexture(0, 0);
 
     for (auto i = 0; i < CHUNK_VOLUME; ++i) {
         int x = i % CHUNK_SIZE;
         int y = i / CHUNK_AREA;
         int z = (i / CHUNK_SIZE) % CHUNK_SIZE;
 
-        if (m_section.getBlock({x, y, z}).isAir())
+        const auto& block = m_section.getBlock({x, y, z});
+        BlockID id = block.getID();
+        BlockModel* model;
+
+        switch (int(id)) {
+            case 1:
+                model = &models.stone;
+                break;
+            case 2:
+                model = &models.grass;
+                break;
+            default:
+                model = nullptr;
+                break;
+        }
+
+        if (block.isAir() || !model)
             continue;
 
         if (shouldMakeFace({x, y - 1, z}))
-            tryAddFace(faces::bottom, texture, {x, y, z}, .7f);
+            tryAddFace(faces::bottom, BlocksAtlas::getTexture(model->getBottomTexture().x, model->getBottomTexture().y), {x, y, z}, .7f);
         if (shouldMakeFace({x, y + 1, z}))
-            tryAddFace(faces::top, texture, {x, y, z}, 1.f);
+            tryAddFace(faces::top, BlocksAtlas::getTexture(model->getTopTexture().x, model->getTopTexture().y), {x, y, z}, 1.f);
         if (shouldMakeFace({x - 1, y, z}))
-            tryAddFace(faces::left, texture, {x, y, z}, .8f);
+            tryAddFace(faces::left, BlocksAtlas::getTexture(model->getSideTexture().x, model->getSideTexture().y), {x, y, z}, .8f);
         if (shouldMakeFace({x + 1, y, z}))
-            tryAddFace(faces::right, texture, {x, y, z}, .8f);
+            tryAddFace(faces::right, BlocksAtlas::getTexture(model->getSideTexture().x, model->getSideTexture().y), {x, y, z}, .8f);
         if (shouldMakeFace({x, y, z - 1}))
-            tryAddFace(faces::back, texture, {x, y, z}, .9f);
+            tryAddFace(faces::back, BlocksAtlas::getTexture(model->getSideTexture().x, model->getSideTexture().y), {x, y, z}, .9f);
         if (shouldMakeFace({x, y, z + 1}))
-            tryAddFace(faces::front, texture, {x, y, z}, .9f);
+            tryAddFace(faces::front, BlocksAtlas::getTexture(model->getSideTexture().x, model->getSideTexture().y), {x, y, z}, .9f);
     }
 
     return *this;
