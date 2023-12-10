@@ -10,6 +10,7 @@ set(SOURCE
     sources/Block/AirBlock.cpp
     sources/Entity/Entity.cpp
     sources/Entity/Player.cpp
+    sources/Holder/BlockModelHolder.cpp
     sources/Holder/RegistryHolder.cpp
     sources/Holder/SDLHolder.cpp
     sources/Input/Keyboard.cpp
