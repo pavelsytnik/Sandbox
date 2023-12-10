@@ -5,13 +5,13 @@ set(SOURCE
     sources/Application.cpp
     sources/Camera.cpp
     sources/Main.cpp
-    sources/RegistryHolder.cpp
-    sources/SDLHolder.cpp
     sources/Window.cpp
     sources/Block/Block.cpp
     sources/Block/AirBlock.cpp
     sources/Entity/Entity.cpp
     sources/Entity/Player.cpp
+    sources/Holder/RegistryHolder.cpp
+    sources/Holder/SDLHolder.cpp
     sources/Input/Keyboard.cpp
     sources/Input/KeyMapping.cpp
     sources/Input/Mouse.cpp

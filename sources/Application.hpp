@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "SDLHolder.hpp"
+#include "Holder/SDLHolder.hpp"
 #include "State/State.hpp"
 #include "State/PlayingState.hpp"
 #include "Input/Keyboard.hpp"
@@ -11,7 +11,7 @@
 #include "Util/Clock.hpp"
 #include "Renderer/RenderMaster.hpp"
 #include "Window.hpp"
-#include "RegistryHolder.hpp"
+#include "Holder/RegistryHolder.hpp"
 
 class Application {
 
