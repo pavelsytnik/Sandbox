@@ -1,6 +1,7 @@
 #include "World.hpp"
 
 #include <cmath>
+#include <cstdlib>
 
 #include "../Registry/Registry.hpp"
 #include "../Block/Block.hpp"
@@ -25,6 +26,8 @@ World::World(std::int32_t xChunks, std::int32_t zChunks) :
     m_xBorder(xChunks * CHUNK_SIZE),
     m_zBorder(zChunks * CHUNK_SIZE)
 {
+    std::srand(45486464548L);
+
     for (auto x = -xChunks; x < xChunks; ++x) {
         for (auto z = -zChunks; z < zChunks; ++z) {
             ChunkPos chunkPos{x, z};
@@ -36,7 +39,7 @@ World::World(std::int32_t xChunks, std::int32_t zChunks) :
     for (int y = 0; y < CHUNK_HEIGHT; y++) {
         for (int x = -xChunks * CHUNK_SIZE; x < xChunks * CHUNK_SIZE; x++) {
             for (int z = -zChunks * CHUNK_SIZE; z < zChunks * CHUNK_SIZE; z++) {
-                setBlock(Registry::getBlocks()[2]->getID(), {x, y, z});
+                setBlock(Registry::getBlocks()[std::rand() % 3]->getID(), {x, y, z});
             }
         }
     }
