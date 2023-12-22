@@ -10,7 +10,7 @@
 
 PlayingState::PlayingState(Application& app) :
     State(app),
-    m_world(2, 2),
+    m_world(10, 10),
     m_player(m_world.getPlayer()),
     m_buttons(MouseButtonMappings::getInstance()),
     m_keys(KeyMappings::getInstance()),

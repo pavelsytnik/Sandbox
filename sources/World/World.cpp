@@ -39,7 +39,7 @@ World::World(std::int32_t xChunks, std::int32_t zChunks) :
     for (int y = 0; y < CHUNK_HEIGHT; y++) {
         for (int x = -xChunks * CHUNK_SIZE; x < xChunks * CHUNK_SIZE; x++) {
             for (int z = -zChunks * CHUNK_SIZE; z < zChunks * CHUNK_SIZE; z++) {
-                setBlock(Registry::getBlocks()[std::rand() % 3]->getID(), {x, y, z});
+                setBlock(Registry::getBlocks()[y < 3 ? 1 : y == 3 ? 2 : 0]->getID(), {x, y, z});
             }
         }
     }
