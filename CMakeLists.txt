@@ -17,6 +17,7 @@ set(SOURCE
     sources/Input/KeyMapping.cpp
     sources/Input/Mouse.cpp
     sources/Input/MouseButtonMapping.cpp
+    sources/Math/Ray.cpp
     sources/Mesh/ChunkMesh.cpp
     sources/Mesh/ChunkMeshBuilder.cpp
     sources/Mesh/ElementBuffer.cpp
