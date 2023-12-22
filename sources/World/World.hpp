@@ -3,11 +3,13 @@
 
 #include <cstdint>
 #include <unordered_map>
+#include <vector>
 
 #include "../Entity/Player.hpp"
 #include "Chunk/Chunk.hpp"
 #include "../Util/ChunkPos.hpp"
 #include "../Util/BlockPos.hpp"
+#include "../Physics/AABB.hpp"
 
 class Block;
 
@@ -24,6 +26,8 @@ public:
 
     Player& getPlayer();
     const std::unordered_map<ChunkPos, Chunk>& getChunks() const;
+
+    std::vector<AABB> getSurroundingBlocks(const AABB& box) const;
 
 private:
     std::unordered_map<ChunkPos, Chunk> m_chunks;

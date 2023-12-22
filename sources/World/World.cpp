@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <cstdlib>
+#include <algorithm>
 
 #include "../Registry/Registry.hpp"
 #include "../Block/Block.hpp"
@@ -22,7 +23,7 @@ namespace {
 
 World::World(std::int32_t xChunks, std::int32_t zChunks) :
     m_chunks(),
-    m_player(*this),
+    m_player(*this, {0.f, 4.f, 0.f}),
     m_xBorder(xChunks * CHUNK_SIZE),
     m_zBorder(zChunks * CHUNK_SIZE)
 {
@@ -84,4 +85,29 @@ void World::update(float dt) {
 
 Player& World::getPlayer() {
     return m_player;
+}
+
+std::vector<AABB> World::getSurroundingBlocks(const AABB& box) const {
+
+    int minX = std::max(int(std::floor(box.minX) - 1), -m_xBorder);
+    int minY = std::max(int(std::floor(box.minY) - 1), 0);
+    int minZ = std::max(int(std::floor(box.minZ) - 1), -m_zBorder);
+
+    int maxX = std::min(int(std::ceil(box.maxX) + 1), m_xBorder);
+    int maxY = std::min(int(std::ceil(box.maxY) + 1), CHUNK_HEIGHT);
+    int maxZ = std::min(int(std::ceil(box.maxZ) + 1), m_zBorder);
+
+    std::vector<AABB> boxes;
+
+    for (int x = minX; x < maxX; x++) {
+        for (int y = minY; y < maxY; y++) {
+            for (int z = minZ; z < maxZ; z++) {
+                if (!getBlock({x, y, z}).isAir()) {
+                    boxes.push_back(AABB{float(x), float(y), float(z), float(x + 1), float(y + 1), float(z + 1)});
+                }
+            }
+        }
+    }
+
+    return boxes;
 }
