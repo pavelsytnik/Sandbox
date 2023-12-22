@@ -5,10 +5,10 @@
 
 class Player : public Entity {
 
-    friend class World;
+    //friend class World;
     
 public:
-    Player(World& world);
+    Player(World& world, const glm::vec3& position = glm::vec3(0.f));
 
     //void setYaw(float yaw);
     //void setPitch(float pitch);

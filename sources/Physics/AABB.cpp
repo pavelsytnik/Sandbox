@@ -67,3 +67,12 @@ float AABB::clipZCollide(const AABB& other, float z) const {
 
     return z;
 }
+
+void AABB::move(float x, float y, float z) {
+    minX += x;
+    minY += y;
+    minZ += z;
+    maxX += x;
+    maxY += y;
+    maxZ += z;
+}

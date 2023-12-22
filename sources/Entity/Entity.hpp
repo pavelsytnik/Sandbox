@@ -3,16 +3,19 @@
 
 #include <glm/glm.hpp>
 
+#include "../Physics/AABB.hpp"
+
 class World;
 
 class Entity {
     
 public:
-    Entity(World& world);
+    Entity(World& world, const AABB& boundingBox, const glm::vec3& position = glm::vec3(0.f));
     void move(float dt);
 
     float getYaw() const;
     float getPitch() const;
+    AABB getBoundingBox() const;
 
     const glm::vec3& getPosition() const;
     const glm::vec3& getForce() const;
@@ -38,6 +41,8 @@ protected:
 
     float m_yaw;
     float m_pitch;
+
+    AABB m_boundingBox;
 
     World& m_world;
 };

@@ -7,13 +7,22 @@
 
 #include <glm/gtx/vector_angle.hpp>
 
-Entity::Entity(World& world) :
-    m_position(0.f),
+Entity::Entity(World& world, const AABB& boundingBox, const glm::vec3& position) :
+    m_position(position),
     m_velocity(0.f),
     m_force(0.f),
     m_impulse(false),
     m_yaw(270.f),
     m_pitch(0.f),
+    m_boundingBox{
+        position.x + boundingBox.minX,
+        position.y + boundingBox.minY,
+        position.z + boundingBox.minZ,
+
+        position.x + boundingBox.maxX,
+        position.y + boundingBox.maxY,
+        position.z + boundingBox.maxZ
+    },
     m_world(world) {
 
 }
@@ -24,6 +33,10 @@ float Entity::getYaw() const {
 
 float Entity::getPitch() const {
     return m_pitch;
+}
+
+AABB Entity::getBoundingBox() const {
+    return m_boundingBox;
 }
 
 const glm::vec3& Entity::getVelocity() const {
@@ -86,6 +99,9 @@ void Entity::move(float dt) {
         m_velocity = m_force + dif;
     }
 
-    m_position += dt * 10 * m_velocity;
+    auto vec = dt * 10 * m_velocity;
+    m_position += vec;
+    m_boundingBox.move(vec.x, vec.y, vec.z);
+
     m_impulse = false;
 }

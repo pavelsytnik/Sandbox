@@ -1,6 +1,8 @@
 #include "Player.hpp"
+#include "../Physics/AABB.hpp"
 
-Player::Player(World& world) : Entity(world) {
+Player::Player(World& world, const glm::vec3& position) :
+    Entity(world, {-.5f, .0f, -.5f, .5f, 1.8f, .5f}, position) {
 
 }
 
