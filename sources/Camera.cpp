@@ -15,7 +15,7 @@ Camera::Camera(glm::float32 ratio) :
 }
 
 void Camera::setPosition(const glm::vec3& position) {
-    m_position = position;
+    m_position = glm::vec3(position.x, position.y + 1.6f, position.z);
     m_viewMatrix = glm::lookAt(m_position, m_position + m_direction, m_axis);
 }
 
