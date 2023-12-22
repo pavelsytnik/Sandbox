@@ -23,6 +23,7 @@ set(SOURCE
     sources/Mesh/Mesh.cpp
     sources/Mesh/VertexArray.cpp
     sources/Mesh/VertexBuffer.cpp
+    sources/Physics/AABB.cpp
     sources/Registry/Blocks.cpp
     sources/Registry/KeyMappings.cpp
     sources/Registry/MouseButtonMappings.cpp
