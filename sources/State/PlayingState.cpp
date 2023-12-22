@@ -7,10 +7,15 @@
 #include "PlayingState.hpp"
 #include "../Application.hpp"
 #include "../Mesh/ChunkMeshBuilder.hpp"
+#include "../Math/Ray.hpp"
+#include "../Util/ChunkPos.hpp"
+#include "../Util/Clock.hpp"
+
+#include "../Registry/Blocks.hpp"
 
 PlayingState::PlayingState(Application& app) :
     State(app),
-    m_world(10, 10),
+    m_world(1, 1),
     m_player(m_world.getPlayer()),
     m_buttons(MouseButtonMappings::getInstance()),
     m_keys(KeyMappings::getInstance()),
@@ -38,10 +43,68 @@ void PlayingState::handleInput() {
     keyboardInput();
     mouseInput();
 }
-
+Clock timer;
 void PlayingState::mouseInput() {
+
+    // redo
+    auto dir = glm::vec3(
+        std::cos(glm::radians(m_player.getYaw())) * std::cos(glm::radians(m_player.getPitch())),
+        std::sin(glm::radians(m_player.getPitch())),
+        std::sin(glm::radians(m_player.getYaw())) * std::cos(glm::radians(m_player.getPitch()))
+    );
+
+
+    glm::vec3 last;
+    glm::vec3 ifBreak;
+    bool canInteract = false;
+    auto pos = glm::vec3(m_player.getPosition().x, m_player.getPosition().y + 1.6f, m_player.getPosition().z);
+    for (Ray ray{pos, dir};
+         glm::length(ray.end - ray.origin) <= 5;
+         ray.step(0.05f))
+    {
+        int x = ray.end.x;
+        int y = ray.end.y;
+        int z = ray.end.z;
+
+        const Block& block = m_world.getBlock({x, y, z});
+        if (!block.isAir()) {
+            canInteract = true;
+            ifBreak = ray.end;
+            break;
+        }
+        if (glm::length(ray.end - ray.origin) == 5 && block.isAir()) {
+            canInteract = false;
+        }
+        last = ray.end;
+    }
+
     if (m_buttons.BREAK.heldDown()) {
-        //std::cout << "BREAK\n";
+        int x = static_cast<int>(ifBreak.x);
+        int y = static_cast<int>(ifBreak.y);
+        int z = static_cast<int>(ifBreak.z);
+
+        if (canInteract && timer.getElapsedTime().asSeconds() > 0.15) {
+            m_world.setBlock(Blocks::getInstance().AIR, {x, y, z});
+            m_chunkRenderer.add(m_world.getChunks().at(
+                {int(std::floor(float(x) / CHUNK_SIZE)), int(std::floor(float(z) / CHUNK_SIZE))}
+            ).getSections()[y / CHUNK_SIZE]);
+            timer.restart();
+        }
+    }
+    if (m_buttons.PUT.heldDown()) {
+       
+        int x = static_cast<int>(last.x);
+        int y = static_cast<int>(last.y);
+        int z = static_cast<int>(last.z);
+        
+        if (canInteract && timer.getElapsedTime().asSeconds() > 0.15) {
+            m_world.setBlock(Blocks::getInstance().STONE, {x, y, z});
+            m_chunkRenderer.add(m_world.getChunks().at(
+                {int(std::floor(float(x) / CHUNK_SIZE)), int(std::floor(float(z) / CHUNK_SIZE))}
+            ).getSections()[y / CHUNK_SIZE]);
+            //std::cout << "Rebuild\n";
+            timer.restart();
+        }
     }
 
     m_player.setYaw(m_player.getYaw() + 0.15f * m_mouse.getDX());
