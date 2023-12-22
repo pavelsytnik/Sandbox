@@ -3,6 +3,8 @@
 #include "../Util/Paths.hpp"
 #include "../Mesh/ChunkMeshBuilder.hpp"
 
+#include <iostream>
+
 ChunkRenderer::ChunkRenderer() :
     m_shader(files::chunkVertexShader, files::chunkFragmentShader),
     m_atlas(files::blockAtlas)
@@ -13,7 +15,7 @@ void ChunkRenderer::add(const ChunkSection& chunk)
     auto mesh = ChunkMeshBuilder(chunk).create().build().getResult();
     mesh->setData();
 
-    m_meshes.push_back(std::move(mesh));
+    m_meshes[glm::ivec3(chunk.getChunkPos().x, chunk.getLevel(), chunk.getChunkPos().z)] = std::move(mesh);
 }
 
 void ChunkRenderer::clear()
@@ -35,5 +37,7 @@ void ChunkRenderer::render(const Camera& camera)
     m_shader.loadProjectionMatrix(camera.getProjectionMatrix());
 
     for (auto& mesh : m_meshes)
-        mesh->draw();
+        mesh.second->draw();
 }
+
+
