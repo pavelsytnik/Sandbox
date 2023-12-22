@@ -2,7 +2,7 @@
 #include "../Physics/AABB.hpp"
 
 Player::Player(World& world, const glm::vec3& position) :
-    Entity(world, {-.5f, .0f, -.5f, .5f, 1.8f, .5f}, position) {
+    Entity(world, {-.3f, .0f, -.3f, .3f, 1.8f, .3f}, position) {
 
 }
 

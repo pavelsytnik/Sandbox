@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 #include "../World/World.hpp"
 
@@ -100,8 +101,31 @@ void Entity::move(float dt) {
     }
 
     auto vec = dt * 10 * m_velocity;
-    m_position += vec;
-    m_boundingBox.move(vec.x, vec.y, vec.z);
+
+    //auto box = m_boundingBox;
+    //box.move(vec.x, vec.y, vec.z);
+    auto boxes = m_world.getSurroundingBlocks(m_boundingBox);
+
+    float x = vec.x, y = vec.y, z = vec.z;
+
+    for (const auto& box : boxes) {
+        x = m_boundingBox.clipXCollide(box, x);
+    }
+    m_boundingBox.move(x, .0f, .0f);
+
+    for (const auto& box : boxes) {
+        y = m_boundingBox.clipYCollide(box, y);
+    }
+    m_boundingBox.move(.0f, y, .0f);
+
+    for (const auto& box : boxes) {
+        z = m_boundingBox.clipZCollide(box, z);
+    }
+    m_boundingBox.move(.0f, .0f, z);
+    if (glm::length(m_velocity) != 0)
+        std::cout << x << ", " << y << ", " << z << std::endl;
+    m_position += glm::vec3(x, y, z);
+    //m_boundingBox.move(vec.x, vec.y, vec.z);
 
     m_impulse = false;
 }
